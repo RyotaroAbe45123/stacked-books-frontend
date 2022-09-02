@@ -56,5 +56,10 @@
     "*.{ts,tsx}": [
       "prettier -w"
     ]
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": false,
+    "trailingComma": "all"
   }
 }
