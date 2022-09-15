@@ -1,18 +1,23 @@
-import { Box, Button } from "@chakra-ui/react";
+// import { Box, Button } from "@chakra-ui/react";
+import { useAuth0 } from "@auth0/auth0-react";
+import { Box } from "@chakra-ui/react";
+import { LogoutButton } from "auth/LogoutButton";
 import { theme } from "theme/theme";
 
 export const Header = () => {
-  const routes = [
-    {
-      name: "About",
-    },
-    {
-      name: "Feature",
-    },
-    {
-      name: "Contact",
-    },
-  ];
+  const { isAuthenticated } = useAuth0();
+  console.log(isAuthenticated);
+  // const routes = [
+  //   {
+  //     name: "About",
+  //   },
+  //   {
+  //     name: "Feature",
+  //   },
+  //   {
+  //     name: "Contact",
+  //   },
+  // ];
   return (
     <Box
       position="fixed"
@@ -23,7 +28,7 @@ export const Header = () => {
       marginTop="10px"
     >
       <Box float="right" display="flex" paddingRight="10px" alignItems="center">
-        {routes.map((route) => (
+        {/* {routes.map((route) => (
           <Box key={route.name} mx="5px">
             <Button
               bg={theme.mainColor}
@@ -32,7 +37,10 @@ export const Header = () => {
               {route.name}
             </Button>
           </Box>
-        ))}
+        ))} */}
+        <Box mx="5px">
+          <LogoutButton />
+        </Box>
       </Box>
     </Box>
   );
