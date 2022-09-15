@@ -39,6 +39,6 @@ export const Profile = () => {
       <p>{user?.email}</p>
     </div>
   ) : (
-    <div>no auth</div>
+    <div>un auth</div>
   );
 };
