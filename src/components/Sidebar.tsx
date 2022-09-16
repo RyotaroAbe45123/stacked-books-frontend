@@ -1,5 +1,5 @@
 import { Box, Button, Divider, Heading } from "@chakra-ui/react";
-import { Input } from "pages/Input";
+import { InputPerformance } from "pages/Input";
 import { Main } from "pages/Main";
 import { useNavigate } from "react-router-dom";
 import { theme } from "theme/theme";
@@ -15,7 +15,7 @@ export const Sidebar = () => {
     {
       name: "input",
       path: "/input",
-      component: Input,
+      component: InputPerformance,
     },
   ];
   const onClick = (path: string) => {

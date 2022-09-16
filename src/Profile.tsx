@@ -16,13 +16,18 @@ export const Profile = () => {
           audience: `https://${domain}/api/v2/`,
           scope: "read:current_user",
         });
-        console.log(`a: ${accessToken}`);
+        // console.log(`a: ${accessToken}`);
 
-        const r = await axios.get("http://localhost:5000/users", {
+        const url = "http://localhost:5000/stacks";
+        // const data = {
+        //   isbn: 11223344,
+        // };
+        const headers = {
           headers: {
-            Authorization: accessToken,
+            token: accessToken,
           },
-        });
+        };
+        const r = await axios.get(url, headers);
         console.log(r.data);
       } catch (e: any) {
         console.log(e.message);

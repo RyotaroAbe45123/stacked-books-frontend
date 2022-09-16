@@ -1,6 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
+import { Box, Spinner } from "@chakra-ui/react";
 import { DefaultLayout } from "components/layout/DefaultLayout";
-import { Input } from "pages/Input";
+import { InputPerformance } from "pages/Input";
 import { Login } from "pages/Login";
 import { Main } from "pages/Main";
 import { Profile } from "Profile";
@@ -8,10 +9,20 @@ import { Navigate, Route, Routes } from "react-router-dom";
 
 export const App = () => {
   const { isAuthenticated, isLoading } = useAuth0();
-  console.log(isAuthenticated);
 
   if (isLoading) {
-    return <></>;
+    return (
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        marginTop="20%"
+      >
+        <Box>
+          <Spinner size="lg" thickness="5px" />
+        </Box>
+      </Box>
+    );
   }
 
   if (isAuthenticated) {
@@ -19,7 +30,7 @@ export const App = () => {
       <DefaultLayout>
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="/input" element={<Input />} />
+          <Route path="/input" element={<InputPerformance />} />
           <Route path="/profile" element={<Profile />} />
         </Routes>
       </DefaultLayout>
