@@ -1,0 +1,39 @@
+import axios from "axios";
+import useSWR from "swr";
+import { useAuthContext } from "../../contexts/AuthContext";
+
+export const useStack = () => {
+    const { token } = useAuthContext()
+
+    const context = "http://localhost:5000/stacks"
+    const headers = {
+        headers: {
+          token: token ?? "",
+        },
+      };
+      const fetcher = async () => {
+        try {
+            const response = await axios.get(
+                context,
+                headers
+            )
+            return response;
+        } catch(error: any) {
+            console.error(error.message)
+            throw error
+        }
+    }
+
+    const { data, error } = useSWR(
+        "/api/stack",
+        fetcher
+    )
+
+    const isLoading = !data && !error;
+
+    return {
+        data: data,
+        error: error,
+        isLoading: isLoading,
+    }
+}

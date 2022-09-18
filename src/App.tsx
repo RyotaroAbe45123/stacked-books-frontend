@@ -1,11 +1,12 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { Box, Spinner } from "@chakra-ui/react";
 import { DefaultLayout } from "components/layout/DefaultLayout";
-import { InputPerformance } from "pages/Input";
 import { Login } from "pages/Login";
-import { Main } from "pages/Main";
-import { Profile } from "Profile";
 import { Navigate, Route, Routes } from "react-router-dom";
+import { Register } from "pages/Register";
+import { Home } from "pages/Home";
+import { NotFound } from "pages/NotFound";
+import { AuthContextProvider } from "contexts/AuthContext";
 
 export const App = () => {
   const { isAuthenticated, isLoading } = useAuth0();
@@ -27,13 +28,16 @@ export const App = () => {
 
   if (isAuthenticated) {
     return (
-      <DefaultLayout>
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/input" element={<InputPerformance />} />
-          <Route path="/profile" element={<Profile />} />
-        </Routes>
-      </DefaultLayout>
+      <AuthContextProvider>
+        <DefaultLayout>
+          <Routes>
+            <Route path="/home" element={<Home />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/" element={<Navigate to="/home" />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </DefaultLayout>
+      </AuthContextProvider>
     );
   } else {
     return (
