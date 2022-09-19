@@ -21,10 +21,10 @@ export const AuthContextProvider = ({ children }: PropsWithChildren) => {
   const { isAuthenticated, getAccessTokenSilently } = useAuth0();
 
   const fetcher = async () => {
-    const domain = process.env.REACT_APP_DOMAIN
-      ? process.env.REACT_APP_DOMAIN
-      : "";
-
+    const domain = process.env.REACT_APP_DOMAIN;
+    if (!domain) {
+      throw new Error("Not Found Domain");
+    }
     try {
       const response = await getAccessTokenSilently({
         audience: `https://${domain}/api/v2/`,
