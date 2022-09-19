@@ -21,6 +21,7 @@ export const AuthContextProvider = ({ children }: PropsWithChildren) => {
   const { isAuthenticated, getAccessTokenSilently } = useAuth0();
 
   const fetcher = async () => {
+    console.log("get token from api");
     const domain = process.env.REACT_APP_DOMAIN
       ? process.env.REACT_APP_DOMAIN
       : "";
