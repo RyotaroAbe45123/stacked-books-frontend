@@ -18,7 +18,7 @@ export const Dashboard = () => {
     if (data !== undefined) {
       setStacks(data);
     }
-  }, [isLoading]);
+  }, [isLoading, data]);
 
   return (
     <Box>
