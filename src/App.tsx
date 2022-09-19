@@ -6,13 +6,12 @@ import { Register } from "pages/Register";
 import { Home } from "pages/Home";
 import { NotFound } from "pages/NotFound";
 import { AuthContextProvider } from "contexts/AuthContext";
-import { SpinnerComponent } from "components/SpinnerComponent";
 
 export const App = () => {
   const { isAuthenticated, isLoading } = useAuth0();
 
   if (isLoading) {
-    return <SpinnerComponent />;
+    return <Login isLoading={isLoading} />;
   }
 
   if (isAuthenticated) {
@@ -31,7 +30,7 @@ export const App = () => {
   } else {
     return (
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login isLoading={isLoading} />} />
         <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
     );

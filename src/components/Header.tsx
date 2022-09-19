@@ -1,12 +1,8 @@
-// import { Box, Button } from "@chakra-ui/react";
-import { useAuth0 } from "@auth0/auth0-react";
 import { Box } from "@chakra-ui/react";
 import { LogoutButton } from "auth/LogoutButton";
 import { theme } from "theme/theme";
 
 export const Header = () => {
-  const { isAuthenticated } = useAuth0();
-  console.log(isAuthenticated);
   // const routes = [
   //   {
   //     name: "About",

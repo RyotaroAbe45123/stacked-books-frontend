@@ -55,8 +55,6 @@ export const useDeleteStack = (): DeleteStackType => {
   );
 
   const isLoading = data !== undefined && !error;
-  console.log(`d: ${data}`);
-  console.log(`e: ${error}`);
 
   return {
     data: null,

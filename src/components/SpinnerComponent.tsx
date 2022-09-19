@@ -1,18 +1,19 @@
 import { Box, Spinner } from "@chakra-ui/react";
 
 type SpinnerProps = {
-  size?: string;
+  size?: "md" | "lg" | "xl";
 };
 
-export const SpinnerComponent = ({ size }: SpinnerProps) => {
+export const SpinnerComponent = ({ size = "md" }: SpinnerProps) => {
   return (
     <Box
+      h="100%"
+      w="100%"
       display="flex"
       justifyContent="center"
       alignItems="center"
-      marginTop="20%"
     >
-      <Spinner size="lg" thickness="5px" />
+      <Spinner size={size} thickness="5px" />
     </Box>
   );
 };

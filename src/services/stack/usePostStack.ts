@@ -29,7 +29,6 @@ export const usePostStack = (): PostStackType => {
   const key: Key = "/api/stack";
 
   const postStack = async (token: string | null) => {
-    // console.log(`post: ${isbn}: ${token}`)
     if (token === null || isbn === null) return;
     try {
       const data = {
@@ -61,8 +60,6 @@ export const usePostStack = (): PostStackType => {
   );
 
   const isLoading = data !== undefined && !error;
-  console.log(`d: ${data}`);
-  console.log(`e: ${error}`);
 
   return {
     data: null,
