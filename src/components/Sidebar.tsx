@@ -1,6 +1,6 @@
 import { Box, Button, Divider, Heading } from "@chakra-ui/react";
-import { Input } from "pages/Input";
-import { Main } from "pages/Main";
+import { Home } from "pages/Home";
+import { Register } from "pages/Register";
 import { useNavigate } from "react-router-dom";
 import { theme } from "theme/theme";
 
@@ -8,14 +8,14 @@ export const Sidebar = () => {
   const navigate = useNavigate();
   const routes = [
     {
-      name: "main",
-      path: "/",
-      component: Main,
+      name: "home",
+      path: "/home",
+      component: Home,
     },
     {
-      name: "input",
-      path: "/input",
-      component: Input,
+      name: "register",
+      path: "/register",
+      component: Register,
     },
   ];
   const onClick = (path: string) => {
