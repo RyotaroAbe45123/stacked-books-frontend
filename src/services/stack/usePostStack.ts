@@ -1,16 +1,12 @@
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
 import { useAuthContext } from "contexts/AuthContext";
 import { Dispatch, SetStateAction, useState } from "react";
 import useSWR, { Key } from "swr";
 import { Stack } from "types/api";
 
-// type PostStackProps = {
-//     isbn: string | null,
-// }
-
 type PostStackType = {
   data: Stack | null;
-  error: Error;
+  error: AxiosError;
   isPostLoading: boolean;
   doPost: Dispatch<SetStateAction<number | null>>;
 };
@@ -39,7 +35,7 @@ export const usePostStack = (): PostStackType => {
           token: token,
         },
       };
-      const response: AxiosResponse<Stack[]> = await axios.post(
+      const response: AxiosResponse<Stack> = await axios.post(
         `${context}/stack`,
         data,
         headers,
@@ -62,7 +58,7 @@ export const usePostStack = (): PostStackType => {
   const isLoading = data !== undefined && !error;
 
   return {
-    data: null,
+    data: data ?? null,
     error: error,
     isPostLoading: isLoading,
     doPost: setIsbn,
