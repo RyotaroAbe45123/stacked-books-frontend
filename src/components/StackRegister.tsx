@@ -7,7 +7,6 @@ import { useDeleteStack } from "services/stack/useDeleteStack";
 
 export const StackRegister = () => {
   const [inputValue, setInputValue] = useState<number | null>(null);
-  console.log(`inpt: ${inputValue}`);
 
   const { isPostLoading, doPost } = usePostStack();
   const { isDeleteLoading, doDelete } = useDeleteStack();
