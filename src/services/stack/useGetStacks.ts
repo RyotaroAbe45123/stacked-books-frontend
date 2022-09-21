@@ -1,10 +1,10 @@
 import axios, { AxiosResponse } from "axios";
 import useSWR, { Fetcher, Key } from "swr";
-import { Stack } from "types/api";
+import { Stacks } from "types/api";
 import { useAuthContext } from "../../contexts/AuthContext";
 
 type GetStacksType = {
-  data: Stack[];
+  data: Stacks[];
   error: Error;
   isLoading: boolean;
 };
@@ -13,13 +13,13 @@ export const useGetStacks = (): GetStacksType => {
   // tokenは非同期に取得されるので、最初はnull
   const { token } = useAuthContext();
 
-  // const context = "http://localhost:5000"
-  const context = process.env.REACT_APP_API_BASE_URL;
+  const context = "http://localhost:5000";
+  // const context = process.env.REACT_APP_API_BASE_URL;
   if (!context) {
     throw new Error("Not Found Context");
   }
   const key: Key = "/api/stack";
-  const fetcher: Fetcher<Stack[]> = () => getStacks(token);
+  const fetcher: Fetcher<Stacks[]> = () => getStacks(token);
 
   const getStacks = async (token: string | null): Promise<any> => {
     if (token === null) return;
@@ -29,7 +29,7 @@ export const useGetStacks = (): GetStacksType => {
           token: token,
         },
       };
-      const response: AxiosResponse<Stack[]> = await axios.get(
+      const response: AxiosResponse<Stacks[]> = await axios.get(
         `${context}/stacks`,
         headers,
       );
@@ -40,7 +40,7 @@ export const useGetStacks = (): GetStacksType => {
     }
   };
 
-  const { data, error } = useSWR<Stack[]>(
+  const { data, error } = useSWR(
     // keyがnullだと実行されない
     token !== null ? key : null,
     fetcher,
