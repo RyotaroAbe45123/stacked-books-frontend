@@ -1,4 +1,5 @@
 export type Stack = {
-  isbn: number;
   timestamp: TimeStamp;
+  price: number;
+  pages: number;
 };

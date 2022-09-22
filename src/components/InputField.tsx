@@ -6,22 +6,18 @@ import {
   InputRightElement,
 } from "@chakra-ui/react";
 import { ChangeEvent, Dispatch, SetStateAction } from "react";
+import { useStack } from "services/stack/useStack";
 import { theme } from "theme/theme";
 import { SpinnerComponent } from "./SpinnerComponent";
 
 type InputFieldProps = {
+  inputValue: number;
   setInputValue: Dispatch<SetStateAction<number | null>>;
-  onClickPost: () => void;
-  onClickDelete: () => void;
-  isLoading: boolean;
 };
 
-export const InputField = ({
-  setInputValue,
-  onClickPost,
-  onClickDelete,
-  isLoading,
-}: InputFieldProps) => {
+export const InputField = ({ inputValue, setInputValue }: InputFieldProps) => {
+  const { postStack, deleteStack, isLoading } = useStack();
+  console.log(isLoading);
   return (
     <Box w="70%" h="30%" minHeight="50px" display="flex" alignItems="center">
       <InputGroup size="lg">
@@ -44,7 +40,7 @@ export const InputField = ({
                 h="1.75rem"
                 size="md"
                 marginRight="10px"
-                onClick={() => onClickPost()}
+                onClick={() => postStack(inputValue)}
               >
                 stack
               </Button>
@@ -53,7 +49,7 @@ export const InputField = ({
                 h="1.75rem"
                 size="md"
                 marginRight="10px"
-                onClick={() => onClickDelete()}
+                onClick={() => deleteStack(inputValue)}
               >
                 unstack
               </Button>
