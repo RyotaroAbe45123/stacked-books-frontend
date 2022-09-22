@@ -16,8 +16,7 @@ type InputFieldProps = {
 };
 
 export const InputField = ({ inputValue, setInputValue }: InputFieldProps) => {
-  const { postStack, deleteStack, isLoading } = useStack();
-  console.log(isLoading);
+  const { postStack, deleteStack, registerLoading } = useStack();
   return (
     <Box w="70%" h="30%" minHeight="50px" display="flex" alignItems="center">
       <InputGroup size="lg">
@@ -31,7 +30,7 @@ export const InputField = ({ inputValue, setInputValue }: InputFieldProps) => {
           }
         />
         <InputRightElement width="10rem" bottom="0" margin="auto">
-          {isLoading ? (
+          {registerLoading ? (
             <SpinnerComponent />
           ) : (
             <>
