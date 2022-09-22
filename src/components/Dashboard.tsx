@@ -1,7 +1,5 @@
 import { Box, SimpleGrid } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import { useGetStacks } from "services/stack/useGetStacks";
-import { Stacks } from "types/api";
+import { useStack } from "services/stack/useStack";
 import { BookBarChart } from "./BookBarChart";
 import { BookTableList } from "./BookTableList";
 import { TotalNumberOfBooks } from "./TotalNumberOfBooks";
@@ -9,22 +7,14 @@ import { TotalPagesOfBooks } from "./TotalPagesOfBooks";
 import { TotalPriceOfBooks } from "./TotalPriceOfBooks";
 
 export const Dashboard = () => {
-  const { data } = useGetStacks();
-
-  const [stacks, setStacks] = useState<Stacks[]>();
-
-  useEffect(() => {
-    if (data !== undefined) {
-      setStacks(data);
-    }
-  }, [data]);
+  const { stacks, isLoading } = useStack();
 
   return (
     <Box>
       <SimpleGrid columns={3} gap="20px" mb="20px">
-        <TotalNumberOfBooks data={data} />
-        <TotalPriceOfBooks data={stacks} />
-        <TotalPagesOfBooks data={stacks} />
+        <TotalNumberOfBooks data={stacks} isLoading={isLoading} />
+        <TotalPriceOfBooks data={stacks} isLoading={isLoading} />
+        <TotalPagesOfBooks data={stacks} isLoading={isLoading} />
       </SimpleGrid>
       <SimpleGrid columns={2} gap="20px" mb="20px">
         <BookBarChart />

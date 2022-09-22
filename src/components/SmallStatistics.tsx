@@ -16,7 +16,12 @@ export const SmallStatistics = ({
     <Card>
       <Flex my="auto" h="100%" align="center" justify="center">
         {isLoading ? (
-          <Skeleton />
+          <Skeleton
+            startColor="pink.500"
+            endColor="orange.500"
+            height="20px"
+            width={50}
+          />
         ) : (
           <Stat my="auto" ms="0%">
             <StatLabel lineHeight="100%" fontSize="sm">
