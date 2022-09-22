@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { useAuthContext } from "contexts/AuthContext";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import useSWR, { Fetcher, Key } from "swr";
 import { Stack } from "types/api";
 
@@ -10,6 +10,7 @@ type useStackType = {
   deleteStack: (isbn: number) => Promise<null>;
   reloadStacks: (isbn: number) => Promise<void>;
   isLoading: boolean;
+  registerLoading: boolean;
   isError: boolean;
   error: any;
 };
@@ -23,6 +24,8 @@ export const useStack = (): useStackType => {
   if (!context) {
     throw new Error("Not Found Context");
   }
+
+  const [registerLoading, setRegisterLoading] = useState<boolean>(false);
 
   const key: Key = "/api/stack";
 
@@ -45,7 +48,7 @@ export const useStack = (): useStackType => {
       console.error(error.message);
       throw error;
     }
-  }, []);
+  }, [token]);
 
   const { data, error, mutate } = useSWR(
     // keyがnullだと実行されない
@@ -63,7 +66,9 @@ export const useStack = (): useStackType => {
 
   const postStack = useCallback(
     async (isbn: number) => {
-      if (token === null) return null;
+      setRegisterLoading(true);
+      if (token === null) return [];
+
       try {
         const data = {
           isbn: isbn,
@@ -80,13 +85,16 @@ export const useStack = (): useStackType => {
       } catch (error: any) {
         console.error(error.message);
         throw error;
+      } finally {
+        setRegisterLoading(false);
       }
     },
-    [mutate],
+    [token, mutate],
   );
 
   const deleteStack = useCallback(
     async (isbn: number) => {
+      setRegisterLoading(true);
       if (token === null) return null;
       try {
         const params = {
@@ -107,9 +115,11 @@ export const useStack = (): useStackType => {
       } catch (error: any) {
         console.error(error.message);
         throw error;
+      } finally {
+        setRegisterLoading(false);
       }
     },
-    [mutate],
+    [token, mutate],
   );
 
   return {
@@ -118,6 +128,7 @@ export const useStack = (): useStackType => {
     deleteStack: deleteStack,
     reloadStacks: reloadStacks,
     isLoading: !error && data === undefined,
+    registerLoading: registerLoading,
     isError: !!error,
     error: error,
   };
