@@ -45,7 +45,7 @@ export const useStack = (): useStackType => {
       console.error(error.message);
       throw error;
     }
-  }, [token]);
+  }, []);
 
   const { data, error, mutate } = useSWR(
     // keyがnullだと実行されない
