@@ -19,8 +19,8 @@ export const useStack = (): useStackType => {
   // tokenは非同期に取得されるので、最初はnull
   const { token } = useAuthContext();
 
-  const context = "http://localhost:5000";
-  // const context = process.env.REACT_APP_API_BASE_URL
+  //   const context = "http://localhost:5000";
+  const context = process.env.REACT_APP_API_BASE_URL;
   if (!context) {
     throw new Error("Not Found Context");
   }
