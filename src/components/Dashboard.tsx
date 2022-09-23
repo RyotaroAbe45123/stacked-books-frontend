@@ -17,8 +17,8 @@ export const Dashboard = () => {
         <TotalPagesOfBooks data={stacks} isLoading={isLoading} />
       </SimpleGrid>
       <SimpleGrid columns={2} gap="20px" mb="20px">
-        <BookBarChart />
-        <BookTableList />
+        <BookBarChart data={stacks} isLoading={isLoading} />
+        <BookTableList data={stacks} isLoading={isLoading} />
       </SimpleGrid>
     </Box>
   );
