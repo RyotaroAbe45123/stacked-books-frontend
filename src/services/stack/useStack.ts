@@ -48,7 +48,7 @@ export const useStack = (): useStackType => {
       console.error(error.message);
       throw error;
     }
-  }, [token]);
+  }, [context, token]);
 
   const { data, error, mutate } = useSWR(
     // keyがnullだと実行されない
@@ -89,7 +89,7 @@ export const useStack = (): useStackType => {
         setRegisterLoading(false);
       }
     },
-    [token, mutate],
+    [context, token, mutate],
   );
 
   const deleteStack = useCallback(
@@ -119,7 +119,7 @@ export const useStack = (): useStackType => {
         setRegisterLoading(false);
       }
     },
-    [token, mutate],
+    [context, token, mutate],
   );
 
   return {
