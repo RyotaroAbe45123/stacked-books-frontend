@@ -15,7 +15,7 @@ export const TotalPriceOfBooks = ({ data, isLoading }: Props) => {
   return (
     <SmallStatistics
       title="積んだ金額"
-      value={String(totalPrice)}
+      value={String(totalPrice.toLocaleString())}
       isLoading={isLoading}
     />
   );

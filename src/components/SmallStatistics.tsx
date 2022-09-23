@@ -1,4 +1,5 @@
 import { Flex, Skeleton, Stat, StatLabel, StatNumber } from "@chakra-ui/react";
+import { theme } from "theme/theme";
 import { Card } from "./Card";
 
 type SmallStatisticsProps = {
@@ -15,21 +16,16 @@ export const SmallStatistics = ({
   return (
     <Card>
       <Flex my="auto" h="100%" align="center" justify="center">
-        {isLoading ? (
-          <Skeleton
-            startColor="pink.500"
-            endColor="orange.500"
-            height="20px"
-            width={50}
-          />
-        ) : (
-          <Stat my="auto" ms="0%">
-            <StatLabel lineHeight="100%" fontSize="sm">
-              {title}
-            </StatLabel>
-            <StatNumber fontSize="2xl">{value}</StatNumber>
-          </Stat>
-        )}
+        <Stat my="auto" ms="0%">
+          <StatLabel lineHeight="100%" fontSize="sm">
+            {title}
+          </StatLabel>
+          {isLoading ? (
+            <Skeleton color={theme.subColor} height={45} width={100} />
+          ) : (
+            <StatNumber fontSize="3xl">{value}</StatNumber>
+          )}
+        </Stat>
       </Flex>
     </Card>
   );

@@ -14,8 +14,8 @@ export const TotalPagesOfBooks = ({ data, isLoading }: Props) => {
   });
   return (
     <SmallStatistics
-      title="積んだ厚さ"
-      value={String(totalPages)}
+      title="積んだページ数"
+      value={String(totalPages.toLocaleString())}
       isLoading={isLoading}
     />
   );
