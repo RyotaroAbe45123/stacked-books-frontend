@@ -14,7 +14,7 @@ export const DefaultLayout: FC<Props> = ({ children }) => {
       <Sidebar />
       <Box float="right" w="80%" bg={theme.subColor}>
         <Header />
-        <Box marginTop="70px" paddingX="10px" marginBottom="10px">
+        <Box marginTop="70px" paddingX="20px" marginBottom="10px">
           {children}
         </Box>
       </Box>
