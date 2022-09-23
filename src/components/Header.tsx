@@ -1,40 +1,40 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 import { LogoutButton } from "auth/LogoutButton";
+import { useLocation } from "react-router-dom";
+import { routes } from "Routes";
 import { theme } from "theme/theme";
 
 export const Header = () => {
-  // const routes = [
-  //   {
-  //     name: "About",
-  //   },
-  //   {
-  //     name: "Feature",
-  //   },
-  //   {
-  //     name: "Contact",
-  //   },
-  // ];
+  const location = useLocation();
+
+  const getActivePageName = (pathName: string) => {
+    const pageName = routes.find((route) => route.path === pathName);
+    return pageName?.name ? pageName?.name : "Not Found";
+  };
+
   return (
     <Box
       position="fixed"
       w="80%"
       h="50px"
-      bg={theme.mainColor}
+      bg={theme.subColor}
       borderRadius="10px"
       marginTop="10px"
+      paddingX="20px"
     >
-      <Box float="right" display="flex" paddingRight="10px" alignItems="center">
-        {/* {routes.map((route) => (
-          <Box key={route.name} mx="5px">
-            <Button
-              bg={theme.mainColor}
-              onClick={() => console.log(route.name)}
-            >
-              {route.name}
-            </Button>
-          </Box>
-        ))} */}
-        <Box mx="5px">
+      <Box
+        h="100%"
+        display="flex"
+        alignItems="center"
+        justifyContent="space-between"
+        paddingX="15px"
+      >
+        <Box>
+          <Text fontSize="1.5rem" fontWeight="bold">
+            {getActivePageName(location.pathname)}
+          </Text>
+        </Box>
+        <Box>
           <LogoutButton />
         </Box>
       </Box>

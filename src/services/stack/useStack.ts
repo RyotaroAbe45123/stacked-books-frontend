@@ -19,8 +19,8 @@ export const useStack = (): useStackType => {
   // tokenは非同期に取得されるので、最初はnull
   const { token } = useAuthContext();
 
-  const context = "http://localhost:5000";
-  // const context = process.env.REACT_APP_API_BASE_URL
+  //   const context = "http://localhost:5000";
+  const context = process.env.REACT_APP_API_BASE_URL;
   if (!context) {
     throw new Error("Not Found Context");
   }
@@ -48,7 +48,7 @@ export const useStack = (): useStackType => {
       console.error(error.message);
       throw error;
     }
-  }, [token]);
+  }, [context, token]);
 
   const { data, error, mutate } = useSWR(
     // keyがnullだと実行されない
@@ -89,7 +89,7 @@ export const useStack = (): useStackType => {
         setRegisterLoading(false);
       }
     },
-    [token, mutate],
+    [context, token, mutate],
   );
 
   const deleteStack = useCallback(
@@ -119,7 +119,7 @@ export const useStack = (): useStackType => {
         setRegisterLoading(false);
       }
     },
-    [token, mutate],
+    [context, token, mutate],
   );
 
   return {

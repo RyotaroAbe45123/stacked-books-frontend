@@ -1,44 +1,80 @@
-import { Box, Button, Divider, Heading } from "@chakra-ui/react";
-import { Home } from "pages/Home";
-import { Register } from "pages/Register";
-import { useNavigate } from "react-router-dom";
+import {
+  Box,
+  Divider,
+  Flex,
+  Heading,
+  HStack,
+  Icon,
+  Text,
+} from "@chakra-ui/react";
+import { NavLink, useLocation } from "react-router-dom";
 import { theme } from "theme/theme";
+import { routes } from "Routes";
 
 export const Sidebar = () => {
-  const navigate = useNavigate();
-  const routes = [
-    {
-      name: "home",
-      path: "/home",
-      component: Home,
-    },
-    {
-      name: "register",
-      path: "/register",
-      component: Register,
-    },
-  ];
-  const onClick = (path: string) => {
-    navigate(path);
+  const location = useLocation();
+
+  const activeRoute = (routeName: string) => {
+    return location.pathname.includes(routeName);
   };
+
   return (
     <Box position="fixed" height="100%" width="20%">
       <Box display="flex" justifyContent="center" alignItems="center" h="100px">
         <Heading>Stacked Books</Heading>
       </Box>
       <Divider />
-      {routes.map((route) => (
-        <Box key={route.name} display="flex" justifyContent="center">
-          <Button
-            w="60%"
-            mt="20px"
-            bg={theme.subColor}
-            onClick={() => onClick(route.path)}
-          >
-            {route.name}
-          </Button>
-        </Box>
-      ))}
+      <Box ps="20px" pe="1px">
+        {routes.map((route, index) => (
+          <NavLink key={index} to={route.path}>
+            <Box>
+              <HStack py="10px" ps="10px">
+                <Flex w="100%" alignItems="start" justifyContent="center">
+                  <Box
+                    me="18px"
+                    mt="2px"
+                    color={
+                      activeRoute(route.path.toLowerCase())
+                        ? theme.activeColor
+                        : theme.inactiveColor
+                    }
+                  >
+                    <Icon
+                      as={route.icon}
+                      width="20px"
+                      height="20px"
+                      color="inherit"
+                    />
+                  </Box>
+                  <Text
+                    me="auto"
+                    color={
+                      activeRoute(route.path.toLowerCase())
+                        ? theme.mainText
+                        : theme.inactiveColor
+                    }
+                    fontWeight={
+                      activeRoute(route.path.toLowerCase()) ? "bold" : "normal"
+                    }
+                  >
+                    {route.name}
+                  </Text>
+                </Flex>
+                <Box
+                  h="36px"
+                  w="4px"
+                  borderRadius="5px"
+                  bg={
+                    activeRoute(route.path.toLowerCase())
+                      ? theme.activeColor
+                      : "transparent"
+                  }
+                />
+              </HStack>
+            </Box>
+          </NavLink>
+        ))}
+      </Box>
     </Box>
   );
 };
