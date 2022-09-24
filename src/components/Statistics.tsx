@@ -19,7 +19,7 @@ export const Statistics = ({
   children,
 }: StatisticsProps) => {
   return (
-    <Card heightPixel={350}>
+    <Card heightPixel={400}>
       <Box w="100%" h="100%" px="20px" py="20px">
         <Flex w="100%" h="36px" justify="space-between">
           <Box
