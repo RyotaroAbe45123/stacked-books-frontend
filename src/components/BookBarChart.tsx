@@ -49,7 +49,7 @@ export const BookBarChart = ({ data, isLoading }: Props) => {
 
   return (
     <Statistics title="book" icon={MdTableRows} isLoading={isLoading}>
-      <BarChart width={450} height={200} data={barChartData} barSize={20}>
+      <BarChart width={500} height={250} data={barChartData} barSize={20}>
         <XAxis dataKey="month" />
         <YAxis />
         <Bar dataKey="num" fill="blue" />
