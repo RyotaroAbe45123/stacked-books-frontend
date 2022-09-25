@@ -8,7 +8,7 @@ type Props = {
 
 export const TotalNumberOfBooks = ({ data, isLoading }: Props) => {
   // dataから本の冊数を計算する
-  const num = data?.length;
+  const num = data !== undefined ? data.length : 0;
   return (
     <SmallStatistics
       title="積んだ冊数"

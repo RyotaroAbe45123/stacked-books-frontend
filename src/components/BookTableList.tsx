@@ -18,8 +18,15 @@ type Props = {
   isLoading: boolean;
 };
 
+const initData: TableListDataType[] = Array(5).fill({
+  data: "",
+  price: 0,
+  pages: 0,
+});
+
 export const BookTableList = ({ data, isLoading }: Props) => {
-  const [tableListData, setTableListData] = useState<TableListDataType[]>();
+  const [tableListData, setTableListData] =
+    useState<TableListDataType[]>(initData);
 
   const convertTimeStampToDate = (timeStamp: string) => {
     const date = new Date(timeStamp);
