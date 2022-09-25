@@ -1,12 +1,4 @@
-import {
-  Box,
-  Divider,
-  Flex,
-  Heading,
-  HStack,
-  Icon,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Divider, Flex, HStack, Icon, Text } from "@chakra-ui/react";
 import { NavLink, useLocation } from "react-router-dom";
 import { theme } from "theme/theme";
 import { routes } from "Routes";
@@ -21,7 +13,9 @@ export const Sidebar = () => {
   return (
     <Box position="fixed" height="100%" width="20%">
       <Box display="flex" justifyContent="center" alignItems="center" h="100px">
-        <Heading>Stacked Books</Heading>
+        <Text fontSize="36px" fontWeight="bold">
+          積 読
+        </Text>
       </Box>
       <Divider />
       <Box ps="20px" pe="1px">

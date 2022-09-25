@@ -40,10 +40,12 @@ export const BookBarChart = ({ data, isLoading }: Props) => {
   };
 
   useEffect(() => {
-    const ll = initData();
+    const initializedData = initData();
 
     if (data !== undefined) {
-      setBarChartData(countBooks(data, ll));
+      setBarChartData(countBooks(data, initializedData));
+    } else {
+      setBarChartData(initializedData);
     }
   }, [data]);
 
