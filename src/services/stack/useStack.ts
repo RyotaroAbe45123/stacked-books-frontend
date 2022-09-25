@@ -19,8 +19,8 @@ export const useStack = (): useStackType => {
   // tokenは非同期に取得されるので、最初はnull
   const { token } = useAuthContext();
 
-  //   const context = "http://localhost:5000";
-  const context = process.env.REACT_APP_API_BASE_URL;
+  const context = "http://localhost:5000";
+  // const context = process.env.REACT_APP_API_BASE_URL;
   if (!context) {
     throw new Error("Not Found Context");
   }
@@ -34,14 +34,15 @@ export const useStack = (): useStackType => {
   const getStacks = useCallback(async () => {
     if (token === null) return [];
     try {
-      const headers = {
+      const settings = {
         headers: {
           token: token,
         },
+        timeout: 5000,
       };
       const response: AxiosResponse<Stack[]> = await axios.get(
         `${context}/stacks`,
-        headers,
+        settings,
       );
       return response.data;
     } catch (error: any) {
@@ -57,6 +58,7 @@ export const useStack = (): useStackType => {
     {
       // ms
       dedupingInterval: 3600 * 1000,
+      errorRetryCount: 3,
     },
   );
 
@@ -73,12 +75,13 @@ export const useStack = (): useStackType => {
         const data = {
           isbn: isbn,
         };
-        const headers = {
+        const settings = {
           headers: {
             token: token,
           },
+          timeout: 5000,
         };
-        const response = await axios.post(`${context}/stack`, data, headers);
+        const response = await axios.post(`${context}/stack`, data, settings);
         const result = response.data;
         await mutate();
         return result;
