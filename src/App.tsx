@@ -6,6 +6,7 @@ import { Register } from "pages/Register";
 import { Home } from "pages/Home";
 import { NotFound } from "pages/NotFound";
 import { AuthContextProvider } from "contexts/AuthContext";
+import { Books } from "pages/Books";
 
 export const App = () => {
   const { isAuthenticated, isLoading } = useAuth0();
@@ -21,6 +22,7 @@ export const App = () => {
           <Routes>
             <Route path="/home" element={<Home />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/books" element={<Books />} />
             <Route path="/" element={<Navigate to="/home" />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

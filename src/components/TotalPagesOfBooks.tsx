@@ -1,4 +1,5 @@
 import { Stack } from "types/api";
+import { FaBookOpen } from "react-icons/fa";
 import { SmallStatistics } from "./SmallStatistics";
 
 type Props = {
@@ -14,6 +15,7 @@ export const TotalPagesOfBooks = ({ data, isLoading }: Props) => {
   });
   return (
     <SmallStatistics
+      icon={FaBookOpen}
       title="積んだページ数"
       value={String(totalPages.toLocaleString())}
       isLoading={isLoading}

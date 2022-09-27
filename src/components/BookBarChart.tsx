@@ -1,5 +1,5 @@
 import { Statistics } from "./Statistics";
-import { MdTableRows } from "react-icons/md";
+import { MdBarChart } from "react-icons/md";
 import { Stack } from "types/api";
 import { Bar, BarChart, XAxis, YAxis } from "recharts";
 import { useEffect, useState } from "react";
@@ -50,7 +50,7 @@ export const BookBarChart = ({ data, isLoading }: Props) => {
   }, [data]);
 
   return (
-    <Statistics title="book" icon={MdTableRows} isLoading={isLoading}>
+    <Statistics title="book" icon={MdBarChart} isLoading={isLoading}>
       <BarChart width={500} height={250} data={barChartData} barSize={20}>
         <XAxis dataKey="month" />
         <YAxis />
