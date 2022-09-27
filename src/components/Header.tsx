@@ -1,11 +1,12 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import { LogoutButton } from "auth/LogoutButton";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { routes } from "Routes";
 import { theme } from "theme/theme";
 
 export const Header = () => {
   const location = useLocation();
+  const navigate = useNavigate();
 
   const getActivePageName = (pathName: string) => {
     const pageName = routes.find((route) => route.path === pathName);
@@ -16,28 +17,28 @@ export const Header = () => {
     <Box
       position="fixed"
       w="80%"
-      h="50px"
+      h="70px"
       bg={theme.subColor}
       borderRadius="10px"
-      marginTop="10px"
       paddingX="20px"
     >
-      <Box
-        h="100%"
-        display="flex"
-        alignItems="center"
-        justifyContent="space-between"
-        paddingX="15px"
-      >
+      <Flex h="100%" alignItems="center" justifyContent="space-between">
         <Box>
           <Text fontSize="1.5rem" fontWeight="bold">
             {getActivePageName(location.pathname)}
           </Text>
         </Box>
-        <Box>
+        <Flex>
+          <Button
+            onClick={() => navigate("/register")}
+            bg={theme.mainColor}
+            marginRight="10px"
+          >
+            本を積む
+          </Button>
           <LogoutButton />
-        </Box>
-      </Box>
+        </Flex>
+      </Flex>
     </Box>
   );
 };

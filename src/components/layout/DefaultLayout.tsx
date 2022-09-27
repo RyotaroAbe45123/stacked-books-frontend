@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import { Sidebar } from "components/Sidebar";
 import { Header } from "components/Header";
 import { FC, ReactNode } from "react";
@@ -10,14 +10,14 @@ type Props = {
 
 export const DefaultLayout: FC<Props> = ({ children }) => {
   return (
-    <Box>
+    <Flex>
       <Sidebar />
-      <Box float="right" w="80%" bg={theme.subColor}>
+      <Box bg={theme.subColor} w="80%" marginLeft="20%">
         <Header />
-        <Box marginTop="70px" paddingX="20px" marginBottom="10px">
+        <Box paddingTop="70px" paddingX="20px" marginBottom="20px">
           {children}
         </Box>
       </Box>
-    </Box>
+    </Flex>
   );
 };
