@@ -3,18 +3,20 @@ import { FC, ReactNode } from "react";
 import { theme } from "theme/theme";
 
 type Props = {
-  heightPixel?: number;
+  heightPixel?: number | undefined;
   children: ReactNode;
 };
 
-export const Card: FC<Props> = ({ heightPixel = 100, children }) => {
+export const Card: FC<Props> = ({ heightPixel, children }) => {
+  console.log(heightPixel);
   return (
     <Box
       display="flex"
       justifyContent="center"
       alignItems="center"
       w="100%"
-      h={`${heightPixel}px`}
+      h={heightPixel !== undefined ? `${heightPixel}px` : "100%"}
+      padding="10px"
       borderRadius="30px"
       bg={theme.mainColor}
       textColor={theme.mainText}
