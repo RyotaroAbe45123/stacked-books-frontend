@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { useAuthContext } from "contexts/AuthContext";
 import { useCallback, useState } from "react";
+import { useBook } from "services/book/useBook";
 import useSWR, { Fetcher, Key } from "swr";
 import { Stack } from "types/api";
 
@@ -18,6 +19,8 @@ type useStackType = {
 export const useStack = (): useStackType => {
   // tokenは非同期に取得されるので、最初はnull
   const { token } = useAuthContext();
+
+  const { mutateBook } = useBook();
 
   // const context = "http://localhost:5000";
   const context = process.env.REACT_APP_API_BASE_URL;
@@ -64,6 +67,7 @@ export const useStack = (): useStackType => {
 
   const reloadStacks = useCallback(async () => {
     await mutate();
+    await mutateBook();
   }, [mutate]);
 
   const postStack = useCallback(
@@ -84,6 +88,7 @@ export const useStack = (): useStackType => {
         const response = await axios.post(`${context}/stack`, data, settings);
         const result = response.data;
         await mutate();
+        await mutateBook();
         return result;
       } catch (error: any) {
         console.error(error.message);
@@ -114,6 +119,7 @@ export const useStack = (): useStackType => {
         );
         const result = response.data;
         await mutate();
+        await mutateBook();
         return result;
       } catch (error: any) {
         console.error(error.message);

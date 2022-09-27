@@ -32,13 +32,17 @@ export const BookDetails = () => {
                   <Flex justifyContent="center" h="300px" marginTop="30px">
                     <Image
                       src={`${bookImageEndpoint}${book.isbn}`}
+                      fallbackSrc="https://via.placeholder.com/200x300"
+                      alt={book.title}
                       w="200px"
                       objectFit="cover"
                     />
                   </Flex>
-                  <Box padding="20px">
-                    <Text>{book.title}</Text>
-                  </Box>
+                  <Flex justifyContent="center" marginTop="20px">
+                    <Text w="180px" noOfLines={3}>
+                      {book.title}
+                    </Text>
+                  </Flex>
                 </Box>
               ))}
             </SimpleGrid>

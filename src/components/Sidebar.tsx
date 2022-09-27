@@ -11,11 +11,13 @@ export const Sidebar = () => {
   };
 
   return (
-    <Box position="fixed" height="100%" width="20%">
+    <Box position="fixed" height="100vh" width="20%">
       <Box display="flex" justifyContent="center" alignItems="center" h="100px">
-        <Text fontSize="36px" fontWeight="bold">
-          積 読
-        </Text>
+        <NavLink to="/home">
+          <Text fontSize="36px" fontWeight="bold">
+            積 読
+          </Text>
+        </NavLink>
       </Box>
       <Divider />
       <Box ps="20px" pe="1px">

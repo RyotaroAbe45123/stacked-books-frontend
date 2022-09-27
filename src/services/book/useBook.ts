@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { useAuthContext } from "contexts/AuthContext";
 import { useCallback } from "react";
-import useSWR, { Fetcher, Key } from "swr";
+import useSWR, { Fetcher, Key, KeyedMutator } from "swr";
 import { Book } from "types/api";
 
 type useBookType = {
@@ -9,6 +9,7 @@ type useBookType = {
   isLoading: boolean;
   isError: boolean;
   error: any;
+  mutateBook: KeyedMutator<Book[]>;
 };
 
 export const useBook = (): useBookType => {
@@ -45,7 +46,7 @@ export const useBook = (): useBookType => {
     }
   }, [context, token]);
 
-  const { data, error } = useSWR(
+  const { data, error, mutate } = useSWR(
     // keyがnullだと実行されない
     token !== null ? `${key}/get` : null,
     fetcher,
@@ -61,5 +62,6 @@ export const useBook = (): useBookType => {
     isLoading: !error && data === undefined,
     isError: !!error,
     error: error,
+    mutateBook: mutate,
   };
 };
