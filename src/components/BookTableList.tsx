@@ -8,7 +8,7 @@ import {
   Tr,
 } from "@chakra-ui/react";
 import { useCallback, useEffect, useState } from "react";
-import { MdBarChart } from "react-icons/md";
+import { MdTableRows } from "react-icons/md";
 import { Stack } from "types/api";
 import { TableListDataType } from "types/data";
 import { Statistics } from "./Statistics";
@@ -55,7 +55,7 @@ export const BookTableList = ({ data, isLoading }: Props) => {
   }, [data, selectData]);
 
   return (
-    <Statistics title="Table" icon={MdBarChart} isLoading={isLoading}>
+    <Statistics title="Table" icon={MdTableRows} isLoading={isLoading}>
       <TableContainer>
         <Table size="md">
           <Thead>

@@ -1,4 +1,5 @@
 import { Stack } from "types/api";
+import { FaYenSign } from "react-icons/fa";
 import { SmallStatistics } from "./SmallStatistics";
 
 type Props = {
@@ -14,6 +15,7 @@ export const TotalPriceOfBooks = ({ data, isLoading }: Props) => {
   });
   return (
     <SmallStatistics
+      icon={FaYenSign}
       title="積んだ金額"
       value={String(totalPrice.toLocaleString())}
       isLoading={isLoading}
