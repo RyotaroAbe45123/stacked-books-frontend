@@ -8,7 +8,6 @@ type Props = {
 };
 
 export const Card: FC<Props> = ({ heightPixel, children }) => {
-  console.log(heightPixel);
   return (
     <Box
       display="flex"
