@@ -1,5 +1,6 @@
 export type Stack = {
   timestamp: TimeStamp;
+  title: string;
   price: number;
   pages: number;
 };
