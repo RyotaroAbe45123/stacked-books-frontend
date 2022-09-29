@@ -68,7 +68,7 @@ export const useStack = (): useStackType => {
   const reloadStacks = useCallback(async () => {
     await mutate();
     await mutateBook();
-  }, [mutate]);
+  }, [mutate, mutateBook]);
 
   const postStack = useCallback(
     async (isbn: number) => {
@@ -97,7 +97,7 @@ export const useStack = (): useStackType => {
         setRegisterLoading(false);
       }
     },
-    [context, token, mutate],
+    [context, token, mutate, mutateBook],
   );
 
   const deleteStack = useCallback(
@@ -128,7 +128,7 @@ export const useStack = (): useStackType => {
         setRegisterLoading(false);
       }
     },
-    [context, token, mutate],
+    [context, token, mutate, mutateBook],
   );
 
   return {
