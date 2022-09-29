@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/react";
-import { StackRegister } from "components/StackRegister";
+import { StackRegister } from "components/register/StackRegister";
 import { useAuthGuard } from "utils/Auth";
 
 export const Register = () => {

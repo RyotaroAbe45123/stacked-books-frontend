@@ -6,7 +6,7 @@ import { SpinnerComponent } from "./SpinnerComponent";
 
 export const BookDetails = () => {
   const { books, isLoading } = useBook();
-
+  console.log(books, isLoading);
   const bookImageEndpoint = "https://iss.ndl.go.jp/thumbnail/";
 
   return (
