@@ -9,3 +9,10 @@ export type Book = {
   isbn: number;
   title: string;
 };
+
+export type AllBooks = {
+  data: {
+    books: Book[];
+    allBooks: number;
+  };
+};
