@@ -24,10 +24,10 @@ export const useBook = ({ offset, pageSize }: Props): useBookType => {
   // tokenは非同期に取得されるので、最初はnull
   const { token } = useAuthContext();
 
-  // const isLocal = process.env.REACT_APP_ISLOCAL;
-  // const context = isLocal ? "http://localhost:5000" : process.env.REACT_APP_API_BASE_URL;
-  const context = process.env.REACT_APP_API_BASE_URL;
-
+  const isLocal = process.env.REACT_APP_ISLOCAL;
+  const context = isLocal
+    ? "http://localhost:5000"
+    : process.env.REACT_APP_API_BASE_URL;
   if (!context) {
     throw new Error("Not Found Context");
   }
