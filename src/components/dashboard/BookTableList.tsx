@@ -97,7 +97,7 @@ export const BookTableList = ({ data, isLoading }: Props) => {
                   {data.title}
                 </Td>
                 <Td>{data.price ? data.price.toLocaleString() : ""}</Td>
-                <Td>{data.price ? data.pages.toLocaleString() : ""}</Td>
+                <Td>{data.pages ? data.pages.toLocaleString() : ""}</Td>
               </Tr>
             ))}
           </Tbody>

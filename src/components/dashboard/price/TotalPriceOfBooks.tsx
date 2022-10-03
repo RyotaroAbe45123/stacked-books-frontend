@@ -24,7 +24,7 @@ export const TotalPriceOfBooks = ({ data, isLoading }: Props) => {
   return (
     <SmallStatistics
       icon={FaYenSign}
-      title="積んだ金額"
+      title="全積金額"
       value={String(priceOfBooks.toLocaleString())}
       isLoading={isLoading}
     />
