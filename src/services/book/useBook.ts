@@ -18,7 +18,7 @@ type Props = {
   pageSize: number;
 };
 
-const timeout = 100 * 1000;
+const timeout = 10 * 1000;
 
 export const useBook = ({ offset, pageSize }: Props): useBookType => {
   // tokenは非同期に取得されるので、最初はnull

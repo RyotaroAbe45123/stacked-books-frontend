@@ -16,7 +16,7 @@ type useStackType = {
   error: any;
 };
 
-const timeout = 100 * 1000;
+const timeout = 10 * 1000;
 
 export const useStack = (): useStackType => {
   // tokenは非同期に取得されるので、最初はnull
