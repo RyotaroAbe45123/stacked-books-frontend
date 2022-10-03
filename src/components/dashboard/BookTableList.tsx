@@ -25,11 +25,11 @@ const emptyData: TableListDataType = {
   pages: 0,
 };
 
-const initData: TableListDataType[] = Array(5).fill(emptyData);
+const emptyArray: TableListDataType[] = Array(5).fill(emptyData);
 
 export const BookTableList = ({ data, isLoading }: Props) => {
   const [tableListData, setTableListData] =
-    useState<TableListDataType[]>(initData);
+    useState<TableListDataType[]>(emptyArray);
 
   const convertTimeStampToDate = (timeStamp: string) => {
     const date = new Date(timeStamp);
@@ -61,33 +61,6 @@ export const BookTableList = ({ data, isLoading }: Props) => {
       });
       return initializedArray;
     }
-    // const st = stacks.slice(0, 5);
-    // const tableListData: TableListDataType[] = st.map((stack) => {
-    //   return {
-    //     date: convertTimeStampToDate(stack.timestamp),
-    //     title: stack.title,
-    //     price: stack.price,
-    //     pages: stack.pages,
-    //   };
-    // });
-    // tableListData.sort(
-    //   (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
-    // );
-    // return tableListData.slice(0, 5);
-    // const st = stacks.slice(0, 5);
-    // console.log(initData);
-    // console.log("l");
-    // st.map((s, i) => {
-    //   initData[i] = {
-    //     date: convertTimeStampToDate(s.timestamp),
-    //     title: s.title,
-    //     price: s.price,
-    //     pages: s.pages,
-    //   };
-    // });
-    // console.log("-");
-    // console.log(initData);
-    // return initData;
   }, []);
 
   useEffect(() => {
@@ -113,7 +86,6 @@ export const BookTableList = ({ data, isLoading }: Props) => {
               <Tr
                 key={data.title ? data.title : `${data.price}/${index}`}
                 height="3rem"
-                width="90%"
               >
                 <Td maxWidth="150px">{data.date}</Td>
                 <Td
