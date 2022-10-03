@@ -4,6 +4,7 @@ import { useCallback, useState } from "react";
 import { useBook } from "services/book/useBook";
 import useSWR, { Fetcher, Key } from "swr";
 import { Stack } from "types/api";
+import { pageSize, timeout } from "utils/config";
 
 type useStackType = {
   stacks: Stack[] | undefined;
@@ -16,15 +17,13 @@ type useStackType = {
   error: any;
 };
 
-const timeout = 10 * 1000;
-
 export const useStack = (): useStackType => {
   // tokenは非同期に取得されるので、最初はnull
   const { token } = useAuthContext();
 
   const { mutateBook } = useBook({
     offset: 0,
-    pageSize: 6,
+    pageSize: pageSize,
   });
 
   const isLocal = process.env.REACT_APP_ISLOCAL;

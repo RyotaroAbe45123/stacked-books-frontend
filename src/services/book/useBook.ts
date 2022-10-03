@@ -3,6 +3,7 @@ import { useAuthContext } from "contexts/AuthContext";
 import { useCallback } from "react";
 import useSWR, { Fetcher, Key, KeyedMutator } from "swr";
 import { AllBooks, Book } from "types/api";
+import { timeout } from "utils/config";
 
 type useBookType = {
   books: Book[] | undefined;
@@ -17,8 +18,6 @@ type Props = {
   offset: number;
   pageSize: number;
 };
-
-const timeout = 10 * 1000;
 
 export const useBook = ({ offset, pageSize }: Props): useBookType => {
   // tokenは非同期に取得されるので、最初はnull
