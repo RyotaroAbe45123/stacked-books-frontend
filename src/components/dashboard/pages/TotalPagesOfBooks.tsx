@@ -24,7 +24,7 @@ export const TotalPagesOfBooks = ({ data, isLoading }: Props) => {
   return (
     <SmallStatistics
       icon={FaBookOpen}
-      title="積んだページ数"
+      title="全積ページ"
       value={String(pagesOfBooks.toLocaleString())}
       isLoading={isLoading}
     />

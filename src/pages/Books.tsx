@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/react";
-import { BookDetails } from "components/BookDetails";
+import { BookDetails } from "components/books/BookDetails";
 import { useAuthGuard } from "utils/Auth";
 
 export const Books = () => {
