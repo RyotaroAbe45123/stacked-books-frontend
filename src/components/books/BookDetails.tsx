@@ -1,3 +1,4 @@
+import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import { Box, Button, Flex, Image, SimpleGrid, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import { useBook } from "services/book/useBook";
@@ -44,7 +45,13 @@ export const BookDetails = () => {
                         <Flex justifyContent="center" marginTop="30px">
                           <Image
                             src={`${bookImageEndpoint}${book?.isbn}`}
-                            fallbackSrc="https://via.placeholder.com/200x300"
+                            fallback={
+                              <Box
+                                w="100px"
+                                h="150px"
+                                bg={theme.inactiveColor}
+                              ></Box>
+                            }
                             alt={book.title}
                             w="100px"
                             h="150px"
@@ -66,13 +73,15 @@ export const BookDetails = () => {
                   >
                     {offset !== 0 ? (
                       <Button onClick={() => onClickPrevious()}>
-                        previous
+                        <ChevronLeftIcon w={8} h={8} />
                       </Button>
                     ) : (
                       <div></div>
                     )}
                     {(offset + 1) * pageSize < count ? (
-                      <Button onClick={() => onClickNext()}>next</Button>
+                      <Button onClick={() => onClickNext()}>
+                        <ChevronRightIcon w={8} h={8} />
+                      </Button>
                     ) : (
                       <div></div>
                     )}
