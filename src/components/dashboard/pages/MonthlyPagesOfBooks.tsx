@@ -3,6 +3,7 @@ import { FaBookOpen } from "react-icons/fa";
 import { SmallStatistics } from "../SmallStatistics";
 import { useEffect, useState } from "react";
 import { filterThisMonth } from "functions/utils";
+import { words } from "utils/words";
 
 type Props = {
   data: Stack[] | undefined;
@@ -26,8 +27,10 @@ export const MonthlyPagesOfBooks = ({ data, isLoading }: Props) => {
   return (
     <SmallStatistics
       icon={FaBookOpen}
-      title="今月の積ページ"
+      title={words.dashboard.pages.statTitle.monthly}
+      tag={words.dashboard.pages.statTag.monthly}
       value={String(pagesOfBooks.toLocaleString())}
+      unit={words.dashboard.pages.statUnit}
       isLoading={isLoading}
     />
   );

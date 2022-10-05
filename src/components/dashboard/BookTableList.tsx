@@ -11,6 +11,7 @@ import { useCallback, useEffect, useState } from "react";
 import { MdTableRows } from "react-icons/md";
 import { Stack } from "types/api";
 import { TableListDataType } from "types/data";
+import { words } from "utils/words";
 import { Statistics } from "./Statistics";
 
 type Props = {
@@ -70,15 +71,19 @@ export const BookTableList = ({ data, isLoading }: Props) => {
   }, [data, selectData]);
 
   return (
-    <Statistics title="Table" icon={MdTableRows} isLoading={isLoading}>
+    <Statistics
+      title={words.dashboard.books.tableTitle}
+      icon={MdTableRows}
+      isLoading={isLoading}
+    >
       <TableContainer>
         <Table size="md">
           <Thead>
             <Tr>
-              <Th>積んだ日付</Th>
-              <Th>タイトル</Th>
-              <Th>総金額</Th>
-              <Th>総ページ数</Th>
+              <Th>{words.dashboard.books.tableColumns.date}</Th>
+              <Th>{words.dashboard.books.tableColumns.title}</Th>
+              <Th>{words.dashboard.books.tableColumns.price}</Th>
+              <Th>{words.dashboard.books.tableColumns.pages}</Th>
             </Tr>
           </Thead>
           <Tbody>

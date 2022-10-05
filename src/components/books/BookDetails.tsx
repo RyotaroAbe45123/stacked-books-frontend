@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useBook } from "services/book/useBook";
 import { theme } from "theme/theme";
 import { bookImageEndpoint, pageSize } from "utils/config";
+import { words } from "utils/words";
 import { Card } from "../Card";
 import { SpinnerComponent } from "../SpinnerComponent";
 import { NoStacks } from "./NoStacks";
@@ -46,11 +47,17 @@ export const BookDetails = () => {
                           <Image
                             src={`${bookImageEndpoint}${book?.isbn}`}
                             fallback={
-                              <Box
+                              <Flex
+                                flexDirection="column"
+                                justifyContent="center"
+                                alignItems="center"
                                 w="100px"
                                 h="150px"
                                 bg={theme.inactiveColor}
-                              ></Box>
+                                color={theme.mainText}
+                              >
+                                {words.books.pagination.noImage}
+                              </Flex>
                             }
                             alt={book.title}
                             w="100px"
@@ -68,8 +75,7 @@ export const BookDetails = () => {
                   </SimpleGrid>
                   <Flex
                     justifyContent="space-between"
-                    paddingX="20px"
-                    marginTop="50px"
+                    paddingInlineStart="30px"
                   >
                     {offset !== 0 ? (
                       <Button onClick={() => onClickPrevious()}>

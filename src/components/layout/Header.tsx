@@ -3,6 +3,7 @@ import { LogoutButton } from "auth/LogoutButton";
 import { useLocation, useNavigate } from "react-router-dom";
 import { routes } from "Routes";
 import { theme } from "theme/theme";
+import { words } from "utils/words";
 
 export const Header = () => {
   const location = useLocation();
@@ -34,7 +35,7 @@ export const Header = () => {
             bg={theme.mainColor}
             marginRight="10px"
           >
-            本を積む
+            {words.header.stackButton}
           </Button>
           <LogoutButton />
         </Flex>

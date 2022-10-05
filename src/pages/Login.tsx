@@ -1,6 +1,7 @@
 import { Box, Heading } from "@chakra-ui/react";
 import { LoginButton } from "auth/LoginButton";
 import { SpinnerComponent } from "components/SpinnerComponent";
+import { words } from "utils/words";
 
 type LoginProps = {
   isLoading: boolean;
@@ -18,7 +19,7 @@ export const Login = ({ isLoading }: LoginProps) => {
         <SpinnerComponent />
       ) : (
         <Box>
-          <Heading>Login Page</Heading>
+          <Heading>{words.login.title}</Heading>
           <Box display="flex" justifyContent="center" marginTop="10px">
             <LoginButton />
           </Box>

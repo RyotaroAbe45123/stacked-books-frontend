@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { MdBarChart } from "react-icons/md";
 import { Bar, BarChart, XAxis, YAxis } from "recharts";
+import { theme } from "theme/theme";
 import { Stack } from "types/api";
+import { words } from "utils/words";
 import { Statistics } from "../Statistics";
 
 type Props = {
@@ -58,14 +60,14 @@ export const MonthlyBookBarChart = ({ data, isLoading }: Props) => {
 
   return (
     <Statistics
-      title="Monthly Books Chart"
+      title={words.dashboard.books.chartTitle.monthly}
       icon={MdBarChart}
       isLoading={isLoading}
     >
       <BarChart width={400} height={300} data={barChartData} barSize={20}>
         <XAxis dataKey="week" />
         <YAxis />
-        <Bar dataKey="num" fill="blue" />
+        <Bar dataKey="num" fill={theme.activeColor} />
       </BarChart>
     </Statistics>
   );

@@ -3,6 +3,7 @@ import { MdLibraryBooks } from "react-icons/md";
 import { SmallStatistics } from "../SmallStatistics";
 import { useEffect, useState } from "react";
 import { filterThisMonth } from "functions/utils";
+import { words } from "utils/words";
 
 type Props = {
   data: Stack[] | undefined;
@@ -21,8 +22,10 @@ export const MonthlyNumberOfBooks = ({ data, isLoading }: Props) => {
   return (
     <SmallStatistics
       icon={MdLibraryBooks}
-      title="今月の積数"
+      title={words.dashboard.books.statTitle.monthly}
+      tag={words.dashboard.books.statTag.monthly}
       value={String(numberOfBooks)}
+      unit={words.dashboard.books.statUnit}
       isLoading={isLoading}
     />
   );
