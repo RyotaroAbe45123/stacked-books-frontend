@@ -5,6 +5,7 @@ import { Bar, BarChart, XAxis, YAxis } from "recharts";
 import { useEffect, useState } from "react";
 import { DailyBarChartDataType } from "types/data";
 import { theme } from "theme/theme";
+import { words } from "utils/words";
 
 type Props = {
   data: Stack[] | undefined;
@@ -51,7 +52,7 @@ export const DailyBookBarChart = ({ data, isLoading }: Props) => {
 
   return (
     <Statistics
-      title="Daily Books Chart"
+      title={words.dashboard.books.chartTitle.daily}
       icon={MdBarChart}
       isLoading={isLoading}
     >

@@ -1,5 +1,6 @@
 import { Box, Heading } from "@chakra-ui/react";
 import { Card } from "components/Card";
+import { words } from "utils/words";
 
 export const NotFound = () => {
   return (
@@ -12,7 +13,7 @@ export const NotFound = () => {
           justifyContent="center"
           alignItems="center"
         >
-          Not Found!
+          {words.notFound}
         </Heading>
       </Card>
     </Box>

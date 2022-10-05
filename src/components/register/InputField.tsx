@@ -9,6 +9,7 @@ import { SpinnerComponent } from "components/SpinnerComponent";
 import { ChangeEvent, Dispatch, SetStateAction } from "react";
 import { useStack } from "services/stack/useStack";
 import { theme } from "theme/theme";
+import { words } from "utils/words";
 
 type InputFieldProps = {
   inputValue: number;
@@ -41,7 +42,7 @@ export const InputField = ({ inputValue, setInputValue }: InputFieldProps) => {
                 marginRight="10px"
                 onClick={() => postStack(inputValue)}
               >
-                stack
+                {words.register.stackButtonName}
               </Button>
               <Button
                 bg={theme.subColor}
@@ -50,7 +51,7 @@ export const InputField = ({ inputValue, setInputValue }: InputFieldProps) => {
                 marginRight="10px"
                 onClick={() => deleteStack(inputValue)}
               >
-                unstack
+                {words.register.unstackButtonName}
               </Button>
             </>
           )}

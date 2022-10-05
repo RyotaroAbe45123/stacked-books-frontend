@@ -2,6 +2,7 @@ import { Stack } from "types/api";
 import { FaYenSign } from "react-icons/fa";
 import { SmallStatistics } from "../SmallStatistics";
 import { useEffect, useState } from "react";
+import { words } from "utils/words";
 
 type Props = {
   data: Stack[] | undefined;
@@ -24,8 +25,10 @@ export const TotalPriceOfBooks = ({ data, isLoading }: Props) => {
   return (
     <SmallStatistics
       icon={FaYenSign}
-      title="全積金額"
+      title={words.dashboard.price.statTitle.total}
+      tag={words.dashboard.price.statTag.total}
       value={String(priceOfBooks.toLocaleString())}
+      unit={words.dashboard.price.statUnit}
       isLoading={isLoading}
     />
   );

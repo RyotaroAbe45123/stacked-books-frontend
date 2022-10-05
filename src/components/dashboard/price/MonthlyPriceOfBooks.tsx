@@ -3,6 +3,7 @@ import { FaYenSign } from "react-icons/fa";
 import { SmallStatistics } from "../SmallStatistics";
 import { useEffect, useState } from "react";
 import { filterThisMonth } from "functions/utils";
+import { words } from "utils/words";
 
 type Props = {
   data: Stack[] | undefined;
@@ -26,8 +27,10 @@ export const MonthlyPriceOfBooks = ({ data, isLoading }: Props) => {
   return (
     <SmallStatistics
       icon={FaYenSign}
-      title="今月の積金額"
+      title={words.dashboard.price.statTitle.monthly}
+      tag={words.dashboard.price.statTag.monthly}
       value={String(priceOfBooks.toLocaleString())}
+      unit={words.dashboard.price.statUnit}
       isLoading={isLoading}
     />
   );

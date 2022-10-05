@@ -2,6 +2,7 @@ import { Stack } from "types/api";
 import { FaBookOpen } from "react-icons/fa";
 import { SmallStatistics } from "../SmallStatistics";
 import { useEffect, useState } from "react";
+import { words } from "utils/words";
 
 type Props = {
   data: Stack[] | undefined;
@@ -24,8 +25,10 @@ export const TotalPagesOfBooks = ({ data, isLoading }: Props) => {
   return (
     <SmallStatistics
       icon={FaBookOpen}
-      title="全積ページ"
+      title={words.dashboard.pages.statTitle.total}
+      tag={words.dashboard.pages.statTag.total}
       value={String(pagesOfBooks.toLocaleString())}
+      unit={words.dashboard.pages.statUnit}
       isLoading={isLoading}
     />
   );

@@ -1,4 +1,5 @@
 import { Flex, Text } from "@chakra-ui/react";
+import { words } from "utils/words";
 
 export const NoStacks = () => {
   return (
@@ -9,7 +10,7 @@ export const NoStacks = () => {
       justifyContent="center"
       alignItems="center"
     >
-      <Text fontSize="3xl">No Stacks...</Text>
+      <Text fontSize="3xl">{words.books.noStacks}</Text>
     </Flex>
   );
 };

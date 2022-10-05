@@ -1,5 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { Button } from "@chakra-ui/react";
+import { words } from "utils/words";
 
 export const LoginButton = () => {
   const { loginWithRedirect } = useAuth0();
@@ -8,5 +9,9 @@ export const LoginButton = () => {
     redirect_uri: window.location.origin,
     audience: `https://${domain}/api/v2/`,
   };
-  return <Button onClick={() => loginWithRedirect(options)}>Log In</Button>;
+  return (
+    <Button onClick={() => loginWithRedirect(options)}>
+      {words.login.loginButton}
+    </Button>
+  );
 };
