@@ -2,6 +2,7 @@ import { Box, Divider, Flex, HStack, Icon, Text } from "@chakra-ui/react";
 import { NavLink, useLocation } from "react-router-dom";
 import { theme } from "theme/theme";
 import { routes } from "Routes";
+import { words } from "utils/words";
 
 export const Sidebar = () => {
   const location = useLocation();
@@ -14,8 +15,8 @@ export const Sidebar = () => {
     <Box position="fixed" height="100vh" width="20%">
       <Box display="flex" justifyContent="center" alignItems="center" h="100px">
         <NavLink to="/home">
-          <Text fontSize="36px" fontWeight="bold">
-            積 読
+          <Text fontSize="24px" fontWeight="bold">
+            {words.sidebar.title}
           </Text>
         </NavLink>
       </Box>
