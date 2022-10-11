@@ -56,11 +56,11 @@ export const MobileHeader = () => {
             <DrawerOverlay />
             <DrawerContent>
               <DrawerCloseButton />
-              <DrawerHeader>basic drawer</DrawerHeader>
+              <DrawerHeader>Stacked Books</DrawerHeader>
               <DrawerBody>
-                <p>ppp</p>
-                <p>ppp</p>
-                <p>ppp</p>
+                <p>Home</p>
+                <p>Register</p>
+                <p>Books</p>
               </DrawerBody>
             </DrawerContent>
           </Drawer>
