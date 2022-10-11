@@ -73,10 +73,7 @@ export const BookDetails = () => {
                       </Box>
                     ))}
                   </SimpleGrid>
-                  <Flex
-                    justifyContent="space-between"
-                    paddingInlineStart="30px"
-                  >
+                  <Flex justifyContent="space-between" marginTop="30px">
                     {offset !== 0 ? (
                       <Button onClick={() => onClickPrevious()}>
                         <ChevronLeftIcon w={8} h={8} />
@@ -92,6 +89,9 @@ export const BookDetails = () => {
                       <div></div>
                     )}
                   </Flex>
+                  <Text textAlign="center">
+                    {offset + 1} / {Math.ceil(count / pageSize)}
+                  </Text>
                 </>
               ) : (
                 <NoStacks />
