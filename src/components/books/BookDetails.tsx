@@ -1,5 +1,12 @@
-import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
-import { Box, Button, Flex, Image, SimpleGrid, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  Icon,
+  Image,
+  SimpleGrid,
+  Text,
+} from "@chakra-ui/react";
 import { useState } from "react";
 import { useBook } from "services/book/useBook";
 import { theme } from "theme/theme";
@@ -8,6 +15,7 @@ import { words } from "utils/words";
 import { Card } from "../Card";
 import { SpinnerComponent } from "../SpinnerComponent";
 import { NoStacks } from "./NoStacks";
+import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 
 export const BookDetails = () => {
   const [offset, setOffset] = useState<number>(0);
@@ -76,14 +84,14 @@ export const BookDetails = () => {
                   <Flex justifyContent="space-between" marginTop="30px">
                     {offset !== 0 ? (
                       <Button onClick={() => onClickPrevious()}>
-                        <ChevronLeftIcon w={8} h={8} />
+                        <Icon as={FaArrowLeft} />
                       </Button>
                     ) : (
                       <div></div>
                     )}
                     {(offset + 1) * pageSize < count ? (
                       <Button onClick={() => onClickNext()}>
-                        <ChevronRightIcon w={8} h={8} />
+                        <Icon as={FaArrowRight} />
                       </Button>
                     ) : (
                       <div></div>
