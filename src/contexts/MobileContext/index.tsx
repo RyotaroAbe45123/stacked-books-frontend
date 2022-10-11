@@ -9,7 +9,7 @@ const MobileContext = createContext<MobileContextType>({
   isMobile: false,
 });
 
-export const useMobileContext = () =>
+export const useMobileContext = (): MobileContextType =>
   useContext<MobileContextType>(MobileContext);
 
 export const MobileContextProvider = ({ children }: PropsWithChildren) => {
