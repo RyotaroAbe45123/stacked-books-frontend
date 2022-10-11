@@ -7,6 +7,7 @@ import { Home } from "pages/Home";
 import { NotFound } from "pages/NotFound";
 import { AuthContextProvider } from "contexts/AuthContext";
 import { Books } from "pages/Books";
+import { MobileContextProvider } from "contexts/MobileContext";
 
 export const App = () => {
   const { isAuthenticated, isLoading } = useAuth0();
@@ -18,15 +19,17 @@ export const App = () => {
   if (isAuthenticated) {
     return (
       <AuthContextProvider>
-        <DefaultLayout>
-          <Routes>
-            <Route path="/home" element={<Home />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/books" element={<Books />} />
-            <Route path="/" element={<Navigate to="/home" />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </DefaultLayout>
+        <MobileContextProvider>
+          <DefaultLayout>
+            <Routes>
+              <Route path="/home" element={<Home />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/books" element={<Books />} />
+              <Route path="/" element={<Navigate to="/home" />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </DefaultLayout>
+        </MobileContextProvider>
       </AuthContextProvider>
     );
   } else {
