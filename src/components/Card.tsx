@@ -19,6 +19,7 @@ export const Card: FC<Props> = ({ heightPixel, children }) => {
       borderRadius="30px"
       bg={theme.mainColor}
       textColor={theme.mainText}
+      overflow="scroll"
     >
       {children}
     </Box>
