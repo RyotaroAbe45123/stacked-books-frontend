@@ -13,8 +13,8 @@ export const words = {
   dashboard: {
     books: {
       statTitle: {
-        total: "Stacks",
-        monthly: "Stacks",
+        total: "Total Stacks",
+        monthly: "This Month's Stacks",
       },
       statTag: {
         total: "Total",
@@ -35,8 +35,8 @@ export const words = {
     },
     price: {
       statTitle: {
-        total: "Price",
-        monthly: "Price",
+        total: "Total Price",
+        monthly: "This Month's Price",
       },
       statTag: {
         total: "Total",
@@ -46,8 +46,8 @@ export const words = {
     },
     pages: {
       statTitle: {
-        total: "Pages",
-        monthly: "Pages",
+        total: "Total Pages",
+        monthly: "This Month's Pages",
       },
       statTag: {
         total: "Total",
