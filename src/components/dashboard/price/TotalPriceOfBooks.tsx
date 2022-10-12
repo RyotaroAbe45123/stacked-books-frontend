@@ -26,7 +26,6 @@ export const TotalPriceOfBooks = ({ data, isLoading }: Props) => {
     <SmallStatistics
       icon={FaYenSign}
       title={words.dashboard.price.statTitle.total}
-      tag={words.dashboard.price.statTag.total}
       value={String(priceOfBooks.toLocaleString())}
       unit={words.dashboard.price.statUnit}
       isLoading={isLoading}

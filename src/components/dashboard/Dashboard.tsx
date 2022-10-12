@@ -15,17 +15,17 @@ export const Dashboard = () => {
 
   return (
     <Box>
-      <SimpleGrid columns={3} gap="20px" mb="20px">
+      <SimpleGrid columns={{ sm: 1, lg: 3 }} gap="20px" mb="20px">
         <TotalNumberOfBooks data={stacks} isLoading={isLoading} />
         <TotalPriceOfBooks data={stacks} isLoading={isLoading} />
         <TotalPagesOfBooks data={stacks} isLoading={isLoading} />
       </SimpleGrid>
-      <SimpleGrid columns={3} gap="20px" mb="20px">
+      <SimpleGrid columns={{ sm: 1, lg: 3 }} gap="20px" mb="20px">
         <MonthlyNumberOfBooks data={stacks} isLoading={isLoading} />
         <MonthlyPriceOfBooks data={stacks} isLoading={isLoading} />
         <MonthlyPagesOfBooks data={stacks} isLoading={isLoading} />
       </SimpleGrid>
-      <SimpleGrid columns={2} gap="20px" mb="20px">
+      <SimpleGrid columns={{ sm: 1, lg: 2 }} gap="20px" mb="20px">
         <DailyBookBarChart data={stacks} isLoading={isLoading} />
         <MonthlyBookBarChart data={stacks} isLoading={isLoading} />
       </SimpleGrid>

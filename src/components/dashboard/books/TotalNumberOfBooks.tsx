@@ -21,7 +21,6 @@ export const TotalNumberOfBooks = ({ data, isLoading }: Props) => {
     <SmallStatistics
       icon={MdLibraryBooks}
       title={words.dashboard.books.statTitle.total}
-      tag={words.dashboard.books.statTag.total}
       value={String(numberOfBooks)}
       unit={words.dashboard.books.statUnit}
       isLoading={isLoading}

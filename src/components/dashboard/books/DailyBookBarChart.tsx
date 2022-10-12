@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { DailyBarChartDataType } from "types/data";
 import { theme } from "theme/theme";
 import { words } from "utils/words";
+import { useMobileContext } from "contexts/MobileContext";
 
 type Props = {
   data: Stack[] | undefined;
@@ -13,6 +14,8 @@ type Props = {
 };
 
 export const DailyBookBarChart = ({ data, isLoading }: Props) => {
+  const { isMobile } = useMobileContext();
+
   const [barChartData, setBarChartData] = useState<DailyBarChartDataType[]>();
 
   const initData = (): DailyBarChartDataType[] => {
@@ -56,7 +59,12 @@ export const DailyBookBarChart = ({ data, isLoading }: Props) => {
       icon={MdBarChart}
       isLoading={isLoading}
     >
-      <BarChart width={400} height={300} data={barChartData} barSize={20}>
+      <BarChart
+        width={isMobile ? 300 : 200}
+        height={isMobile ? 250 : 300}
+        data={barChartData}
+        barSize={isMobile ? 15 : 20}
+      >
         <XAxis dataKey="date" />
         <YAxis />
         <Bar dataKey="num" fill={theme.activeColor} />

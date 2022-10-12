@@ -28,7 +28,6 @@ export const MonthlyPagesOfBooks = ({ data, isLoading }: Props) => {
     <SmallStatistics
       icon={FaBookOpen}
       title={words.dashboard.pages.statTitle.monthly}
-      tag={words.dashboard.pages.statTag.monthly}
       value={String(pagesOfBooks.toLocaleString())}
       unit={words.dashboard.pages.statUnit}
       isLoading={isLoading}

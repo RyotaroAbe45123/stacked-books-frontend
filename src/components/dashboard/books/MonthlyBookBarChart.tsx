@@ -1,3 +1,4 @@
+import { useMobileContext } from "contexts/MobileContext";
 import { useEffect, useState } from "react";
 import { MdBarChart } from "react-icons/md";
 import { Bar, BarChart, XAxis, YAxis } from "recharts";
@@ -17,6 +18,8 @@ type P = {
 };
 
 export const MonthlyBookBarChart = ({ data, isLoading }: Props) => {
+  const { isMobile } = useMobileContext();
+
   const [barChartData, setBarChartData] = useState<P[]>();
 
   const initData = (): P[] => {
@@ -64,7 +67,12 @@ export const MonthlyBookBarChart = ({ data, isLoading }: Props) => {
       icon={MdBarChart}
       isLoading={isLoading}
     >
-      <BarChart width={400} height={300} data={barChartData} barSize={20}>
+      <BarChart
+        width={isMobile ? 300 : 200}
+        height={isMobile ? 250 : 300}
+        data={barChartData}
+        barSize={isMobile ? 15 : 20}
+      >
         <XAxis dataKey="week" />
         <YAxis />
         <Bar dataKey="num" fill={theme.activeColor} />
