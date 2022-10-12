@@ -77,7 +77,7 @@ export const BookTableList = ({ data, isLoading }: Props) => {
       isLoading={isLoading}
     >
       <TableContainer>
-        <Table size="md">
+        <Table size={{ base: "sm", md: "md" }}>
           <Thead>
             <Tr>
               <Th>{words.dashboard.books.tableColumns.date}</Th>
