@@ -26,7 +26,6 @@ export const TotalPagesOfBooks = ({ data, isLoading }: Props) => {
     <SmallStatistics
       icon={FaBookOpen}
       title={words.dashboard.pages.statTitle.total}
-      tag={words.dashboard.pages.statTag.total}
       value={String(pagesOfBooks.toLocaleString())}
       unit={words.dashboard.pages.statUnit}
       isLoading={isLoading}

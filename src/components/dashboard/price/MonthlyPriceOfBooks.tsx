@@ -28,7 +28,6 @@ export const MonthlyPriceOfBooks = ({ data, isLoading }: Props) => {
     <SmallStatistics
       icon={FaYenSign}
       title={words.dashboard.price.statTitle.monthly}
-      tag={words.dashboard.price.statTag.monthly}
       value={String(priceOfBooks.toLocaleString())}
       unit={words.dashboard.price.statUnit}
       isLoading={isLoading}

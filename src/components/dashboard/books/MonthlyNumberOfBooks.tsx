@@ -23,7 +23,6 @@ export const MonthlyNumberOfBooks = ({ data, isLoading }: Props) => {
     <SmallStatistics
       icon={MdLibraryBooks}
       title={words.dashboard.books.statTitle.monthly}
-      tag={words.dashboard.books.statTag.monthly}
       value={String(numberOfBooks)}
       unit={words.dashboard.books.statUnit}
       isLoading={isLoading}
