@@ -7,17 +7,15 @@ import {
   StatHelpText,
   StatLabel,
   StatNumber,
-  Tag,
 } from "@chakra-ui/react";
 import { theme } from "theme/theme";
 import { Card } from "../Card";
 import { IconType } from "react-icons";
-import { words } from "utils/words";
+import { useMobileContext } from "contexts/MobileContext";
 
 type SmallStatisticsProps = {
   icon: IconType;
   title: string;
-  tag: string;
   value: string;
   unit: string;
   isLoading: boolean;
@@ -26,13 +24,14 @@ type SmallStatisticsProps = {
 export const SmallStatistics = ({
   icon,
   title,
-  tag,
   value,
   unit,
   isLoading,
 }: SmallStatisticsProps) => {
+  const { isMobile } = useMobileContext();
+
   return (
-    <Card heightPixel={100}>
+    <Card heightPixel={isMobile ? 80 : 100}>
       <Flex w="100%" h="100%" alignItems="center" paddingX="10%">
         <Flex
           alignItems="center"
@@ -44,31 +43,25 @@ export const SmallStatistics = ({
         >
           <Icon as={icon} color={theme.activeColor} w="24px" h="24px" />
         </Flex>
-        <Box marginLeft="20px" marginTop="5%">
+        <Box marginLeft="20px" marginTop={0}>
           <Stat>
             <Flex alignItems="center" marginBottom="0px">
-              <StatLabel lineHeight="100%" fontSize="sm">
-                {title}
-              </StatLabel>
-              <Tag
-                marginLeft="10px"
-                size="sm"
-                borderWidth="2px"
-                borderColor={
-                  tag === words.dashboard.books.statTag.total
-                    ? theme.activeColor
-                    : theme.inactiveColor
-                }
-              >
-                {tag}
-              </Tag>
+              <StatLabel fontSize={isMobile ? "xs" : "sm"}>{title}</StatLabel>
             </Flex>
             {isLoading ? (
-              <Skeleton color={theme.subColor} height={45} width={100} />
+              <Skeleton
+                color={theme.subColor}
+                height={isMobile ? 30 : 45}
+                width={100}
+              />
             ) : (
-              <StatNumber fontSize="3xl">{value}</StatNumber>
+              <StatNumber fontSize={isMobile ? "2xl" : "3xl"}>
+                {value}
+              </StatNumber>
             )}
-            <StatHelpText>{unit}</StatHelpText>
+            <StatHelpText fontSize={isMobile ? "xs" : "sm"} marginBottom={0}>
+              {unit}
+            </StatHelpText>
           </Stat>
         </Box>
       </Flex>
