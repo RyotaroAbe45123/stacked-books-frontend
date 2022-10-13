@@ -4,6 +4,7 @@ import { MdBarChart } from "react-icons/md";
 import { Bar, BarChart, XAxis, YAxis } from "recharts";
 import { theme } from "theme/theme";
 import { Stack } from "types/api";
+import { MonthlyBarChartDataType } from "types/data";
 import { words } from "utils/words";
 import { Statistics } from "../Statistics";
 
@@ -12,18 +13,13 @@ type Props = {
   isLoading: boolean;
 };
 
-type P = {
-  week: string;
-  num: number;
-};
-
 export const MonthlyBookBarChart = ({ data, isLoading }: Props) => {
   const { isMobile } = useMobileContext();
 
-  const [barChartData, setBarChartData] = useState<P[]>();
+  const [barChartData, setBarChartData] = useState<MonthlyBarChartDataType[]>();
 
-  const initData = (): P[] => {
-    const initDataList: P[] = [];
+  const initData = (): MonthlyBarChartDataType[] => {
+    const initDataList: MonthlyBarChartDataType[] = [];
     const today = new Date();
     for (let i = 5; i > -1; i--) {
       const thisMonth = today.getMonth() + 1;
@@ -31,19 +27,19 @@ export const MonthlyBookBarChart = ({ data, isLoading }: Props) => {
       const targetMonth = new Date(targetDateTS).getMonth() + 1;
       const targetYear = new Date(targetDateTS).getFullYear();
       initDataList.push({
-        week: `${targetYear}/${targetMonth}`,
+        month: `${targetYear}/${targetMonth}`,
         num: 0,
       });
     }
     return initDataList;
   };
 
-  const countBooks = (stacks: Stack[], initData: P[]) => {
+  const countBooks = (stacks: Stack[], initData: MonthlyBarChartDataType[]) => {
     for (const stack of stacks) {
       initData.forEach((data) => {
         const d = new Date(stack.timestamp);
         const y = `${d.getFullYear()}/${d.getMonth() + 1}`;
-        if (data.week === y) {
+        if (data.month === y) {
           data.num++;
         }
       });
