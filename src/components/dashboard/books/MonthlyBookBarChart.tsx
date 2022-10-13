@@ -68,7 +68,7 @@ export const MonthlyBookBarChart = ({ data, isLoading }: Props) => {
       isLoading={isLoading}
     >
       <BarChart
-        width={isMobile ? 300 : 200}
+        width={isMobile ? 300 : 400}
         height={isMobile ? 250 : 300}
         data={barChartData}
         barSize={isMobile ? 15 : 20}
