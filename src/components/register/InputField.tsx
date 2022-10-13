@@ -5,10 +5,11 @@ import {
   Input,
   InputGroup,
   InputRightElement,
+  useToast,
 } from "@chakra-ui/react";
 import { SpinnerComponent } from "components/SpinnerComponent";
 import { useMobileContext } from "contexts/MobileContext";
-import { ChangeEvent, Dispatch, SetStateAction } from "react";
+import { ChangeEvent, Dispatch, SetStateAction, useCallback } from "react";
 import { useStack } from "services/stack/useStack";
 import { theme } from "theme/theme";
 import { words } from "utils/words";
@@ -21,7 +22,42 @@ type InputFieldProps = {
 export const InputField = ({ inputValue, setInputValue }: InputFieldProps) => {
   const { isMobile } = useMobileContext();
 
+  const toast = useToast({
+    position: "top",
+    isClosable: true,
+  });
+
   const { postStack, deleteStack, registerLoading } = useStack();
+
+  const postStackFuntion = useCallback(async () => {
+    try {
+      await postStack(inputValue);
+      toast({
+        title: "success",
+        status: "success",
+      });
+    } catch {
+      toast({
+        title: "error",
+        status: "error",
+      });
+    }
+  }, [inputValue, postStack, toast]);
+
+  const deleteStackFuntion = useCallback(async () => {
+    try {
+      await deleteStack(inputValue);
+      toast({
+        title: "success",
+        status: "success",
+      });
+    } catch {
+      toast({
+        title: "error",
+        status: "error",
+      });
+    }
+  }, [inputValue, deleteStack, toast]);
 
   return (
     <Box w="70%" h="30%" minHeight="50px" display="flex" alignItems="center">
@@ -47,7 +83,7 @@ export const InputField = ({ inputValue, setInputValue }: InputFieldProps) => {
                     h="1.75rem"
                     size="md"
                     marginRight="10px"
-                    onClick={() => postStack(inputValue)}
+                    onClick={postStackFuntion}
                   >
                     {words.register.stackButtonName}
                   </Button>
@@ -56,7 +92,7 @@ export const InputField = ({ inputValue, setInputValue }: InputFieldProps) => {
                     h="1.75rem"
                     size="md"
                     marginRight="10px"
-                    onClick={() => deleteStack(inputValue)}
+                    onClick={deleteStackFuntion}
                   >
                     {words.register.unstackButtonName}
                   </Button>
@@ -85,14 +121,14 @@ export const InputField = ({ inputValue, setInputValue }: InputFieldProps) => {
                 <Button
                   bg={theme.subColor}
                   size="md"
-                  onClick={() => postStack(inputValue)}
+                  onClick={postStackFuntion}
                 >
                   {words.register.stackButtonName}
                 </Button>
                 <Button
                   bg={theme.subColor}
                   size="md"
-                  onClick={() => deleteStack(inputValue)}
+                  onClick={deleteStackFuntion}
                 >
                   {words.register.unstackButtonName}
                 </Button>
