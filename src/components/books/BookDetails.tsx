@@ -10,7 +10,7 @@ import {
 import { useCallback, useState } from "react";
 import { useBook } from "services/book/useBook";
 import { theme } from "theme/theme";
-import { bookImage, pageSize } from "utils/config";
+import { bookImageEndpoint, pageSize } from "utils/config";
 import { words } from "utils/words";
 import { Card } from "../Card";
 import { SpinnerComponent } from "../SpinnerComponent";
@@ -66,7 +66,7 @@ export const BookDetails = () => {
                           marginTop={isMobile ? "10px" : "30px"}
                         >
                           <Image
-                            src={`${bookImage}${book?.isbn}.jpg`}
+                            src={`${bookImageEndpoint}${book?.isbn}`}
                             fallback={
                               <Flex
                                 flexDirection="column"
