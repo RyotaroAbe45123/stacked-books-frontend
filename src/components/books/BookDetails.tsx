@@ -7,29 +7,33 @@ import {
   SimpleGrid,
   Text,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useBook } from "services/book/useBook";
 import { theme } from "theme/theme";
-import { bookImageEndpoint, pageSize } from "utils/config";
+import { bookImage, pageSize } from "utils/config";
 import { words } from "utils/words";
 import { Card } from "../Card";
 import { SpinnerComponent } from "../SpinnerComponent";
 import { NoStacks } from "./NoStacks";
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
+import { useMobileContext } from "contexts/MobileContext";
 
 export const BookDetails = () => {
+  const { isMobile } = useMobileContext();
+
   const [offset, setOffset] = useState<number>(0);
   const { books, count, isLoading } = useBook({
     offset: offset,
     pageSize: pageSize,
   });
 
-  const onClickNext = () => {
+  const onClickNext = useCallback(() => {
     setOffset(offset + 1);
-  };
-  const onClickPrevious = () => {
+  }, [offset]);
+
+  const onClickPrevious = useCallback(() => {
     setOffset(offset - 1);
-  };
+  }, [offset]);
 
   return (
     <Box>
@@ -43,17 +47,26 @@ export const BookDetails = () => {
             <>
               {books && books.length !== 0 ? (
                 <>
-                  <SimpleGrid columns={4} justifyItems="center" spacing="50px">
+                  <SimpleGrid
+                    columns={{ base: 2, md: 4 }}
+                    justifyItems="center"
+                    spacingX={isMobile ? "50px" : "75px"}
+                    spacingY={isMobile ? "10px" : "50px"}
+                  >
                     {books.map((book) => (
                       <Box
                         key={book.isbn}
-                        w="200px"
+                        w={isMobile ? "150px" : "200px"}
+                        h={isMobile ? "250px" : "100%"}
                         bg={theme.subColor}
-                        borderRadius="30px"
+                        borderRadius={isMobile ? "15px" : "30px"}
                       >
-                        <Flex justifyContent="center" marginTop="30px">
+                        <Flex
+                          justifyContent="center"
+                          marginTop={isMobile ? "10px" : "30px"}
+                        >
                           <Image
-                            src={`${bookImageEndpoint}${book?.isbn}`}
+                            src={`${bookImage}${book?.isbn}.jpg`}
                             fallback={
                               <Flex
                                 flexDirection="column"
@@ -73,8 +86,11 @@ export const BookDetails = () => {
                             objectFit="cover"
                           />
                         </Flex>
-                        <Flex justifyContent="center" marginY="20px">
-                          <Text w="150px" noOfLines={3}>
+                        <Flex
+                          justifyContent="center"
+                          marginY={isMobile ? "5px" : "20px"}
+                        >
+                          <Text w={isMobile ? "100px" : "150px"} noOfLines={3}>
                             {book.title}
                           </Text>
                         </Flex>
@@ -83,14 +99,14 @@ export const BookDetails = () => {
                   </SimpleGrid>
                   <Flex justifyContent="space-between" marginTop="30px">
                     {offset !== 0 ? (
-                      <Button onClick={() => onClickPrevious()}>
+                      <Button onClick={onClickPrevious}>
                         <Icon as={FaArrowLeft} />
                       </Button>
                     ) : (
                       <div></div>
                     )}
                     {(offset + 1) * pageSize < count ? (
-                      <Button onClick={() => onClickNext()}>
+                      <Button onClick={onClickNext}>
                         <Icon as={FaArrowRight} />
                       </Button>
                     ) : (
