@@ -3,8 +3,8 @@ export type DailyBarChartDataType = {
   num: number;
 };
 
-export type BarChartDataType = {
-  month: number;
+export type MonthlyBarChartDataType = {
+  month: string;
   num: number;
 };
 

@@ -1,3 +1,4 @@
+import { CreateStackResponse } from './../../types/api.d';
 import axios, { AxiosResponse } from "axios";
 import { useAuthContext } from "contexts/AuthContext";
 import { useCallback, useState } from "react";
@@ -8,7 +9,7 @@ import { pageSize, timeout } from "utils/config";
 
 type useStackType = {
   stacks: Stack[] | undefined;
-  postStack: (isbn: number) => Promise<Stack>;
+  postStack: (isbn: number) => Promise<CreateStackResponse>;
   deleteStack: (isbn: number) => Promise<null>;
   reloadStacks: (isbn: number) => Promise<void>;
   isLoading: boolean;
@@ -76,6 +77,7 @@ export const useStack = (): useStackType => {
     await mutateBook();
   }, [mutate, mutateBook]);
 
+
   const postStack = useCallback(
     async (isbn: number) => {
       setRegisterLoading(true);
@@ -91,7 +93,7 @@ export const useStack = (): useStackType => {
           },
           timeout: timeout,
         };
-        const response = await axios.post(`${context}/stack`, data, settings);
+        const response  = await axios.post(`${context}/stack`, data, settings);
         const result = response.data;
         await mutate();
         await mutateBook();
@@ -131,6 +133,7 @@ export const useStack = (): useStackType => {
       } catch (error: any) {
         console.error(error.message);
         throw error;
+        // return error;
       } finally {
         setRegisterLoading(false);
       }

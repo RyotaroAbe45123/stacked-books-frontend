@@ -5,6 +5,11 @@ export type Stack = {
   pages: number;
 };
 
+export type CreateStackResponse = {
+  isbn: number;
+  timestamp: TimeStamp;
+}
+
 export type Book = {
   isbn: number;
   title: string;
