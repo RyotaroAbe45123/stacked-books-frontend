@@ -1,6 +1,7 @@
 import { Box, Flex, Icon } from "@chakra-ui/react";
 import { Card } from "components/Card";
 import { SpinnerComponent } from "components/SpinnerComponent";
+import { useMobileContext } from "contexts/MobileContext";
 import { ReactNode } from "react";
 import { IconType } from "react-icons";
 import { theme } from "theme/theme";
@@ -18,15 +19,22 @@ export const Statistics = ({
   isLoading = false,
   children,
 }: StatisticsProps) => {
+  const { isMobile } = useMobileContext();
+
   return (
     <Card heightPixel={400}>
-      <Box w="100%" h="100%" padding="20px">
-        <Flex w="100%" h="36px" justify="space-between">
+      <Box w="100%" h="100%" padding={isMobile ? "10px" : "20px"}>
+        <Flex
+          w="100%"
+          h="36px"
+          justify="space-between"
+          alignItems="center"
+          paddingX={isMobile ? "10px" : "0px"}
+        >
           <Box
             color={theme.mainText}
-            fontSize="1.5rem"
+            fontSize={isMobile ? "1.25rem" : "1.5rem"}
             fontWeight="bold"
-            borderRadius="7px"
           >
             {title}
           </Box>
