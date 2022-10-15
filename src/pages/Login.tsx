@@ -2,7 +2,7 @@ import { Box, Flex, Image } from "@chakra-ui/react";
 import { LoginButton } from "auth/LoginButton";
 import { theme } from "theme/theme";
 import { words } from "utils/words";
-import image from "../assets/background-m.png";
+import image from "../assets/background.png";
 
 export const Login = () => {
   return (
