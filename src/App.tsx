@@ -13,7 +13,7 @@ export const App = () => {
   const { isAuthenticated, isLoading } = useAuth0();
 
   if (isLoading) {
-    return <Login isLoading={isLoading} />;
+    return <Login />;
   }
 
   if (isAuthenticated) {
@@ -35,7 +35,7 @@ export const App = () => {
   } else {
     return (
       <Routes>
-        <Route path="/login" element={<Login isLoading={isLoading} />} />
+        <Route path="/login" element={<Login />} />
         <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
     );

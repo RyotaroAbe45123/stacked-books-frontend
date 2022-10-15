@@ -1,9 +1,9 @@
-export type DailyBarChartDataType = {
+export interface DailyBarChartDataType {
   date: number;
   num: number;
 };
 
-export type MonthlyBarChartDataType = {
+export interface MonthlyBarChartDataType {
   month: string;
   num: number;
 };

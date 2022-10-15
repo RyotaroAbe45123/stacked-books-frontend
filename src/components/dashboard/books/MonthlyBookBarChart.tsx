@@ -1,5 +1,6 @@
 import { useMobileContext } from "contexts/MobileContext";
-import { useEffect, useState } from "react";
+import { calcMaxYTick, countBooks } from "functions/utils";
+import { useCallback, useEffect, useState } from "react";
 import { MdBarChart } from "react-icons/md";
 import { Bar, BarChart, XAxis, YAxis } from "recharts";
 import { theme } from "theme/theme";
@@ -15,6 +16,8 @@ type Props = {
 
 export const MonthlyBookBarChart = ({ data, isLoading }: Props) => {
   const { isMobile } = useMobileContext();
+
+  const [maxYTick, setMaxYTick] = useState<number>(10);
 
   const [barChartData, setBarChartData] = useState<MonthlyBarChartDataType[]>();
 
@@ -34,28 +37,23 @@ export const MonthlyBookBarChart = ({ data, isLoading }: Props) => {
     return initDataList;
   };
 
-  const countBooks = (stacks: Stack[], initData: MonthlyBarChartDataType[]) => {
-    for (const stack of stacks) {
-      initData.forEach((data) => {
-        const d = new Date(stack.timestamp);
-        const y = `${d.getFullYear()}/${d.getMonth() + 1}`;
-        if (data.month === y) {
-          data.num++;
-        }
-      });
-    }
-    return initData;
-  };
+  const countBooksCallback = useCallback(countBooks, []);
+
+  const calcMaxYTickCallback = useCallback(calcMaxYTick, []);
 
   useEffect(() => {
     const initializedData = initData();
 
     if (data !== undefined) {
-      setBarChartData(countBooks(data, initializedData));
+      const monthlyData = countBooksCallback(data, initializedData);
+      setBarChartData(monthlyData as MonthlyBarChartDataType[]);
+      setMaxYTick(
+        calcMaxYTickCallback(monthlyData as MonthlyBarChartDataType[]),
+      );
     } else {
       setBarChartData(initializedData);
     }
-  }, [data]);
+  }, [data, countBooksCallback, calcMaxYTickCallback]);
 
   return (
     <Statistics
@@ -64,13 +62,30 @@ export const MonthlyBookBarChart = ({ data, isLoading }: Props) => {
       isLoading={isLoading}
     >
       <BarChart
-        width={isMobile ? 300 : 400}
-        height={isMobile ? 250 : 300}
+        width={isMobile ? 300 : 375}
+        height={isMobile ? 300 : 300}
         data={barChartData}
         barSize={isMobile ? 15 : 20}
+        margin={{
+          top: 10,
+          bottom: 0,
+          right: 5,
+          left: -20,
+        }}
       >
-        <XAxis dataKey="month" />
-        <YAxis />
+        <XAxis
+          dataKey="month"
+          angle={-10}
+          tickMargin={3}
+          tickLine={false}
+          interval={isMobile ? "preserveEnd" : 0}
+        />
+        <YAxis
+          domain={[0, maxYTick]}
+          tickCount={6}
+          interval={0}
+          minTickGap={1}
+        />
         <Bar dataKey="num" fill={theme.activeColor} />
       </BarChart>
     </Statistics>

@@ -2,11 +2,12 @@ import { Statistics } from "../Statistics";
 import { MdBarChart } from "react-icons/md";
 import { Stack } from "types/api";
 import { Bar, BarChart, XAxis, YAxis } from "recharts";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { DailyBarChartDataType } from "types/data";
 import { theme } from "theme/theme";
 import { words } from "utils/words";
 import { useMobileContext } from "contexts/MobileContext";
+import { calcMaxYTick, countBooks } from "functions/utils";
 
 type Props = {
   data: Stack[] | undefined;
@@ -15,6 +16,8 @@ type Props = {
 
 export const DailyBookBarChart = ({ data, isLoading }: Props) => {
   const { isMobile } = useMobileContext();
+
+  const [maxYTick, setMaxYTick] = useState<number>(50);
 
   const [barChartData, setBarChartData] = useState<DailyBarChartDataType[]>();
 
@@ -32,26 +35,21 @@ export const DailyBookBarChart = ({ data, isLoading }: Props) => {
     return initDataList;
   };
 
-  const countBooks = (stacks: Stack[], initData: DailyBarChartDataType[]) => {
-    for (const stack of stacks) {
-      initData.forEach((data) => {
-        if (data.date === new Date(stack.timestamp).getDate()) {
-          data.num++;
-        }
-      });
-    }
-    return initData;
-  };
+  const countBooksCallback = useCallback(countBooks, []);
+
+  const calcMaxYTickCallback = useCallback(calcMaxYTick, []);
 
   useEffect(() => {
     const initializedData = initData();
 
     if (data !== undefined) {
-      setBarChartData(countBooks(data, initializedData));
+      const dailyData = countBooksCallback(data, initializedData);
+      setBarChartData(dailyData as DailyBarChartDataType[]);
+      setMaxYTick(calcMaxYTickCallback(dailyData as DailyBarChartDataType[]));
     } else {
       setBarChartData(initializedData);
     }
-  }, [data]);
+  }, [data, countBooksCallback, calcMaxYTickCallback]);
 
   return (
     <Statistics
@@ -60,13 +58,31 @@ export const DailyBookBarChart = ({ data, isLoading }: Props) => {
       isLoading={isLoading}
     >
       <BarChart
-        width={isMobile ? 300 : 400}
-        height={isMobile ? 250 : 300}
+        width={isMobile ? 300 : 375}
+        height={isMobile ? 300 : 300}
         data={barChartData}
         barSize={isMobile ? 15 : 20}
+        margin={{
+          top: 10,
+          bottom: 0,
+          right: 0,
+          left: -20,
+        }}
       >
-        <XAxis dataKey="date" />
-        <YAxis />
+        <XAxis
+          dataKey="date"
+          tickFormatter={(value) => `${value}日`}
+          angle={-10}
+          tickMargin={3}
+          tickLine={false}
+          interval={0}
+        />
+        <YAxis
+          domain={[0, maxYTick]}
+          tickCount={6}
+          interval={isMobile ? "preserveEnd" : 0}
+          minTickGap={1}
+        />
         <Bar dataKey="num" fill={theme.activeColor} />
       </BarChart>
     </Statistics>

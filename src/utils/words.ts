@@ -1,7 +1,7 @@
 export const words = {
   login: {
-    title: "Login Page",
-    loginButton: "Log In",
+    title: "Stacked Books",
+    loginButton: "Log In / Sign Up",
   },
   sidebar: {
     title: "Stacked Books",
