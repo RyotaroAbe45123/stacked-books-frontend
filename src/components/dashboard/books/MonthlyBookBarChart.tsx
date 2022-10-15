@@ -69,7 +69,7 @@ export const MonthlyBookBarChart = ({ data, isLoading }: Props) => {
         data={barChartData}
         barSize={isMobile ? 15 : 20}
       >
-        <XAxis dataKey="week" />
+        <XAxis dataKey="month" />
         <YAxis />
         <Bar dataKey="num" fill={theme.activeColor} />
       </BarChart>

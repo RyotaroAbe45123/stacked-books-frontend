@@ -64,7 +64,7 @@ export const words = {
     pagination: {
       noImage: "No Image",
     },
-    noStacks: "No Stacks...",
+    noStacks: "No Books...",
   },
   notFound: "Not Found!",
 };
