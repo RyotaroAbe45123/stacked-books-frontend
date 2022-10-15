@@ -1,8 +1,16 @@
-import { Box, Divider, Flex, HStack, Icon, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Divider,
+  Flex,
+  HStack,
+  Icon,
+  Image,
+  Text,
+} from "@chakra-ui/react";
 import { NavLink, useLocation } from "react-router-dom";
 import { theme } from "theme/theme";
 import { routes } from "Routes";
-import { words } from "utils/words";
+import Logo from "../../assets/stacked-books-logo.png";
 
 export const Sidebar = () => {
   const location = useLocation();
@@ -15,9 +23,9 @@ export const Sidebar = () => {
     <Box position="fixed" height="100vh" width="20%">
       <Box display="flex" justifyContent="center" alignItems="center" h="100px">
         <NavLink to="/home">
-          <Text fontSize="24px" fontWeight="bold">
-            {words.sidebar.title}
-          </Text>
+          <Flex justifyContent="center" alignItems="center">
+            <Image src={Logo} w="80%" />
+          </Flex>
         </NavLink>
       </Box>
       <Divider />

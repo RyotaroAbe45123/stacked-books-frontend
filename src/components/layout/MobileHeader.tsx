@@ -12,6 +12,7 @@ import {
   HStack,
   Icon,
   IconButton,
+  Image,
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
@@ -21,6 +22,7 @@ import { routes } from "Routes";
 import { theme } from "theme/theme";
 import { words } from "utils/words";
 import { GiHamburgerMenu } from "react-icons/gi";
+import Logo from "../../assets/stacked-books-logo.png";
 
 export const MobileHeader = () => {
   const location = useLocation();
@@ -60,7 +62,7 @@ export const MobileHeader = () => {
           />
           <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
             <DrawerOverlay />
-            <DrawerContent maxW="60%">
+            <DrawerContent maxW="50%">
               <DrawerCloseButton />
               <DrawerHeader>
                 <Box
@@ -70,7 +72,9 @@ export const MobileHeader = () => {
                   h="50px"
                 >
                   <NavLink to="/home" onClick={onClose}>
-                    <Text fontWeight="bold">{words.sidebar.title}</Text>
+                    <Flex justifyContent="center" alignItems="center">
+                      <Image src={Logo} w="80%" />
+                    </Flex>
                   </NavLink>
                 </Box>
               </DrawerHeader>
@@ -80,7 +84,7 @@ export const MobileHeader = () => {
                   {routes.map((route) => (
                     <NavLink key={route.name} to={route.path} onClick={onClose}>
                       <Box>
-                        <HStack py="5px" ps="10px">
+                        <HStack py="5px">
                           <Flex
                             w="100%"
                             alignItems="start"
