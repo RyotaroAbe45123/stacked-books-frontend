@@ -1,16 +1,21 @@
 import { Box, Flex, Image } from "@chakra-ui/react";
 import { LoginButton } from "auth/LoginButton";
+import { useMobileContext } from "contexts/MobileContext";
 import { theme } from "theme/theme";
 import { words } from "utils/words";
 import image from "../assets/background.png";
 
 export const Login = () => {
+  const { isMobile } = useMobileContext();
+  console.log(isMobile);
   return (
-    <Box position="relative">
+    <Box position="relative" w="100vw" h="100vh" bg={theme.subColor}>
       <Image
+        position="absolute"
+        top={isMobile ? "0%" : "20%"}
         src={image}
         w="100vw"
-        h="100vh"
+        h={isMobile ? "100vh" : "60vh"}
         objectFit="cover"
         alt="login"
         opacity="0.6"

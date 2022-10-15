@@ -34,10 +34,12 @@ export const App = () => {
     );
   } else {
     return (
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="*" element={<Navigate to="/login" />} />
-      </Routes>
+      <MobileContextProvider>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="*" element={<Navigate to="/login" />} />
+        </Routes>
+      </MobileContextProvider>
     );
   }
 };
