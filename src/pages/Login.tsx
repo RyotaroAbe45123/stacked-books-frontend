@@ -1,18 +1,24 @@
 import { Box, Flex, Image } from "@chakra-ui/react";
+// import { Box, Flex, Icon, Image } from "@chakra-ui/react";
 import { LoginButton } from "auth/LoginButton";
+import { useMobileContext } from "contexts/MobileContext";
 import { theme } from "theme/theme";
 import { words } from "utils/words";
-import image from "../assets/background.png";
+import image from "../assets/background-min.png";
+// import { AiFillGithub, AiFillTwitterCircle } from "react-icons/ai";
 
 export const Login = () => {
+  const { isMobile } = useMobileContext();
   return (
-    <Box position="relative">
+    <Box position="relative" w="100vw" h="100vh" bg={theme.subColor}>
       <Image
+        position="absolute"
+        top={isMobile ? "0%" : "20%"}
         src={image}
         w="100vw"
-        h="100vh"
+        h={isMobile ? "100vh" : "60vh"}
         objectFit="cover"
-        alt="login"
+        alt=""
         opacity="0.6"
         loading="lazy"
       />
@@ -29,7 +35,7 @@ export const Login = () => {
         justifyContent="center"
         lineHeight="1.25em"
       >
-        <div>{words.login.title}</div>
+        <Box>{words.login.title}</Box>
       </Flex>
       <Flex
         position="absolute"
@@ -42,6 +48,17 @@ export const Login = () => {
       >
         <LoginButton />
       </Flex>
+      {/* <Flex
+        position="absolute"
+        top="75%"
+        justifyContent="center"
+        alignItems="center"
+        width="100%"
+        // bg={theme.subColor}
+      >
+        <Icon as={AiFillGithub} w="30px" h="30px" />
+        <Icon as={AiFillTwitterCircle} w="30px" h="30px" />
+      </Flex> */}
     </Box>
   );
 };
