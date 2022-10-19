@@ -1,4 +1,3 @@
-import { CreateStackResponse } from './../../types/api.d';
 import axios, { AxiosResponse } from "axios";
 import { useAuthContext } from "contexts/AuthContext";
 import { useCallback, useState } from "react";
@@ -9,7 +8,7 @@ import { pageSize, timeout } from "utils/config";
 
 type useStackType = {
   stacks: Stack[] | undefined;
-  postStack: (isbn: number) => Promise<CreateStackResponse>;
+  postStack: (isbn: number) => Promise<null>;
   deleteStack: (isbn: number) => Promise<null>;
   reloadStacks: (isbn: number) => Promise<void>;
   isLoading: boolean;

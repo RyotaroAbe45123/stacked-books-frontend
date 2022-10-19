@@ -5,14 +5,14 @@ export type Stack = {
   pages: number;
 };
 
-export type CreateStackResponse = {
-  isbn: number;
-  timestamp: TimeStamp;
-}
-
 export type Book = {
   isbn: number;
   title: string;
+  price: number | null;
+  pages: number | null;
+  publisher: string;
+  has_image: boolean;
+  authors: str[];
 };
 
 export type AllBooks = {
