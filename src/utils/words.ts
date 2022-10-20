@@ -59,6 +59,11 @@ export const words = {
   register: {
     stackButtonName: "stack",
     unstackButtonName: "unstack",
+    searchResult: {
+      title: "Title:",
+      authors: "Authors:",
+      publisher: "Publisher:"
+    }
   },
   books: {
     pagination: {
