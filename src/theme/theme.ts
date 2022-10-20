@@ -5,4 +5,5 @@ export const theme = {
   titleText: "#000",
   activeColor: "#422AFB",
   inactiveColor: "#CBD5E0",
+  noImage: "#F3F3F3",
 };
