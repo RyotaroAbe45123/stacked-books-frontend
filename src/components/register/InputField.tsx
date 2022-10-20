@@ -60,7 +60,7 @@ export const InputField = ({ inputValue, setInputValue }: InputFieldProps) => {
   }, [inputValue, deleteStack, toast]);
 
   return (
-    <Box w="70%" h="30%" minHeight="50px" display="flex" alignItems="center">
+    <Box w="80%" h="30%" minHeight="50px" display="flex" alignItems="center">
       {!isMobile ? (
         <>
           <InputGroup size="lg">
