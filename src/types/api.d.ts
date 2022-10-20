@@ -21,3 +21,30 @@ export type AllBooks = {
     allBooks: number;
   };
 };
+
+type Author = {
+  PersonName: {
+    content: string;
+  }
+}
+
+export type BookInfoType = {
+  onix: {
+    DescriptiveDetail: {
+      TitleDetail: {
+        TitleElement: {
+          TitleText: {
+            content: string;
+          };
+        };
+      },
+      Contributor: Author[]
+      
+    },
+    PublishingDetail: {
+      Imprint: {
+        ImprintName: string
+      }
+    }
+  };
+};
