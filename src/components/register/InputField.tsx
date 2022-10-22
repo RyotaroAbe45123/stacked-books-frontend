@@ -114,7 +114,6 @@ export const InputField = ({ inputValue, setInputValue }: InputFieldProps) => {
             type="number"
             placeholder="Enter ISBN"
             h="3rem"
-            // marginBottom="20px"
             onChange={(event: ChangeEvent<HTMLInputElement>) =>
               setInputValue(Number(event.target.value))
             }
@@ -124,36 +123,32 @@ export const InputField = ({ inputValue, setInputValue }: InputFieldProps) => {
             justifyContent="center"
             alignItems="center"
             gap="10px"
+            width="60px"
+            height="60px"
           >
-            <Button bg={theme.subColor} size="xs" onClick={postStackFuntion}>
-              {words.register.stackButtonName}
-            </Button>
-            <Button bg={theme.subColor} size="xs" onClick={deleteStackFuntion}>
-              {words.register.unstackButtonName}
-            </Button>
-          </Flex>
-          {/* <Flex justifyContent="space-around">
             {registerLoading ? (
-              <SpinnerComponent />
+              <Box width="60px" height="60px">
+                <SpinnerComponent size="sm" />
+              </Box>
             ) : (
               <>
                 <Button
                   bg={theme.subColor}
-                  size="md"
+                  size="xs"
                   onClick={postStackFuntion}
                 >
                   {words.register.stackButtonName}
                 </Button>
                 <Button
                   bg={theme.subColor}
-                  size="md"
+                  size="xs"
                   onClick={deleteStackFuntion}
                 >
                   {words.register.unstackButtonName}
                 </Button>
               </>
             )}
-          </Flex> */}
+          </Flex>
         </Flex>
       )}
     </Box>
