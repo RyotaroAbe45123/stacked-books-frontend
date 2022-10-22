@@ -60,7 +60,13 @@ export const InputField = ({ inputValue, setInputValue }: InputFieldProps) => {
   }, [inputValue, deleteStack, toast]);
 
   return (
-    <Box w="80%" h="30%" minHeight="50px" display="flex" alignItems="center">
+    <Box
+      w={isMobile ? "90%" : "80%"}
+      h="30%"
+      minHeight="50px"
+      display="flex"
+      alignItems="center"
+    >
       {!isMobile ? (
         <>
           <InputGroup size="lg">
@@ -102,18 +108,31 @@ export const InputField = ({ inputValue, setInputValue }: InputFieldProps) => {
           </InputGroup>
         </>
       ) : (
-        <Box>
+        <Flex alignItems="center" gap="10px">
           <Input
             pr="4.5rem"
             type="number"
             placeholder="Enter ISBN"
             h="3rem"
-            marginBottom="20px"
+            // marginBottom="20px"
             onChange={(event: ChangeEvent<HTMLInputElement>) =>
               setInputValue(Number(event.target.value))
             }
           />
-          <Flex justifyContent="space-around">
+          <Flex
+            flexDirection="column"
+            justifyContent="center"
+            alignItems="center"
+            gap="10px"
+          >
+            <Button bg={theme.subColor} size="xs" onClick={postStackFuntion}>
+              {words.register.stackButtonName}
+            </Button>
+            <Button bg={theme.subColor} size="xs" onClick={deleteStackFuntion}>
+              {words.register.unstackButtonName}
+            </Button>
+          </Flex>
+          {/* <Flex justifyContent="space-around">
             {registerLoading ? (
               <SpinnerComponent />
             ) : (
@@ -134,8 +153,8 @@ export const InputField = ({ inputValue, setInputValue }: InputFieldProps) => {
                 </Button>
               </>
             )}
-          </Flex>
-        </Box>
+          </Flex> */}
+        </Flex>
       )}
     </Box>
   );

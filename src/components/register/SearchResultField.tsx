@@ -1,7 +1,7 @@
 import { Box, Flex, Image, Skeleton, Text } from "@chakra-ui/react";
 import axios, { AxiosResponse } from "axios";
 import { useMobileContext } from "contexts/MobileContext";
-import { Fragment, useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { theme } from "theme/theme";
 import { BookInfoType } from "types/api";
 import {
@@ -149,28 +149,22 @@ export const SearchResultField = ({ inputValue }: Props) => {
     );
   } else {
     return (
-      <Box w="100%">
-        <Flex>
+      <Box>
+        <Flex alignItems="center">
           <Box>
             {[title, authors, publisher].map((element, index) => (
-              <Fragment key={`${index}/${element}`}>
-                <Text marginTop={index === 0 ? "0px" : "10px"}>
-                  {index === 0
-                    ? words.register.searchResult.title
-                    : index === 1
-                    ? words.register.searchResult.authors
-                    : words.register.searchResult.publisher}
-                </Text>
+              <Box key={`${index}/${element}`}>
                 <Skeleton
                   height="24px"
-                  width="250px"
+                  width="240px"
                   startColor={theme.noImage}
                   endColor={theme.noImage}
                   opacity={1}
                   isLoaded={isLoaded}
+                  marginRight="10px"
+                  marginTop={index === 0 ? "0px" : "10px"}
                 >
                   <Text
-                    w="250px"
                     maxWidth="250px"
                     overflow="hidden"
                     textOverflow="ellipsis"
@@ -179,12 +173,9 @@ export const SearchResultField = ({ inputValue }: Props) => {
                     {element}
                   </Text>
                 </Skeleton>
-              </Fragment>
+              </Box>
             ))}
           </Box>
-        </Flex>
-        <Flex alignItems="center" marginTop="10px" flexDirection="column">
-          <Text>{words.register.searchResult.image}</Text>
           <Image
             src={imageEndpoint.openbd}
             fallback={
@@ -195,8 +186,8 @@ export const SearchResultField = ({ inputValue }: Props) => {
                     flexDirection="column"
                     justifyContent="center"
                     alignItems="center"
-                    w="100px"
-                    h="150px"
+                    w="80px"
+                    h="100px"
                     bg={theme.noImage}
                     color={theme.noImage}
                   >
@@ -206,8 +197,8 @@ export const SearchResultField = ({ inputValue }: Props) => {
               />
             }
             alt="searchImage"
-            w="100px"
-            h="150px"
+            w="80px"
+            h="100px"
             objectFit="cover"
           />
         </Flex>
