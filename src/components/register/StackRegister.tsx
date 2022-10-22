@@ -19,10 +19,14 @@ export const StackRegister = () => {
           flexDirection="column"
           justifyContent="center"
           alignItems="center"
-          marginTop={isMobile ? "50%" : "20%"}
+          marginTop={isMobile ? "0" : "20%"}
         >
           <InputField setInputValue={setInputValue} inputValue={inputValue!} />
-          <Flex marginTop="30px" marginBottom="20px">
+          <Flex
+            marginTop={isMobile ? "10px" : "30px"}
+            marginBottom="20px"
+            w="100%"
+          >
             <SearchResultField inputValue={inputValue} />
           </Flex>
         </Flex>
