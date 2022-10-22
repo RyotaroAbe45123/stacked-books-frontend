@@ -8,10 +8,23 @@
 3. [使い方](#使い方)
 
 # 概要
-hoge
+### [アプリを見てみる](https://www.stacked-books.ml "アプリリンク")
+
 
 # なにこれ
-hogehoge
+**積み読**を管理するウェブアプリケーション
 
 # 使い方
-hogehogehoge
+1. URLにアクセス
+2. ユーザ登録
+3. 積みたい書籍のISBNを登録
+4. ダッシュボードで可視化
+5. 積み状況をTweet (TODO)
+
+# 参考文献
+- images
+  - https://unsplash.com
+- logo
+  - https://logo.com/logo-maker
+- icon
+  - https://www.flaticon.com/
