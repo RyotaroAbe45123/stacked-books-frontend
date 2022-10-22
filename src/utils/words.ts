@@ -62,7 +62,8 @@ export const words = {
     searchResult: {
       title: "Title:",
       authors: "Authors:",
-      publisher: "Publisher:"
+      publisher: "Publisher:",
+      image: "Image",
     }
   },
   books: {
