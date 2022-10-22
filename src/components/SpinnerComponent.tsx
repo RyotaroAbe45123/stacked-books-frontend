@@ -1,7 +1,7 @@
 import { Box, Spinner } from "@chakra-ui/react";
 
 type SpinnerProps = {
-  size?: "md" | "lg" | "xl";
+  size?: "xs" | "sm" | "md" | "lg" | "xl";
 };
 
 export const SpinnerComponent = ({ size = "md" }: SpinnerProps) => {

@@ -81,7 +81,7 @@ export const SearchResultField = ({ inputValue }: Props) => {
 
   if (!isMobile) {
     return (
-      <Flex w="100%" gap="15px" alignItems="center">
+      <Flex w="100%" gap="15px" justifyContent="center" alignItems="center">
         <Box>
           {[
             words.register.searchResult.title,
@@ -149,31 +149,30 @@ export const SearchResultField = ({ inputValue }: Props) => {
     );
   } else {
     return (
-      <Box>
-        <Flex alignItems="center">
+      <Box width="100%" height="100%">
+        <Flex justifyContent="center" alignItems="center">
           <Box>
             {[title, authors, publisher].map((element, index) => (
-              <Box key={`${index}/${element}`}>
-                <Skeleton
-                  height="24px"
-                  width="240px"
-                  startColor={theme.noImage}
-                  endColor={theme.noImage}
-                  opacity={1}
-                  isLoaded={isLoaded}
-                  marginRight="10px"
-                  marginTop={index === 0 ? "0px" : "10px"}
+              <Skeleton
+                key={`${index}/${element}`}
+                height="24px"
+                width="200px"
+                startColor={theme.noImage}
+                endColor={theme.noImage}
+                opacity={1}
+                isLoaded={isLoaded}
+                marginRight="10px"
+                marginTop={index === 0 ? "0px" : "10px"}
+              >
+                <Text
+                  maxWidth="250px"
+                  overflow="hidden"
+                  textOverflow="ellipsis"
+                  whiteSpace="nowrap"
                 >
-                  <Text
-                    maxWidth="250px"
-                    overflow="hidden"
-                    textOverflow="ellipsis"
-                    whiteSpace="nowrap"
-                  >
-                    {element}
-                  </Text>
-                </Skeleton>
-              </Box>
+                  {element}
+                </Text>
+              </Skeleton>
             ))}
           </Box>
           <Image
