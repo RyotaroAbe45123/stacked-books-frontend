@@ -1,10 +1,13 @@
 import { Box, Flex } from "@chakra-ui/react";
+import { useMobileContext } from "contexts/MobileContext";
 import { useState } from "react";
 import { Card } from "../Card";
 import { InputField } from "./InputField";
 import { SearchResultField } from "./SearchResultField";
 
 export const StackRegister = () => {
+  const { isMobile } = useMobileContext();
+
   const [inputValue, setInputValue] = useState<number | null>(null);
 
   return (
@@ -16,7 +19,7 @@ export const StackRegister = () => {
           flexDirection="column"
           justifyContent="center"
           alignItems="center"
-          marginTop="20%"
+          marginTop={isMobile ? "50%" : "20%"}
         >
           <InputField setInputValue={setInputValue} inputValue={inputValue!} />
           <Flex marginTop="30px" marginBottom="20px">
