@@ -1,7 +1,7 @@
-import { Box, Flex, Image, Text } from "@chakra-ui/react";
+import { Box, Flex, Image, Skeleton, Text } from "@chakra-ui/react";
 import axios, { AxiosResponse } from "axios";
 import { useMobileContext } from "contexts/MobileContext";
-import { useCallback, useEffect, useState } from "react";
+import { Fragment, useCallback, useEffect, useState } from "react";
 import { theme } from "theme/theme";
 import { BookInfoType } from "types/api";
 import {
@@ -21,6 +21,8 @@ export const SearchResultField = ({ inputValue }: Props) => {
   const [title, setTitle] = useState<string>("");
   const [authors, setAuthors] = useState<string>("");
   const [publisher, setPublisher] = useState<string>("");
+
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
   const [imageEndpoint, setImageEndpoint] = useState<{
     openbd: string;
@@ -64,6 +66,7 @@ export const SearchResultField = ({ inputValue }: Props) => {
         iss: `${issBookImageEndpoint}${inputValue}`,
       });
       searchBookInfo();
+      setIsLoaded(true);
     } else {
       setImageEndpoint({
         openbd: "",
@@ -72,72 +75,143 @@ export const SearchResultField = ({ inputValue }: Props) => {
       setTitle("");
       setAuthors("");
       setPublisher("");
+      setIsLoaded(false);
     }
   }, [inputValue, searchBookInfo]);
 
-  return (
-    <Flex w="100%" gap="10px" alignItems="center">
-      <Box>
-        <Text marginBottom="10px">{words.register.searchResult.title}</Text>
-        <Text marginBottom="10px">{words.register.searchResult.authors}</Text>
-        <Text>{words.register.searchResult.publisher}</Text>
-      </Box>
-      <Box>
-        <Text
-          w={isMobile ? "100px" : "300px"}
-          maxWidth="300px"
-          overflow="hidden"
-          textOverflow="ellipsis"
-          whiteSpace="nowrap"
-          marginBottom="10px"
-        >
-          {title}
-        </Text>
-        <Text
-          w={isMobile ? "100px" : "300px"}
-          maxWidth="300px"
-          overflow="hidden"
-          textOverflow="ellipsis"
-          whiteSpace="nowrap"
-          marginBottom="10px"
-        >
-          {authors}
-        </Text>
-        <Text
-          w={isMobile ? "100px" : "300px"}
-          maxWidth="300px"
-          overflow="hidden"
-          textOverflow="ellipsis"
-          whiteSpace="nowrap"
-        >
-          {publisher}
-        </Text>
-      </Box>
-      <Image
-        src={imageEndpoint.openbd}
-        fallback={
-          <Image
-            src={imageEndpoint.iss}
-            fallback={
-              <Flex
-                flexDirection="column"
-                justifyContent="center"
-                alignItems="center"
-                w="100px"
-                h="150px"
-                bg={theme.noImage}
-                color={theme.noImage}
+  if (!isMobile) {
+    return (
+      <Flex w="100%" gap="15px" alignItems="center">
+        <Box>
+          {[
+            words.register.searchResult.title,
+            words.register.searchResult.authors,
+            words.register.searchResult.publisher,
+          ].map((word, index) => (
+            <Text key={word} marginTop={index === 0 ? "0px" : "10px"}>
+              {word}
+            </Text>
+          ))}
+        </Box>
+        <Box>
+          {[title, authors, publisher].map((element, index) => (
+            <Skeleton
+              height="24px"
+              width="450px"
+              startColor={theme.noImage}
+              endColor={theme.noImage}
+              opacity={1}
+              isLoaded={isLoaded}
+            >
+              <Text
+                key={`${index}/${element}`}
+                w="450px"
+                maxWidth="450px"
+                overflow="hidden"
+                textOverflow="ellipsis"
+                whiteSpace="nowrap"
+                marginTop={index === 0 ? "0px" : "10px"}
               >
-                {words.books.pagination.noImage}
-              </Flex>
+                {element}
+              </Text>
+            </Skeleton>
+          ))}
+        </Box>
+        <Flex alignItems="center" flexDirection="column" gap="5px">
+          <Text>{words.register.searchResult.image}</Text>
+          <Image
+            src={imageEndpoint.openbd}
+            fallback={
+              <Image
+                src={imageEndpoint.iss}
+                fallback={
+                  <Flex
+                    flexDirection="column"
+                    justifyContent="center"
+                    alignItems="center"
+                    w="150px"
+                    h="200px"
+                    bg={theme.noImage}
+                    color={theme.noImage}
+                  >
+                    {words.books.pagination.noImage}
+                  </Flex>
+                }
+              />
             }
+            alt="searchImage"
+            w="150px"
+            h="200px"
+            objectFit="cover"
           />
-        }
-        alt="searchImage"
-        w="100px"
-        h="150px"
-        objectFit="cover"
-      />
-    </Flex>
-  );
+        </Flex>
+      </Flex>
+    );
+  } else {
+    return (
+      <Box w="100%">
+        <Flex>
+          <Box>
+            {[title, authors, publisher].map((element, index) => (
+              <Fragment key={`${index}/${element}`}>
+                <Text marginTop={index === 0 ? "0px" : "10px"}>
+                  {index === 0
+                    ? words.register.searchResult.title
+                    : index === 1
+                    ? words.register.searchResult.authors
+                    : words.register.searchResult.publisher}
+                </Text>
+                <Skeleton
+                  height="24px"
+                  width="250px"
+                  startColor={theme.noImage}
+                  endColor={theme.noImage}
+                  opacity={1}
+                  isLoaded={isLoaded}
+                >
+                  <Text
+                    w="250px"
+                    maxWidth="250px"
+                    overflow="hidden"
+                    textOverflow="ellipsis"
+                    whiteSpace="nowrap"
+                  >
+                    {element}
+                  </Text>
+                </Skeleton>
+              </Fragment>
+            ))}
+          </Box>
+        </Flex>
+        <Flex alignItems="center" marginTop="10px" flexDirection="column">
+          <Text>{words.register.searchResult.image}</Text>
+          <Image
+            src={imageEndpoint.openbd}
+            fallback={
+              <Image
+                src={imageEndpoint.iss}
+                fallback={
+                  <Flex
+                    flexDirection="column"
+                    justifyContent="center"
+                    alignItems="center"
+                    w="100px"
+                    h="150px"
+                    bg={theme.noImage}
+                    color={theme.noImage}
+                  >
+                    {words.books.pagination.noImage}
+                  </Flex>
+                }
+              />
+            }
+            alt="searchImage"
+            w="100px"
+            h="150px"
+            objectFit="cover"
+          />
+        </Flex>
+      </Box>
+    );
+  }
 };
