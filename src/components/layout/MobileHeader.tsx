@@ -46,6 +46,7 @@ export const MobileHeader = () => {
       bg={theme.subColor}
       borderRadius="10px"
       paddingX="20px"
+      zIndex={2}
     >
       <Flex h="100%" alignItems="center" justifyContent="space-between">
         <Flex>
