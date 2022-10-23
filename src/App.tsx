@@ -8,12 +8,18 @@ import { NotFound } from "pages/NotFound";
 import { AuthContextProvider } from "contexts/AuthContext";
 import { Books } from "pages/Books";
 import { MobileContextProvider } from "contexts/MobileContext";
+import { SpinnerComponent } from "components/SpinnerComponent";
+import { Box } from "@chakra-ui/react";
 
 export const App = () => {
   const { isAuthenticated, isLoading } = useAuth0();
 
   if (isLoading) {
-    return <Login />;
+    return (
+      <Box height="100vh">
+        <SpinnerComponent size="xl" />
+      </Box>
+    );
   }
 
   if (isAuthenticated) {
