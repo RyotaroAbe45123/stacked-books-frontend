@@ -36,7 +36,7 @@ export const MobileHeader = () => {
 
   const getActivePageName = (pathName: string) => {
     const pageName = routes.find((route) => route.path === pathName);
-    return pageName?.name ? pageName?.name : "Not Found";
+    return pageName?.name ? pageName?.name : "";
   };
   return (
     <Box
