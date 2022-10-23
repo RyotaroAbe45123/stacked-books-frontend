@@ -29,7 +29,7 @@ export const Dashboard = () => {
         <DailyBookBarChart data={stacks} isLoading={isLoading} />
         <MonthlyBookBarChart data={stacks} isLoading={isLoading} />
       </SimpleGrid>
-      <SimpleGrid columns={1} mb="20px">
+      <SimpleGrid columns={1}>
         <BookTableList data={stacks} isLoading={isLoading} />
       </SimpleGrid>
     </Box>

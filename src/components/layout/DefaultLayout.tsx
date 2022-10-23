@@ -16,7 +16,12 @@ export const DefaultLayout: FC<Props> = ({ children }) => {
     return (
       <Box bg={theme.subColor}>
         <MobileHeader />
-        <Box paddingTop="70px" paddingX="20px" marginBottom="75px">
+        <Box
+          paddingTop="70px"
+          paddingX="20px"
+          //  marginBottom="75px"
+          paddingBottom="20px"
+        >
           {children}
         </Box>
       </Box>
@@ -27,7 +32,12 @@ export const DefaultLayout: FC<Props> = ({ children }) => {
         <Sidebar />
         <Box bg={theme.subColor} w="80%" marginLeft="20%">
           <Header />
-          <Box paddingTop="70px" paddingX="20px" marginBottom="75px">
+          <Box
+            paddingTop="70px"
+            paddingX="20px"
+            // marginBottom="75px"
+            paddingBottom="20px"
+          >
             {children}
           </Box>
         </Box>
