@@ -53,6 +53,6 @@ export const calcMaxYTick = (data: DailyBarChartDataType[]| MonthlyBarChartDataT
   const maxValue = Math.max(...data.map((item) => item.num));
   const digit = maxValue.toString().length;
   const half = Math.pow(10, digit) / 2;
-  const yTick = maxValue < half ? half : digit;
+  const yTick = maxValue < half ? half : Math.pow(10, digit);
   return yTick;
 }
