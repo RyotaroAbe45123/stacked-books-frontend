@@ -29,7 +29,7 @@ export const Login = () => {
         h={isMobile ? "100vh" : "60vh"}
         minHeight={isMobile ? "calc(var(--vh, 1vh))" : "60vh"}
         objectFit="cover"
-        alt="hero"
+        alt=""
         opacity="0.6"
         loading="lazy"
       />
