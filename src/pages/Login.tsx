@@ -18,7 +18,7 @@ export const Login = () => {
     <Box
       position="relative"
       h="100vh"
-      minHeight={isMobile ? "calc(var(--vh, 1vh))" : "60vh"}
+      minHeight={isMobile ? "calc(var(--vh, 1vh) * 100)" : "60vh"}
       bg={theme.subColor}
     >
       <Image
@@ -27,9 +27,9 @@ export const Login = () => {
         src={image}
         w="100vw"
         h={isMobile ? "100vh" : "60vh"}
-        minHeight={isMobile ? "calc(var(--vh, 1vh))" : "60vh"}
+        minHeight={isMobile ? "calc(var(--vh, 1vh) * 100)" : "60vh"}
         objectFit="cover"
-        alt="hero"
+        alt=""
         opacity="0.6"
         loading="lazy"
       />
