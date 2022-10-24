@@ -18,12 +18,7 @@ export const DefaultLayout: FC<Props> = ({ children }) => {
       <ScrollToTop>
         <Box bg={theme.subColor}>
           <MobileHeader />
-          <Box
-            paddingTop="70px"
-            paddingX="20px"
-            //  marginBottom="75px"
-            paddingBottom="20px"
-          >
+          <Box paddingTop="70px" paddingX="20px" paddingBottom="20px">
             {children}
           </Box>
         </Box>
