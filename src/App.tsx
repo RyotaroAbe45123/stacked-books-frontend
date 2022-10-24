@@ -10,14 +10,20 @@ import { Books } from "pages/Books";
 import { MobileContextProvider } from "contexts/MobileContext";
 import { SpinnerComponent } from "components/SpinnerComponent";
 import { Box } from "@chakra-ui/react";
+import { useCallback } from "react";
+import { setFillHeight } from "functions/utils";
 
 export const App = () => {
   const { isAuthenticated, isLoading } = useAuth0();
 
+  const setFillHeightFucntion = useCallback(setFillHeight, []);
+  window.addEventListener("resize", setFillHeightFucntion);
+  setFillHeightFucntion();
+
   if (isLoading) {
     return (
-      <Box height="100vh">
-        <SpinnerComponent size="xl" />
+      <Box h="100vh" minHeight="calc(var(--vh, 1vh))">
+        <SpinnerComponent size="lg" />
       </Box>
     );
   }
