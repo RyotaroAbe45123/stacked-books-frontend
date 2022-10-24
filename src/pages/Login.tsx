@@ -1,6 +1,7 @@
 import { Box, Flex, Image } from "@chakra-ui/react";
 import { LoginButton } from "auth/LoginButton";
 import { useMobileContext } from "contexts/MobileContext";
+import { setFillHeight } from "functions/utils";
 import { useCallback } from "react";
 import { theme } from "theme/theme";
 import { words } from "utils/words";
@@ -9,10 +10,7 @@ import image from "../assets/background-min.png";
 export const Login = () => {
   const { isMobile } = useMobileContext();
 
-  const setFillHeightFucntion = useCallback(() => {
-    const vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty("--vh", `${vh}px`);
-  }, []);
+  const setFillHeightFucntion = useCallback(setFillHeight, []);
   window.addEventListener("resize", setFillHeightFucntion);
   setFillHeightFucntion();
 
