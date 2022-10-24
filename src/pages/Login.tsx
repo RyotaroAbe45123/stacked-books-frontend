@@ -1,24 +1,37 @@
 import { Box, Flex, Image } from "@chakra-ui/react";
-// import { Box, Flex, Icon, Image } from "@chakra-ui/react";
 import { LoginButton } from "auth/LoginButton";
 import { useMobileContext } from "contexts/MobileContext";
+import { useCallback } from "react";
 import { theme } from "theme/theme";
 import { words } from "utils/words";
 import image from "../assets/background-min.png";
-// import { AiFillGithub, AiFillTwitterCircle } from "react-icons/ai";
 
 export const Login = () => {
   const { isMobile } = useMobileContext();
+
+  const setFillHeightFucntion = useCallback(() => {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
+  }, []);
+  window.addEventListener("resize", setFillHeightFucntion);
+  setFillHeightFucntion();
+
   return (
-    <Box position="relative" w="100vw" h="100vh" bg={theme.subColor}>
+    <Box
+      position="relative"
+      h="100vh"
+      minHeight={isMobile ? "calc(var(--vh, 1vh))" : "60vh"}
+      bg={theme.subColor}
+    >
       <Image
         position="absolute"
         top={isMobile ? "0%" : "20%"}
         src={image}
         w="100vw"
         h={isMobile ? "100vh" : "60vh"}
+        minHeight={isMobile ? "calc(var(--vh, 1vh))" : "60vh"}
         objectFit="cover"
-        alt=""
+        alt="hero"
         opacity="0.6"
         loading="lazy"
       />
@@ -48,17 +61,6 @@ export const Login = () => {
       >
         <LoginButton />
       </Flex>
-      {/* <Flex
-        position="absolute"
-        top="75%"
-        justifyContent="center"
-        alignItems="center"
-        width="100%"
-        // bg={theme.subColor}
-      >
-        <Icon as={AiFillGithub} w="30px" h="30px" />
-        <Icon as={AiFillTwitterCircle} w="30px" h="30px" />
-      </Flex> */}
     </Box>
   );
 };
