@@ -15,28 +15,28 @@ export const DefaultLayout: FC<Props> = ({ children }) => {
   const { isMobile } = useMobileContext();
   if (isMobile) {
     return (
-      <ScrollToTop>
-        <Box bg={theme.subColor}>
-          <MobileHeader />
+      <Box bg={theme.subColor}>
+        <MobileHeader />
+        <ScrollToTop>
           <Box paddingTop="70px" paddingX="20px" paddingBottom="20px">
             {children}
           </Box>
-        </Box>
-      </ScrollToTop>
+        </ScrollToTop>
+      </Box>
     );
   } else {
     return (
-      <ScrollToTop>
-        <Flex>
-          <Sidebar />
-          <Box bg={theme.subColor} w="80%" marginLeft="20%">
-            <Header />
+      <Flex>
+        <Sidebar />
+        <Box bg={theme.subColor} w="80%" marginLeft="20%">
+          <Header />
+          <ScrollToTop>
             <Box paddingTop="70px" paddingX="20px" paddingBottom="20px">
               {children}
             </Box>
-          </Box>
-        </Flex>
-      </ScrollToTop>
+          </ScrollToTop>
+        </Box>
+      </Flex>
     );
   }
 };

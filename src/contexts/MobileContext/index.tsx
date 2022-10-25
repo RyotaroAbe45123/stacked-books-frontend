@@ -1,5 +1,6 @@
 import { useBreakpointValue } from "@chakra-ui/react";
 import { createContext, PropsWithChildren, useContext } from "react";
+import { mobileMaxWidth } from "utils/config";
 
 type MobileContextType = {
   isMobile: boolean;
@@ -14,14 +15,14 @@ export const useMobileContext = (): MobileContextType =>
 
 export const MobileContextProvider = ({ children }: PropsWithChildren) => {
   const isMobile = useBreakpointValue({
-    base: window.innerWidth < 400,
+    base: window.innerWidth < mobileMaxWidth,
     sm: false,
     md: false,
   });
   return (
     <MobileContext.Provider
       value={{
-        isMobile: isMobile ?? window.innerWidth < 400,
+        isMobile: isMobile ?? window.innerWidth < mobileMaxWidth,
       }}
     >
       {children}
