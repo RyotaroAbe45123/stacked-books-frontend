@@ -11,6 +11,11 @@ import { Card } from "components/Card";
 import { Stack } from "types/api";
 import { IoChevronDownOutline } from "react-icons/io5";
 import { useState } from "react";
+import { SpinnerComponent } from "components/SpinnerComponent";
+import { MonthlyBookBarChartComponent } from "./MonthlyBookBarChartComponent";
+import { DailyBookBarChartComponent } from "./DailyBookBarChartComponent";
+import { words } from "utils/words";
+import { theme } from "theme/theme";
 
 type Props = {
   data: Stack[] | undefined;
@@ -18,10 +23,6 @@ type Props = {
 };
 
 export const MobileBookBarChart = ({ data, isLoading }: Props) => {
-  if (isLoading) {
-    console.log(data);
-  }
-
   const [dataType, setDataType] = useState<string>("Monthly");
 
   return (
@@ -35,7 +36,11 @@ export const MobileBookBarChart = ({ data, isLoading }: Props) => {
           paddingX="10px"
           paddingTop="10px"
         >
-          <Box>{dataType}</Box>
+          <Box color={theme.mainText} fontSize="1.25rem" fontWeight="bold">
+            {dataType === "Monthly"
+              ? words.dashboard.books.chartTitle.monthly
+              : words.dashboard.books.chartTitle.daily}
+          </Box>
           <Box>
             <Menu>
               <MenuButton
@@ -53,6 +58,25 @@ export const MobileBookBarChart = ({ data, isLoading }: Props) => {
               </MenuList>
             </Menu>
           </Box>
+        </Flex>
+        <Flex
+          w="100%"
+          h="calc(100% - 36px)"
+          justify="center"
+          align="center"
+          marginTop="10px"
+        >
+          {isLoading ? (
+            <SpinnerComponent />
+          ) : (
+            <>
+              {dataType === "Monthly" ? (
+                <MonthlyBookBarChartComponent data={data} />
+              ) : (
+                <DailyBookBarChartComponent data={data} />
+              )}
+            </>
+          )}
         </Flex>
       </Box>
     </Card>
