@@ -43,19 +43,28 @@ export const MobileBookBarChart = ({ data, isLoading }: Props) => {
           </Box>
           <Box>
             <Menu>
-              <MenuButton
-                height="36px"
-                as={Button}
-                rightIcon={<IoChevronDownOutline />}
-              >
-                Data
+              <MenuButton height="36px" as={Button}>
+                <IoChevronDownOutline />
               </MenuButton>
-              <MenuList>
-                <MenuItem onClick={() => setDataType("Monthly")}>
-                  Monthly
-                </MenuItem>
-                <MenuItem onClick={() => setDataType("Daily")}>Daily</MenuItem>
-              </MenuList>
+              {dataType === "Monthly" ? (
+                <MenuList>
+                  <MenuItem onClick={() => setDataType("Monthly")}>
+                    Monthly
+                  </MenuItem>
+                  <MenuItem onClick={() => setDataType("Daily")}>
+                    Daily
+                  </MenuItem>
+                </MenuList>
+              ) : (
+                <MenuList>
+                  <MenuItem onClick={() => setDataType("Daily")}>
+                    Daily
+                  </MenuItem>
+                  <MenuItem onClick={() => setDataType("Monthly")}>
+                    Monthly
+                  </MenuItem>
+                </MenuList>
+              )}
             </Menu>
           </Box>
         </Flex>
