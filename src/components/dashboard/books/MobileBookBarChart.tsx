@@ -25,6 +25,11 @@ type Props = {
 export const MobileBookBarChart = ({ data, isLoading }: Props) => {
   const [dataType, setDataType] = useState<string>("Monthly");
 
+  const dataTypeArray = [
+    words.dashboard.books.chartButton.monthly,
+    words.dashboard.books.chartButton.daily,
+  ];
+
   return (
     <Card heightPixel={400}>
       <Box w="100%" h="100%">
@@ -46,23 +51,21 @@ export const MobileBookBarChart = ({ data, isLoading }: Props) => {
               <MenuButton height="36px" as={Button}>
                 <IoChevronDownOutline />
               </MenuButton>
-              {dataType === "Monthly" ? (
+              {dataType === words.dashboard.books.chartButton.monthly ? (
                 <MenuList>
-                  <MenuItem onClick={() => setDataType("Monthly")}>
-                    Monthly
-                  </MenuItem>
-                  <MenuItem onClick={() => setDataType("Daily")}>
-                    Daily
-                  </MenuItem>
+                  {dataTypeArray.map((d) => (
+                    <MenuItem key={d} onClick={() => setDataType(d)}>
+                      {d}
+                    </MenuItem>
+                  ))}
                 </MenuList>
               ) : (
                 <MenuList>
-                  <MenuItem onClick={() => setDataType("Daily")}>
-                    Daily
-                  </MenuItem>
-                  <MenuItem onClick={() => setDataType("Monthly")}>
-                    Monthly
-                  </MenuItem>
+                  {dataTypeArray.reverse().map((d) => (
+                    <MenuItem key={d} onClick={() => setDataType(d)}>
+                      {d}
+                    </MenuItem>
+                  ))}
                 </MenuList>
               )}
             </Menu>
