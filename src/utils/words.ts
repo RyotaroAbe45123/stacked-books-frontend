@@ -25,6 +25,10 @@ export const words = {
         daily: "Daily Stacks Chart",
         monthly: "Monthly Stacks Chart",
       },
+      chartButton: {
+        daily: "Daily",
+        monthly: "Monthly",
+      },
       tableTitle: "Last 5 Stacks",
       tableColumns: {
         date: "date",
