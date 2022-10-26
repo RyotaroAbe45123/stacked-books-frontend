@@ -18,7 +18,7 @@ export const Login = () => {
     <Box
       position="relative"
       h="100vh"
-      minHeight={isMobile ? "calc(var(--vh, 1vh) * 100)" : "60vh"}
+      // minHeight={isMobile ? "calc(var(--vh, 1vh) * 100)" : "60vh"}
       bg={theme.subColor}
     >
       <Image
@@ -26,8 +26,8 @@ export const Login = () => {
         top={isMobile ? "0%" : "20%"}
         src={image}
         w="100vw"
-        h={isMobile ? "100vh" : "60vh"}
-        minHeight={isMobile ? "calc(var(--vh, 1vh) * 100)" : "60vh"}
+        h={isMobile ? "100%" : "60vh"}
+        // minHeight={isMobile ? "calc(var(--vh, 1vh) * 100)" : "60vh"}
         objectFit="cover"
         alt=""
         opacity="0.6"
@@ -35,7 +35,7 @@ export const Login = () => {
       />
       <Flex
         position="absolute"
-        top="50%"
+        top={isMobile ? "40%" : "50%"}
         left="50%"
         transform="translate(-50%, -50%)"
         textAlign="center"
