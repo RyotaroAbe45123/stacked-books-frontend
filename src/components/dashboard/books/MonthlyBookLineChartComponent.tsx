@@ -11,25 +11,26 @@ import {
 } from "recharts";
 import { theme } from "theme/theme";
 import { Stack } from "types/api";
-import { MonthlyBarChartDataType } from "types/data";
+import { MonthlyLineChartDataType } from "types/data";
 
 type Props = {
   data: Stack[] | undefined;
 };
 
-export const MonthlyBookBarChartComponent = ({ data }: Props) => {
+export const MonthlyBookLineChartComponent = ({ data }: Props) => {
   const { isMobile } = useMobileContext();
 
   const [maxYTick, setMaxYTick] = useState<number>(10);
 
-  const [barChartData, setBarChartData] = useState<MonthlyBarChartDataType[]>();
+  const [lineChartData, setLineChartData] =
+    useState<MonthlyLineChartDataType[]>();
 
   const countBooksCallback = useCallback(countBooks, []);
 
   const calcMaxYTickCallback = useCallback(calcMaxYTick, []);
 
-  const initData = (): MonthlyBarChartDataType[] => {
-    const initDataList: MonthlyBarChartDataType[] = [];
+  const initData = (): MonthlyLineChartDataType[] => {
+    const initDataList: MonthlyLineChartDataType[] = [];
     const today = new Date();
     for (let i = 5; i > -1; i--) {
       const thisMonth = today.getMonth() + 1;
@@ -49,19 +50,19 @@ export const MonthlyBookBarChartComponent = ({ data }: Props) => {
 
     if (data !== undefined) {
       const monthlyData = countBooksCallback(data, initializedData);
-      setBarChartData(monthlyData as MonthlyBarChartDataType[]);
+      setLineChartData(monthlyData as MonthlyLineChartDataType[]);
       setMaxYTick(
-        calcMaxYTickCallback(monthlyData as MonthlyBarChartDataType[]),
+        calcMaxYTickCallback(monthlyData as MonthlyLineChartDataType[]),
       );
     } else {
-      setBarChartData(initializedData);
+      setLineChartData(initializedData);
     }
   }, [data, countBooksCallback, calcMaxYTickCallback]);
 
   return (
     <ResponsiveContainer width="100%" height="100%">
       <LineChart
-        data={barChartData}
+        data={lineChartData}
         margin={{
           top: 10,
           bottom: 0,

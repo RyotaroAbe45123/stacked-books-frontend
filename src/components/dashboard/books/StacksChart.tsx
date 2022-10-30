@@ -14,7 +14,7 @@ import { theme } from "theme/theme";
 import { Stack } from "types/api";
 import { words } from "utils/words";
 import { SpinnerComponent } from "components/SpinnerComponent";
-import { MonthlyBookBarChartComponent } from "./MonthlyBookBarChartComponent";
+import { MonthlyBookLineChartComponent } from "./MonthlyBookLineChartComponent";
 import { DailyBookBarChartComponent } from "./DailyBookBarChartComponent";
 import { useMobileContext } from "contexts/MobileContext";
 
@@ -92,7 +92,7 @@ export const StacksChart = ({ data, isLoading }: Props) => {
           ) : (
             <>
               {dataType === words.dashboard.books.chartButton.monthly ? (
-                <MonthlyBookBarChartComponent data={data} />
+                <MonthlyBookLineChartComponent data={data} />
               ) : (
                 <DailyBookBarChartComponent data={data} />
               )}
