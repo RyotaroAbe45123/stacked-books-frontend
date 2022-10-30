@@ -1,7 +1,15 @@
 import { useMobileContext } from "contexts/MobileContext";
 import { calcMaxYTick, countBooks } from "functions/utils";
 import { useCallback, useEffect, useState } from "react";
-import { Bar, BarChart, XAxis, YAxis } from "recharts";
+import {
+  Bar,
+  BarChart,
+  Line,
+  LineChart,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
 import { theme } from "theme/theme";
 import { Stack } from "types/api";
 import { MonthlyBarChartDataType } from "types/data";
@@ -53,15 +61,14 @@ export const MonthlyBookBarChartComponent = ({ data }: Props) => {
   }, [data, countBooksCallback, calcMaxYTickCallback]);
 
   return (
-    <BarChart
-      width={isMobile ? 300 : 375}
-      height={isMobile ? 300 : 300}
+    <LineChart
+      width={375}
+      height={300}
       data={barChartData}
-      barSize={isMobile ? 15 : 20}
       margin={{
         top: 10,
         bottom: 0,
-        right: 5,
+        right: 30,
         left: -20,
       }}
     >
@@ -73,7 +80,16 @@ export const MonthlyBookBarChartComponent = ({ data }: Props) => {
         interval={isMobile ? "preserveEnd" : 0}
       />
       <YAxis domain={[0, maxYTick]} tickCount={6} interval={0} minTickGap={1} />
-      <Bar dataKey="num" fill={theme.activeColor} />
-    </BarChart>
+      <Tooltip />
+      <Line
+        dataKey="num"
+        fill={theme.mainColor}
+        type="linear"
+        strokeWidth={3}
+        dot={{ r: 5 }}
+        stroke={theme.activeColor}
+        activeDot={isMobile ? false : { r: 5, stroke: theme.activeColor }}
+      />
+    </LineChart>
   );
 };
