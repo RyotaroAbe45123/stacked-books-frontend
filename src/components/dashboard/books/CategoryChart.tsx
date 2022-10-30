@@ -70,14 +70,14 @@ export const CategoryChart = ({ data, isLoading }: Props) => {
             x={tx}
             y={ty}
             dx={tx > cx ? -1 * shift : shift}
-            // dy="-9"
+            dy="-9"
             fill={theme.mainColor}
             textAnchor={tx > cx ? "start" : "end"}
             dominantBaseline="central"
           >
             {name}
           </text>
-          <br />
+          {/* <br /> */}
           <text
             fontWeight="bold"
             x={tx}
@@ -86,7 +86,7 @@ export const CategoryChart = ({ data, isLoading }: Props) => {
             fill={theme.mainColor}
             // dy="1rem"
             // dy={18}
-            // dy="9"
+            dy="9"
             textAnchor={tx > cx ? "start" : "end"}
             dominantBaseline="central"
           >
