@@ -26,7 +26,7 @@ export const MonthlyBookBarChartComponent = ({ data }: Props) => {
     const today = new Date();
     for (let i = 5; i > -1; i--) {
       const thisMonth = today.getMonth() + 1;
-      const targetDateTS = new Date().setMonth(thisMonth - 1 - i);
+      const targetDateTS = new Date().setMonth(thisMonth - 1 - i, 1);
       const targetMonth = new Date(targetDateTS).getMonth() + 1;
       const targetYear = new Date(targetDateTS).getFullYear();
       initDataList.push({
@@ -39,6 +39,7 @@ export const MonthlyBookBarChartComponent = ({ data }: Props) => {
 
   useEffect(() => {
     const initializedData = initData();
+    console.log(initializedData);
 
     if (data !== undefined) {
       const monthlyData = countBooksCallback(data, initializedData);
