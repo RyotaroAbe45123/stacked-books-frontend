@@ -52,7 +52,7 @@ export const CategoryChart = ({ data, isLoading }: Props) => {
     name,
     num,
   }: any) => {
-    const labelRadius = outerRadius * 1.0;
+    const labelRadius = outerRadius * 1.2;
     const lx = cx + labelRadius * Math.cos(-midAngle * RADIAN);
     const ly = cy + labelRadius * Math.sin(-midAngle * RADIAN);
 
