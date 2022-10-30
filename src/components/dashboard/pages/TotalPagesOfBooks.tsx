@@ -17,7 +17,7 @@ export const TotalPagesOfBooks = ({ data, isLoading }: Props) => {
       // 本の金額を計算する
       let totalPages = 0;
       data.forEach((i) => {
-        totalPages += i.pages;
+        totalPages += i.pages ?? 0;
       });
       setPagesOfBooks(totalPages);
     }

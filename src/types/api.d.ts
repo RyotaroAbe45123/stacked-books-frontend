@@ -1,9 +1,9 @@
 export type Stack = {
   timestamp: TimeStamp;
   title: string;
-  price: number;
-  pages: number;
-  c_code: string;
+  price: number | null;
+  pages: number | null;
+  c_code: string | null;
 };
 
 export type Book = {
