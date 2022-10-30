@@ -1,15 +1,7 @@
 import { useMobileContext } from "contexts/MobileContext";
 import { calcMaxYTick, countBooks } from "functions/utils";
 import { useCallback, useEffect, useState } from "react";
-import {
-  Bar,
-  BarChart,
-  Line,
-  LineChart,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts";
+import { Line, LineChart, Tooltip, XAxis, YAxis } from "recharts";
 import { theme } from "theme/theme";
 import { Stack } from "types/api";
 import { MonthlyBarChartDataType } from "types/data";
