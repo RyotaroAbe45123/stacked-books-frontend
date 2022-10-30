@@ -1,5 +1,5 @@
 import { Stack } from "types/api";
-import { DailyBarChartDataType, MonthlyBarChartDataType } from "types/data";
+import { DailyBarChartDataType, MonthlyLineChartDataType } from "types/data";
 
 export const filterThisMonth = (timestamp: string) => {
   const timestampMonth = new Date(timestamp).getMonth() + 1;
@@ -21,7 +21,7 @@ export const filterLatest6Month = (timestamp: string) => {
   return new Date(timestamp) > dateBefore6MonthTS;
 };
 
-export const countBooks = (stacks: Stack[], initData:  DailyBarChartDataType[]| MonthlyBarChartDataType[]) => {
+export const countBooks = (stacks: Stack[], initData:  DailyBarChartDataType[]| MonthlyLineChartDataType[]) => {
   if (initData.length > 0 && "date" in initData[0]) {
     for (const stack of stacks) {
       initData.forEach((data) => {
@@ -37,7 +37,7 @@ export const countBooks = (stacks: Stack[], initData:  DailyBarChartDataType[]| 
       initData.forEach((data) => {
         const d = new Date(stack.timestamp);
         const y = `${d.getFullYear()}/${d.getMonth() + 1}`;
-        if ((data as MonthlyBarChartDataType).month === y) {
+        if ((data as MonthlyLineChartDataType).month === y) {
           data.num++;
         }
       });
@@ -49,7 +49,7 @@ export const countBooks = (stacks: Stack[], initData:  DailyBarChartDataType[]| 
     }
 };
 
-export const calcMaxYTick = (data: DailyBarChartDataType[]| MonthlyBarChartDataType[]) => {
+export const calcMaxYTick = (data: DailyBarChartDataType[]| MonthlyLineChartDataType[]) => {
   const maxValue = Math.max(...data.map((item) => item.num));
   const digit = maxValue.toString().length;
   const half = Math.pow(10, digit) / 2;
