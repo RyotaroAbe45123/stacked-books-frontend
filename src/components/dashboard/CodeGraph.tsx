@@ -15,6 +15,19 @@ type PieDataType = {
   num: number;
 };
 
+const codeNameMap = {
+  "0": "総合",
+  "1": "哲学",
+  "2": "歴史",
+  "3": "社会科学",
+  "4": "自然科学",
+  "5": "工学",
+  "6": "産業",
+  "7": "芸術",
+  "8": "語学",
+  "9": "文学",
+};
+
 export const CodeGraph = ({ data, isLoading }: Props) => {
   const [pieData, setPieData] = useState<PieDataType[]>([]);
 
@@ -30,6 +43,7 @@ export const CodeGraph = ({ data, isLoading }: Props) => {
         });
       });
     }
+    mapList.filter((m) => (m.name = (codeNameMap as any)[m.name]));
     setPieData(mapList.filter((m) => m.num !== 0));
   }, [data]);
 
@@ -39,11 +53,77 @@ export const CodeGraph = ({ data, isLoading }: Props) => {
     }
   }, [data, createPieData]);
 
+  const RADIAN = Math.PI / 180;
+  const renderCustomizedLabel = ({
+    cx,
+    cy,
+    midAngle,
+    innerRadius,
+    outerRadius,
+    percent,
+    name,
+    num,
+  }: any) => {
+    const labelRadius = innerRadius + (outerRadius - innerRadius) * 1.2;
+    const lx = cx + labelRadius * Math.cos(-midAngle * RADIAN);
+    const ly = cy + labelRadius * Math.sin(-midAngle * RADIAN);
+    const textRadius = innerRadius + (outerRadius - innerRadius) * 0.5;
+    const tx = cx + textRadius * Math.cos(-midAngle * RADIAN);
+    const ty = cy + textRadius * Math.sin(-midAngle * RADIAN);
+
+    return (
+      <>
+        <text
+          x={lx}
+          y={ly}
+          fill={theme.mainText}
+          textAnchor={lx > cx ? "start" : "end"}
+          dominantBaseline="central"
+        >
+          {name}
+        </text>
+        <text
+          x={lx}
+          y={ly}
+          dy="1rem"
+          fill={theme.mainText}
+          textAnchor={lx > cx ? "start" : "end"}
+          dominantBaseline="central"
+        >
+          {`(${(percent * 100).toFixed(0)}%)`}
+        </text>
+        <text
+          fontWeight="bold"
+          x={tx}
+          y={ty}
+          fill={theme.mainColor}
+          textAnchor={tx > cx ? "start" : "end"}
+          dominantBaseline="central"
+        >
+          {num}
+        </text>
+      </>
+    );
+  };
+
   return (
-    <Statistics title="hoge" icon={MdBarChart} isLoading={isLoading}>
+    <Statistics
+      title="Book Category Chart"
+      icon={MdBarChart}
+      isLoading={isLoading}
+    >
       <ResponsiveContainer width="100%" height="100%">
         <PieChart>
-          <Pie dataKey="num" label data={pieData} fill={theme.activeColor} />
+          <Pie
+            nameKey="name"
+            dataKey="num"
+            // labelLine={false}
+            label={renderCustomizedLabel}
+            data={pieData}
+            fill={theme.activeColor}
+            startAngle={90}
+            endAngle={450}
+          />
         </PieChart>
       </ResponsiveContainer>
     </Statistics>
