@@ -7,6 +7,11 @@ export interface MonthlyBarChartDataType {
   month: string;
   num: number;
 };
+type PieDataType = {
+  name: string;
+  num: number;
+};
+
 
 export type TableListDataType = {
   date: string;

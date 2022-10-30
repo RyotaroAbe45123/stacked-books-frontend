@@ -3,6 +3,7 @@ export type Stack = {
   title: string;
   price: number;
   pages: number;
+  c_code: string;
 };
 
 export type Book = {
