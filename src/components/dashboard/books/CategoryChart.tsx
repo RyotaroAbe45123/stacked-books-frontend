@@ -1,3 +1,4 @@
+import { useMobileContext } from "contexts/MobileContext";
 import { useCallback, useEffect, useState } from "react";
 import { BsFillPieChartFill } from "react-icons/bs";
 import { Pie, PieChart, ResponsiveContainer } from "recharts";
@@ -13,6 +14,8 @@ type Props = {
 };
 
 export const CategoryChart = ({ data, isLoading }: Props) => {
+  const { isMobile } = useMobileContext();
+
   const [pieData, setPieData] = useState<PieDataType[]>([]);
 
   const createPieData = useCallback(() => {
@@ -44,52 +47,84 @@ export const CategoryChart = ({ data, isLoading }: Props) => {
     cx,
     cy,
     midAngle,
-    innerRadius,
     outerRadius,
     percent,
     name,
     num,
   }: any) => {
-    const labelRadius = innerRadius + (outerRadius - innerRadius) * 1.2;
+    const labelRadius = outerRadius * 1.0;
     const lx = cx + labelRadius * Math.cos(-midAngle * RADIAN);
     const ly = cy + labelRadius * Math.sin(-midAngle * RADIAN);
-    const textRadius = innerRadius + (outerRadius - innerRadius) * 0.5;
+
+    const textRadius = outerRadius * 0.5;
     const tx = cx + textRadius * Math.cos(-midAngle * RADIAN);
     const ty = cy + textRadius * Math.sin(-midAngle * RADIAN);
 
-    return (
-      <>
-        <text
-          x={lx}
-          y={ly}
-          fill={theme.mainText}
-          textAnchor={lx > cx ? "start" : "end"}
-          dominantBaseline="central"
-        >
-          {name}
-        </text>
-        <text
-          x={lx}
-          y={ly}
-          dy="1rem"
-          fill={theme.mainText}
-          textAnchor={lx > cx ? "start" : "end"}
-          dominantBaseline="central"
-        >
-          {`(${(percent * 100).toFixed(0)}%)`}
-        </text>
-        <text
-          fontWeight="bold"
-          x={tx}
-          y={ty}
-          fill={theme.mainColor}
-          textAnchor={tx > cx ? "start" : "end"}
-          dominantBaseline="central"
-        >
-          {num}
-        </text>
-      </>
-    );
+    const shift = Math.abs(cx - tx) / 2;
+
+    if (isMobile) {
+      return (
+        <g>
+          <text
+            fontWeight="bold"
+            x={tx}
+            y={ty}
+            dx={tx > cx ? -1 * shift : shift}
+            fill={theme.mainColor}
+            textAnchor={tx > cx ? "start" : "end"}
+            dominantBaseline="central"
+          >
+            {name}
+          </text>
+          <text
+            fontWeight="bold"
+            x={tx}
+            y={ty}
+            dx={tx > cx ? -1 * shift : shift}
+            fill={theme.mainColor}
+            dy="1rem"
+            textAnchor={tx > cx ? "start" : "end"}
+            dominantBaseline="central"
+          >
+            {`(${(percent * 100).toFixed(0)}%)`}
+          </text>
+        </g>
+      );
+    } else {
+      return (
+        <g>
+          <text
+            x={lx}
+            y={ly}
+            fill={theme.mainText}
+            textAnchor={lx > cx ? "start" : "end"}
+            dominantBaseline="central"
+          >
+            {name}
+          </text>
+          <text
+            x={lx}
+            y={ly}
+            dy="1rem"
+            fill={theme.mainText}
+            textAnchor={lx > cx ? "start" : "end"}
+            dominantBaseline="central"
+          >
+            {`(${(percent * 100).toFixed(0)}%)`}
+          </text>
+          <text
+            fontWeight="bold"
+            x={tx}
+            y={ty}
+            fill={theme.mainColor}
+            textAnchor={tx > cx ? "start" : "end"}
+            dominantBaseline="central"
+          >
+            {num}
+          </text>
+        </g>
+      );
+    }
   };
 
   return (
@@ -99,10 +134,16 @@ export const CategoryChart = ({ data, isLoading }: Props) => {
       isLoading={isLoading}
     >
       <ResponsiveContainer width="100%" height="100%">
-        <PieChart>
+        <PieChart
+        // margin={{
+        //   right: 30,
+        //   left: 30,
+        // }}
+        >
           <Pie
             nameKey="name"
             dataKey="num"
+            labelLine={isMobile ? false : true}
             label={renderCustomizedLabel}
             data={pieData}
             fill={theme.activeColor}
