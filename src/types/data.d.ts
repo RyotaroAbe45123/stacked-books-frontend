@@ -3,7 +3,7 @@ export interface DailyBarChartDataType {
   num: number;
 };
 
-export interface MonthlyBarChartDataType {
+export interface MonthlyLineChartDataType {
   month: string;
   num: number;
 };
