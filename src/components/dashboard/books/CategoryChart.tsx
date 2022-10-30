@@ -24,7 +24,7 @@ export const CategoryChart = ({ data, isLoading }: Props) => {
     if (data) {
       data.forEach((d) => {
         mapList.forEach((m) => {
-          if (d.c_code.slice(2, 3) === m.name) {
+          if (d.c_code?.slice(2, 3) === m.name) {
             m.num++;
           }
         });
@@ -70,19 +70,23 @@ export const CategoryChart = ({ data, isLoading }: Props) => {
             x={tx}
             y={ty}
             dx={tx > cx ? -1 * shift : shift}
+            // dy="-9"
             fill={theme.mainColor}
             textAnchor={tx > cx ? "start" : "end"}
             dominantBaseline="central"
           >
             {name}
           </text>
+          <br />
           <text
             fontWeight="bold"
             x={tx}
             y={ty}
             dx={tx > cx ? -1 * shift : shift}
             fill={theme.mainColor}
-            dy="1rem"
+            // dy="1rem"
+            // dy={18}
+            // dy="9"
             textAnchor={tx > cx ? "start" : "end"}
             dominantBaseline="central"
           >

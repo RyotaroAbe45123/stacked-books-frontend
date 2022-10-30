@@ -17,7 +17,7 @@ export const TotalPriceOfBooks = ({ data, isLoading }: Props) => {
       // 本の金額を計算する
       let totalPrice = 0;
       data.forEach((i) => {
-        totalPrice += i.price;
+        totalPrice += i.price ?? 0;
       });
       setPriceOfBooks(totalPrice);
     }

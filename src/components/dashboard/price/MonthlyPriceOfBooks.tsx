@@ -19,7 +19,7 @@ export const MonthlyPriceOfBooks = ({ data, isLoading }: Props) => {
       // 本の金額を計算する
       let totalPrice = 0;
       filteredData.forEach((i) => {
-        totalPrice += i.price;
+        totalPrice += i.price ?? 0;
       });
       setPriceOfBooks(totalPrice);
     }
