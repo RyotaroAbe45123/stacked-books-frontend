@@ -1,7 +1,7 @@
 import { useMobileContext } from "contexts/MobileContext";
 import { calcMaxYTick, countBooks } from "functions/utils";
 import { useCallback, useEffect, useState } from "react";
-import { Bar, BarChart, XAxis, YAxis } from "recharts";
+import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
 import { theme } from "theme/theme";
 import { Stack } from "types/api";
 import { DailyBarChartDataType } from "types/data";
@@ -48,33 +48,33 @@ export const DailyBookBarChartComponent = ({ data }: Props) => {
   }, [data, countBooksCallback, calcMaxYTickCallback]);
 
   return (
-    <BarChart
-      width={isMobile ? 300 : 375}
-      height={isMobile ? 300 : 300}
-      data={barChartData}
-      barSize={isMobile ? 15 : 20}
-      margin={{
-        top: 10,
-        bottom: 0,
-        right: 0,
-        left: -20,
-      }}
-    >
-      <XAxis
-        dataKey="date"
-        tickFormatter={(value) => `${value}日`}
-        angle={-10}
-        tickMargin={3}
-        tickLine={false}
-        interval={0}
-      />
-      <YAxis
-        domain={[0, maxYTick]}
-        tickCount={6}
-        interval={isMobile ? "preserveEnd" : 0}
-        minTickGap={1}
-      />
-      <Bar dataKey="num" fill={theme.activeColor} />
-    </BarChart>
+    <ResponsiveContainer width="100%" height="100%">
+      <BarChart
+        data={barChartData}
+        barSize={isMobile ? 15 : 20}
+        margin={{
+          top: 10,
+          bottom: 0,
+          right: 0,
+          left: -20,
+        }}
+      >
+        <XAxis
+          dataKey="date"
+          tickFormatter={(value) => `${value}日`}
+          angle={-10}
+          tickMargin={3}
+          tickLine={false}
+          interval={0}
+        />
+        <YAxis
+          domain={[0, maxYTick]}
+          tickCount={6}
+          interval={isMobile ? "preserveEnd" : 0}
+          minTickGap={1}
+        />
+        <Bar dataKey="num" fill={theme.activeColor} />
+      </BarChart>
+    </ResponsiveContainer>
   );
 };

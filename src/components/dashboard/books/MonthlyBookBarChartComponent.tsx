@@ -1,7 +1,14 @@
 import { useMobileContext } from "contexts/MobileContext";
 import { calcMaxYTick, countBooks } from "functions/utils";
 import { useCallback, useEffect, useState } from "react";
-import { Line, LineChart, Tooltip, XAxis, YAxis } from "recharts";
+import {
+  Line,
+  LineChart,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
 import { theme } from "theme/theme";
 import { Stack } from "types/api";
 import { MonthlyBarChartDataType } from "types/data";
@@ -39,7 +46,6 @@ export const MonthlyBookBarChartComponent = ({ data }: Props) => {
 
   useEffect(() => {
     const initializedData = initData();
-    console.log(initializedData);
 
     if (data !== undefined) {
       const monthlyData = countBooksCallback(data, initializedData);
@@ -53,35 +59,40 @@ export const MonthlyBookBarChartComponent = ({ data }: Props) => {
   }, [data, countBooksCallback, calcMaxYTickCallback]);
 
   return (
-    <LineChart
-      width={375}
-      height={300}
-      data={barChartData}
-      margin={{
-        top: 10,
-        bottom: 0,
-        right: 30,
-        left: -20,
-      }}
-    >
-      <XAxis
-        dataKey="month"
-        angle={-10}
-        tickMargin={3}
-        tickLine={false}
-        interval={isMobile ? "preserveEnd" : 0}
-      />
-      <YAxis domain={[0, maxYTick]} tickCount={6} interval={0} minTickGap={1} />
-      <Tooltip />
-      <Line
-        dataKey="num"
-        fill={theme.mainColor}
-        type="linear"
-        strokeWidth={3}
-        dot={{ r: 5 }}
-        stroke={theme.activeColor}
-        activeDot={isMobile ? false : { r: 5, stroke: theme.activeColor }}
-      />
-    </LineChart>
+    <ResponsiveContainer width="100%" height="100%">
+      <LineChart
+        data={barChartData}
+        margin={{
+          top: 10,
+          bottom: 0,
+          right: 30,
+          left: -20,
+        }}
+      >
+        <XAxis
+          dataKey="month"
+          angle={-10}
+          tickMargin={3}
+          tickLine={false}
+          interval={isMobile ? "preserveEnd" : 0}
+        />
+        <YAxis
+          domain={[0, maxYTick]}
+          tickCount={6}
+          interval={0}
+          minTickGap={1}
+        />
+        <Tooltip />
+        <Line
+          dataKey="num"
+          fill={theme.mainColor}
+          type="linear"
+          strokeWidth={3}
+          dot={{ r: 5 }}
+          stroke={theme.activeColor}
+          activeDot={isMobile ? false : { r: 5, stroke: theme.activeColor }}
+        />
+      </LineChart>
+    </ResponsiveContainer>
   );
 };
