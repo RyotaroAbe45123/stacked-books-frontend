@@ -70,7 +70,7 @@ export const CategoryChart = ({ data, isLoading }: Props) => {
             x={tx}
             y={ty}
             dx={tx > cx ? -1 * shift : shift}
-            dy="-0.5rem"
+            dy="-9"
             fill={theme.mainColor}
             textAnchor={tx > cx ? "start" : "end"}
             dominantBaseline="central"
@@ -83,7 +83,7 @@ export const CategoryChart = ({ data, isLoading }: Props) => {
             y={ty}
             dx={tx > cx ? -1 * shift : shift}
             fill={theme.mainColor}
-            dy="0.5rem"
+            dy="9"
             textAnchor={tx > cx ? "start" : "end"}
             dominantBaseline="central"
           >
@@ -97,6 +97,7 @@ export const CategoryChart = ({ data, isLoading }: Props) => {
           <text
             x={lx}
             y={ly}
+            dy="-9"
             fill={theme.mainText}
             textAnchor={lx > cx ? "start" : "end"}
             dominantBaseline="central"
@@ -106,7 +107,7 @@ export const CategoryChart = ({ data, isLoading }: Props) => {
           <text
             x={lx}
             y={ly}
-            dy="1rem"
+            dy="9"
             fill={theme.mainText}
             textAnchor={lx > cx ? "start" : "end"}
             dominantBaseline="central"
