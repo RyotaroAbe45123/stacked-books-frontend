@@ -50,83 +50,35 @@ export const CategoryChart = ({ data, isLoading }: Props) => {
     outerRadius,
     percent,
     name,
-    num,
   }: any) => {
     const labelRadius = outerRadius * 1.2;
     const lx = cx + labelRadius * Math.cos(-midAngle * RADIAN);
     const ly = cy + labelRadius * Math.sin(-midAngle * RADIAN);
 
-    const textRadius = outerRadius * 0.5;
-    const tx = cx + textRadius * Math.cos(-midAngle * RADIAN);
-    const ty = cy + textRadius * Math.sin(-midAngle * RADIAN);
-
-    const shift = Math.abs(cx - tx) / 2;
-
-    if (isMobile) {
-      return (
-        <g>
-          <text
-            fontWeight="bold"
-            x={tx}
-            y={ty}
-            dx={tx > cx ? -1 * shift : shift}
-            dy="-9"
-            fill={theme.mainColor}
-            textAnchor={tx > cx ? "start" : "end"}
-            dominantBaseline="central"
-          >
-            {name}
-          </text>
-          <text
-            fontWeight="bold"
-            x={tx}
-            y={ty}
-            dx={tx > cx ? -1 * shift : shift}
-            fill={theme.mainColor}
-            dy="9"
-            textAnchor={tx > cx ? "start" : "end"}
-            dominantBaseline="central"
-          >
-            {`(${(percent * 100).toFixed(0)}%)`}
-          </text>
-        </g>
-      );
-    } else {
-      return (
-        <g>
-          <text
-            x={lx}
-            y={ly}
-            dy="-9"
-            fill={theme.mainText}
-            textAnchor={lx > cx ? "start" : "end"}
-            dominantBaseline="central"
-          >
-            {name}
-          </text>
-          <text
-            x={lx}
-            y={ly}
-            dy="9"
-            fill={theme.mainText}
-            textAnchor={lx > cx ? "start" : "end"}
-            dominantBaseline="central"
-          >
-            {`(${(percent * 100).toFixed(0)}%)`}
-          </text>
-          <text
-            fontWeight="bold"
-            x={tx}
-            y={ty}
-            fill={theme.mainColor}
-            textAnchor={tx > cx ? "start" : "end"}
-            dominantBaseline="central"
-          >
-            {num}
-          </text>
-        </g>
-      );
-    }
+    return (
+      <g>
+        <text
+          x={lx}
+          y={ly}
+          dy="-9"
+          fill={theme.mainText}
+          textAnchor={lx > cx ? "start" : "end"}
+          dominantBaseline="central"
+        >
+          {name}
+        </text>
+        <text
+          x={lx}
+          y={ly}
+          dy="9"
+          fill={theme.mainText}
+          textAnchor={lx > cx ? "start" : "end"}
+          dominantBaseline="central"
+        >
+          {`(${(percent * 100).toFixed(0)}%)`}
+        </text>
+      </g>
+    );
   };
 
   return (
@@ -137,15 +89,15 @@ export const CategoryChart = ({ data, isLoading }: Props) => {
     >
       <ResponsiveContainer width="100%" height="100%">
         <PieChart
-        // margin={{
-        //   right: 30,
-        //   left: 30,
-        // }}
+          margin={
+            isMobile
+              ? { top: 10, bottom: 10, right: 30, left: 60 }
+              : { top: 10, bottom: 10 }
+          }
         >
           <Pie
             nameKey="name"
             dataKey="num"
-            labelLine={isMobile ? false : true}
             label={renderCustomizedLabel}
             data={pieData}
             fill={theme.activeColor}
