@@ -9,8 +9,11 @@ import { MonthlyPriceOfBooks } from "./price/MonthlyPriceOfBooks";
 import { MonthlyPagesOfBooks } from "./pages/MonthlyPagesOfBooks";
 import { StacksChart } from "./books/StacksChart";
 import { CategoryChart } from "./books/CategoryChart";
+import { useMobileContext } from "contexts/MobileContext";
 
 export const Dashboard = () => {
+  const { isMobile } = useMobileContext();
+
   const { stacks, isLoading } = useStack();
 
   return (
@@ -44,11 +47,13 @@ export const Dashboard = () => {
         <TotalPriceOfBooks data={stacks} isLoading={isLoading} />
         <TotalPagesOfBooks data={stacks} isLoading={isLoading} />
       </SimpleGrid>
-      <SimpleGrid columns={{ sm: 1, lg: 3 }} gap="20px" mb="20px">
-        <MonthlyNumberOfBooks data={stacks} isLoading={isLoading} />
-        <MonthlyPriceOfBooks data={stacks} isLoading={isLoading} />
-        <MonthlyPagesOfBooks data={stacks} isLoading={isLoading} />
-      </SimpleGrid>
+      {!isMobile && (
+        <SimpleGrid columns={{ sm: 1, lg: 3 }} gap="20px" mb="20px">
+          <MonthlyNumberOfBooks data={stacks} isLoading={isLoading} />
+          <MonthlyPriceOfBooks data={stacks} isLoading={isLoading} />
+          <MonthlyPagesOfBooks data={stacks} isLoading={isLoading} />
+        </SimpleGrid>
+      )}
       <SimpleGrid columns={{ sm: 1, lg: 2 }} gap="20px" mb="20px">
         <StacksChart data={stacks} isLoading={isLoading} />
         <CategoryChart data={stacks} isLoading={isLoading} />
