@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   Divider,
   Drawer,
   DrawerBody,
@@ -17,16 +16,15 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { LogoutButton } from "auth/LogoutButton";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { routes } from "Routes";
 import { theme } from "theme/theme";
-import { words } from "utils/words";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Logo from "../../assets/stacked-books-logo.png";
+import { TweetButton } from "components/TweetButton";
 
 export const MobileHeader = () => {
   const location = useLocation();
-  const navigate = useNavigate();
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -147,14 +145,10 @@ export const MobileHeader = () => {
             </Text>
           </Flex>
         </Flex>
-        <Flex>
-          <Button
-            onClick={() => navigate("/register")}
-            bg={theme.mainColor}
-            marginRight="10px"
-          >
-            {words.header.stackButton}
-          </Button>
+        <Flex alignItems="center">
+          <Box marginRight="10px">
+            <TweetButton text={"i"} />
+          </Box>
           <LogoutButton />
         </Flex>
       </Flex>

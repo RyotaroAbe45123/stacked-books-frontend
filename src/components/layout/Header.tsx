@@ -1,5 +1,6 @@
 import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import { LogoutButton } from "auth/LogoutButton";
+import { TweetButton } from "components/TweetButton";
 import { useLocation, useNavigate } from "react-router-dom";
 import { routes } from "Routes";
 import { theme } from "theme/theme";
@@ -29,7 +30,10 @@ export const Header = () => {
             {getActivePageName(location.pathname)}
           </Text>
         </Box>
-        <Flex>
+        <Flex alignItems="center">
+          <Box marginRight="10px">
+            <TweetButton text={"i"} />
+          </Box>
           <Button
             onClick={() => navigate("/register")}
             bg={theme.mainColor}
