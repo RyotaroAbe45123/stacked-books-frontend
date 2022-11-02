@@ -1,23 +1,29 @@
 import { AiOutlineTwitter } from "react-icons/ai";
 import { Box, Icon, Button, Flex } from "@chakra-ui/react";
+import { theme } from "theme/theme";
+import { words } from "utils/words";
 
-export const TweetButton = () => {
+type Props = {
+  text: string;
+};
+
+export const TweetButton = ({ text }: Props) => {
   return (
     <a
       className="twitter-share-button"
-      href="https://twitter.com/intent/tweet?text=Hello%20world"
+      href={`https://twitter.com/intent/tweet?text=${text}`}
       target="_blank"
       rel="noreferrer"
     >
       <Button
-        bg="#1d9bf0"
-        color="#fff"
+        bg={theme.twitterColor}
+        color={theme.mainColor}
         padding="1px 12px 1px 12 px"
         borderRadius="9999px"
         w="81px"
         h="28px"
       >
-        <Flex alignItems="center" justifyContent="center">
+        <Flex alignItems="center" justifyContent="center" verticalAlign="top">
           <Icon as={AiOutlineTwitter} w="18px" h="18px" />
           <Box
             marginLeft="5px"
@@ -25,7 +31,7 @@ export const TweetButton = () => {
             fontSize="13px"
             lineHeight="26px"
           >
-            Tweet
+            {words.dashboard.twitter.buttonName}
           </Box>
         </Flex>
       </Button>
