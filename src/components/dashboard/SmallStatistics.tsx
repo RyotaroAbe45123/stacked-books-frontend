@@ -12,6 +12,7 @@ import { theme } from "theme/theme";
 import { Card } from "../Card";
 import { IconType } from "react-icons";
 import { useMobileContext } from "contexts/MobileContext";
+import { TweetButton } from "components/TweetButton";
 
 type SmallStatisticsProps = {
   icon: IconType;
@@ -64,6 +65,7 @@ export const SmallStatistics = ({
             </StatHelpText>
           </Stat>
         </Box>
+        <TweetButton />
       </Flex>
     </Card>
   );
