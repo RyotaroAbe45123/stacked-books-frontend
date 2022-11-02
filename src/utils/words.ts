@@ -72,6 +72,9 @@ export const words = {
       },
       statUnit: "ページ",
     },
+    twitter: {
+      buttonName: "Tweet"
+    }
   },
   register: {
     stackButtonName: "stack",
