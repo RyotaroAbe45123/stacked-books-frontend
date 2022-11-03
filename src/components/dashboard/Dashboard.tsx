@@ -18,30 +18,6 @@ export const Dashboard = () => {
 
   return (
     <Box>
-      {/* <a
-        className="twitter-share-button"
-        href="https://twitter.com/intent/tweet"
-      >
-        Tweet
-      </a>
-      <a
-        className="twitter-share-button"
-        href="https://twitter.com/intent/tweet?text=Hello%20world"
-      >
-        Tweet2
-      </a>
-      <a
-        className="twitter-share-button"
-        href="https://twitter.com/intent/tweet?text=Hello%20world"
-        data-size="large"
-      >
-        Tweet3
-      </a>
-      <a
-        id="b"
-        className="btn"
-        href="https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Fdeveloper.twitter.com%2F&ref_src=twsrc%5Etfw%7Ctwcamp%5Ebuttonembed%7Ctwterm%5Eshare%7Ctwgr%5E&text=Guides%20%7C%20Docs%20%7C%20Twitter%20Developer%20Platform&url=https%3A%2F%2Fdeveloper.twitter.com%2Fen%2Fdocs%2Ftwitter-for-websites%2Ftweet-button%2Foverview"
-      ></a> */}
       <SimpleGrid columns={{ sm: 1, lg: 3 }} gap="20px" mb="20px">
         <TotalNumberOfBooks data={stacks} isLoading={isLoading} />
         <TotalPriceOfBooks data={stacks} isLoading={isLoading} />
