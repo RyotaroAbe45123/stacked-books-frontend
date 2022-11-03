@@ -38,6 +38,7 @@ export const App = () => {
               <Route path="/register" element={<Register />} />
               <Route path="/books" element={<Books />} />
               <Route path="/" element={<Navigate to="/home" />} />
+              <Route path="/login" element={<Navigate to="/home" />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </DefaultLayout>
