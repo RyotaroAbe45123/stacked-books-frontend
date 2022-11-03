@@ -1,6 +1,10 @@
 import { Stack } from "types/api";
 import { DailyBarChartDataType, MonthlyLineChartDataType } from "types/data";
 
+export const createTweet = (text: string) => {
+  return `${text}%0D%0A`
+}
+
 export const filterThisMonth = (timestamp: string) => {
   const timestampMonth = new Date(timestamp).getMonth() + 1;
   const thisMonth = new Date().getMonth() + 1;
