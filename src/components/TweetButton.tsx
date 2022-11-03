@@ -2,6 +2,8 @@ import { AiOutlineTwitter } from "react-icons/ai";
 import { Box, Icon, Button, Flex } from "@chakra-ui/react";
 import { theme } from "theme/theme";
 import { words } from "utils/words";
+import { hashTags, tweetUrl } from "utils/config";
+import { createTweet } from "functions/utils";
 
 type Props = {
   text: string;
@@ -11,7 +13,7 @@ export const TweetButton = ({ text }: Props) => {
   return (
     <a
       className="twitter-share-button"
-      href={`https://twitter.com/intent/tweet?text=${text}`}
+      href={`${tweetUrl}?hashtags=${hashTags}&text=${createTweet(text)}`}
       target="_blank"
       rel="noreferrer"
     >

@@ -22,8 +22,20 @@ import { theme } from "theme/theme";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Logo from "../../assets/stacked-books-logo.png";
 import { TweetButton } from "components/TweetButton";
+import { useStack } from "services/stack/useStack";
+import { useEffect, useState } from "react";
 
 export const MobileHeader = () => {
+  const { stacks } = useStack();
+
+  const [books, setBooks] = useState<number>(0);
+
+  useEffect(() => {
+    if (stacks !== undefined) {
+      setBooks(stacks.length);
+    }
+  }, [stacks]);
+
   const location = useLocation();
 
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -147,7 +159,7 @@ export const MobileHeader = () => {
         </Flex>
         <Flex alignItems="center">
           <Box marginRight="10px">
-            <TweetButton text={"i"} />
+            <TweetButton text={`Num of Stacks: ${books}`} />
           </Box>
           <LogoutButton />
         </Flex>
