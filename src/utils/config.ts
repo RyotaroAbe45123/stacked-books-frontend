@@ -1,6 +1,8 @@
-export const URL = "https://stacked-books.ml"
+export const url = "https://stacked-books.ml"
 
 export const hashTags = "積読,StackedBooks"
+
+export const tweetUrl = "https://twitter.com/intent/tweet"
 
 export const timeout: number = 30 * 1000;
 
