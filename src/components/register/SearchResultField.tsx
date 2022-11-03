@@ -96,6 +96,7 @@ export const SearchResultField = ({ inputValue }: Props) => {
         <Box>
           {[title, authors, publisher].map((element, index) => (
             <Skeleton
+              key={`${index}/${element}`}
               height="24px"
               width="450px"
               startColor={theme.noImage}
@@ -104,7 +105,6 @@ export const SearchResultField = ({ inputValue }: Props) => {
               isLoaded={isLoaded}
             >
               <Text
-                key={`${index}/${element}`}
                 w="450px"
                 maxWidth="450px"
                 overflow="hidden"
