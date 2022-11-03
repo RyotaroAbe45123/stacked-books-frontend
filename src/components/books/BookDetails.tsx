@@ -5,6 +5,7 @@ import {
   Icon,
   Image,
   SimpleGrid,
+  Tag,
   Text,
 } from "@chakra-ui/react";
 import { useCallback, useState } from "react";
@@ -61,46 +62,70 @@ export const BookDetails = () => {
                       <Box
                         key={book.isbn}
                         w={isMobile ? "150px" : "200px"}
-                        h={isMobile ? "250px" : "100%"}
+                        // h={isMobile ? "250px" : "100%"}
+                        h={isMobile ? "100%" : "100%"}
                         bg={theme.subColor}
                         borderRadius={isMobile ? "15px" : "30px"}
+                        display="flex"
+                        flexDirection="column"
+                        justifyContent="space-between"
                       >
+                        <Box>
+                          <Flex
+                            justifyContent="center"
+                            marginTop={isMobile ? "10px" : "30px"}
+                          >
+                            <Image
+                              src={
+                                book.has_image
+                                  ? `${openbdBookImageEndpoint}${book?.isbn}.jpg`
+                                  : `${issBookImageEndpoint}${book?.isbn}`
+                              }
+                              fallback={
+                                <Flex
+                                  flexDirection="column"
+                                  justifyContent="center"
+                                  alignItems="center"
+                                  w="100px"
+                                  h="150px"
+                                  bg={theme.inactiveColor}
+                                  color={theme.mainText}
+                                >
+                                  {words.books.pagination.noImage}
+                                </Flex>
+                              }
+                              alt={book.title}
+                              w="100px"
+                              h="150px"
+                              objectFit="cover"
+                            />
+                          </Flex>
+                          <Flex
+                            justifyContent="center"
+                            marginY={isMobile ? "5px" : "20px"}
+                          >
+                            <Text
+                              w={isMobile ? "100px" : "150px"}
+                              noOfLines={3}
+                            >
+                              {book.title}
+                            </Text>
+                          </Flex>
+                        </Box>
                         <Flex
                           justifyContent="center"
-                          marginTop={isMobile ? "10px" : "30px"}
+                          marginBottom={isMobile ? "5px" : "20px"}
                         >
-                          <Image
-                            src={
-                              book.has_image
-                                ? `${openbdBookImageEndpoint}${book?.isbn}.jpg`
-                                : `${issBookImageEndpoint}${book?.isbn}`
-                            }
-                            fallback={
-                              <Flex
-                                flexDirection="column"
-                                justifyContent="center"
-                                alignItems="center"
-                                w="100px"
-                                h="150px"
-                                bg={theme.inactiveColor}
-                                color={theme.mainText}
-                              >
-                                {words.books.pagination.noImage}
-                              </Flex>
-                            }
-                            alt={book.title}
-                            w="100px"
-                            h="150px"
-                            objectFit="cover"
-                          />
-                        </Flex>
-                        <Flex
-                          justifyContent="center"
-                          marginY={isMobile ? "5px" : "20px"}
-                        >
-                          <Text w={isMobile ? "100px" : "150px"} noOfLines={3}>
-                            {book.title}
-                          </Text>
+                          <Tag
+                            variant="solid"
+                            // colorScheme="teal"
+                            color={theme.mainColor}
+                            fontWeight="bold"
+                            bg={theme.twitterColor}
+                            borderRadius="full"
+                          >
+                            自然科学
+                          </Tag>
                         </Flex>
                       </Box>
                     ))}
