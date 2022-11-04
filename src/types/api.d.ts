@@ -11,6 +11,7 @@ export type Book = {
   title: string;
   price: number | null;
   pages: number | null;
+  c_code: string | null;
   publisher: string;
   has_image: boolean;
   authors: str[];
