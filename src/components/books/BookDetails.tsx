@@ -5,7 +5,6 @@ import {
   Icon,
   Image,
   SimpleGrid,
-  Tag,
   Text,
 } from "@chakra-ui/react";
 import { useCallback, useState } from "react";
@@ -62,9 +61,10 @@ export const BookDetails = () => {
                       <Box
                         key={book.isbn}
                         w={isMobile ? "150px" : "200px"}
-                        // h={isMobile ? "250px" : "100%"}
                         h={isMobile ? "100%" : "100%"}
                         bg={theme.subColor}
+                        borderWidth={3}
+                        borderColor={theme.mainText}
                         borderRadius={isMobile ? "15px" : "30px"}
                         display="flex"
                         flexDirection="column"
@@ -102,7 +102,7 @@ export const BookDetails = () => {
                           </Flex>
                           <Flex
                             justifyContent="center"
-                            marginY={isMobile ? "5px" : "20px"}
+                            marginY={isMobile ? "10px" : "20px"}
                           >
                             <Text
                               w={isMobile ? "100px" : "150px"}
@@ -111,22 +111,38 @@ export const BookDetails = () => {
                               {book.title}
                             </Text>
                           </Flex>
-                        </Box>
-                        <Flex
-                          justifyContent="center"
-                          marginBottom={isMobile ? "5px" : "20px"}
-                        >
-                          <Tag
-                            variant="solid"
-                            // colorScheme="teal"
-                            color={theme.mainColor}
-                            fontWeight="bold"
-                            bg={theme.twitterColor}
-                            borderRadius="full"
+                          <Flex
+                            justifyContent="center"
+                            marginY={isMobile ? "10px" : "20px"}
                           >
-                            自然科学
-                          </Tag>
-                        </Flex>
+                            <Text w={isMobile ? "100px" : "150px"}>
+                              {book.authors.join()}
+                            </Text>
+                          </Flex>
+                        </Box>
+                        {book.c_code !== null && (
+                          <Flex
+                            justifyContent="center"
+                            marginBottom={isMobile ? "10px" : "20px"}
+                          >
+                            <Box
+                              fontWeight="bold"
+                              color={theme.mainText}
+                              bg={theme.mainColor}
+                              borderWidth={1}
+                              borderColor={theme.mainText}
+                              borderRadius="50px"
+                              width="100px"
+                              textAlign="center"
+                            >
+                              {
+                                (words.dashboard.books.categoryName as any)[
+                                  book.c_code.slice(2, 3)
+                                ]
+                              }
+                            </Box>
+                          </Flex>
+                        )}
                       </Box>
                     ))}
                   </SimpleGrid>
