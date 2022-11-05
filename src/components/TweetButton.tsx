@@ -1,6 +1,5 @@
 import { AiOutlineTwitter } from "react-icons/ai";
 import { Box, Icon, Button, Flex } from "@chakra-ui/react";
-import { theme } from "theme/theme";
 import { words } from "utils/words";
 import { hashTags, tweetUrl } from "utils/config";
 import { createTweet } from "functions/utils";
@@ -18,8 +17,7 @@ export const TweetButton = ({ text }: Props) => {
       rel="noreferrer"
     >
       <Button
-        bg={theme.twitterColor}
-        color={theme.mainColor}
+        colorScheme="twitter"
         padding="1px 12px 1px 12 px"
         borderRadius="9999px"
         w="81px"
