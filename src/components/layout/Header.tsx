@@ -1,6 +1,7 @@
 import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import { LogoutButton } from "auth/LogoutButton";
 import { TweetButton } from "components/TweetButton";
+import { calcStats, createTweetComponent } from "functions/utils";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { routes } from "Routes";
@@ -11,11 +12,12 @@ import { words } from "utils/words";
 export const Header = () => {
   const { stacks } = useStack();
 
-  const [books, setBooks] = useState<number>(0);
+  const [text, setText] = useState<string>("");
 
   useEffect(() => {
     if (stacks !== undefined) {
-      setBooks(stacks.length);
+      const stats = calcStats(stacks);
+      setText(createTweetComponent(stats));
     }
   }, [stacks]);
 
@@ -44,7 +46,7 @@ export const Header = () => {
         </Box>
         <Flex alignItems="center">
           <Box marginRight="10px">
-            <TweetButton text={`Num of Stacks: ${books}`} />
+            <TweetButton text={text} />
           </Box>
           <Button
             onClick={() => navigate("/register")}

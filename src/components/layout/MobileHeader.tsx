@@ -24,15 +24,17 @@ import Logo from "../../assets/stacked-books-logo.png";
 import { TweetButton } from "components/TweetButton";
 import { useStack } from "services/stack/useStack";
 import { useEffect, useState } from "react";
+import { calcStats, createTweetComponent } from "functions/utils";
 
 export const MobileHeader = () => {
   const { stacks } = useStack();
 
-  const [books, setBooks] = useState<number>(0);
+  const [text, setText] = useState<string>("");
 
   useEffect(() => {
     if (stacks !== undefined) {
-      setBooks(stacks.length);
+      const stats = calcStats(stacks);
+      setText(createTweetComponent(stats));
     }
   }, [stacks]);
 
@@ -159,7 +161,7 @@ export const MobileHeader = () => {
         </Flex>
         <Flex alignItems="center">
           <Box marginRight="10px">
-            <TweetButton text={`Num of Stacks: ${books}`} />
+            <TweetButton text={text} />
           </Box>
           <LogoutButton />
         </Flex>
