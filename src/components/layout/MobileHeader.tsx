@@ -24,6 +24,7 @@ import Logo from "../../assets/stacked-books-logo.png";
 import { TweetButton } from "components/TweetButton";
 import { useStack } from "services/stack/useStack";
 import { useEffect, useState } from "react";
+import { calcStats, createTweetComponent } from "functions/utils";
 
 export const MobileHeader = () => {
   const { stacks } = useStack();
@@ -32,16 +33,8 @@ export const MobileHeader = () => {
 
   useEffect(() => {
     if (stacks !== undefined) {
-      const numOfBooks = stacks.length;
-      let totalPrice = 0;
-      let totalPages = 0;
-      stacks.forEach((i) => {
-        totalPrice += i.price ?? 0;
-        totalPages += i.pages ?? 0;
-      });
-      setText(
-        `${numOfBooks}冊の本を積み上げました！%0D%0A${totalPrice.toLocaleString()}円を本に使いました！%0D%0A${totalPages.toLocaleString()}ページ分の本を積み上げました！`,
-      );
+      const stats = calcStats(stacks);
+      setText(createTweetComponent(stats));
     }
   }, [stacks]);
 
