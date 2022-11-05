@@ -1,5 +1,10 @@
 import { Stack } from "types/api";
-import { DailyBarChartDataType, MonthlyLineChartDataType } from "types/data";
+import { DailyBarChartDataType, MonthlyLineChartDataType, StatsType } from "types/data";
+
+
+export const createTweetComponent = ({ count, price, pages }: StatsType): string => {
+  return `${count}冊の本を積み上げました！%0D%0A${price.toLocaleString()}円を本に使いました！%0D%0A${pages.toLocaleString()}ページ分の本を積み上げました！`
+}
 
 export const createTweet = (text: string) => {
   return `${text}%0D%0A`
@@ -65,3 +70,19 @@ export const setFillHeight = () => {
   const vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty("--vh", `${vh}px`);
 }
+
+export const calcStats = (stacks: Stack[]): StatsType => {
+  const numOfBooks = stacks.length;
+  let totalPrice = 0;
+  let totalPages = 0;
+  stacks.forEach((i) => {
+    totalPrice += i.price ?? 0;
+    totalPages += i.pages ?? 0;
+  });
+  return {
+    count: numOfBooks,
+    price: totalPrice,
+    pages: totalPages,
+  }
+}
+

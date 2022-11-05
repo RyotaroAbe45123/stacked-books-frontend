@@ -19,3 +19,9 @@ export type TableListDataType = {
   price: number | null;
   pages: number | null;
 };
+
+export type StatsType = {
+  count: number;
+  price: number;
+  pages: number;
+}
