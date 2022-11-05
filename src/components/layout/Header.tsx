@@ -11,11 +11,20 @@ import { words } from "utils/words";
 export const Header = () => {
   const { stacks } = useStack();
 
-  const [books, setBooks] = useState<number>(0);
+  const [text, setText] = useState<string>("");
 
   useEffect(() => {
     if (stacks !== undefined) {
-      setBooks(stacks.length);
+      const numOfBooks = stacks.length;
+      let totalPrice = 0;
+      let totalPages = 0;
+      stacks.forEach((i) => {
+        totalPrice += i.price ?? 0;
+        totalPages += i.pages ?? 0;
+      });
+      setText(
+        `${numOfBooks}冊の本を積み上げました！%0D%0A${totalPrice.toLocaleString()}円を本に使いました！%0D%0A${totalPages.toLocaleString()}ページ分の本を積み上げました！`,
+      );
     }
   }, [stacks]);
 
@@ -44,7 +53,7 @@ export const Header = () => {
         </Box>
         <Flex alignItems="center">
           <Box marginRight="10px">
-            <TweetButton text={`Num of Stacks: ${books}`} />
+            <TweetButton text={text} />
           </Box>
           <Button
             onClick={() => navigate("/register")}
