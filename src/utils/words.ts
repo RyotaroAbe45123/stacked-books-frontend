@@ -46,6 +46,7 @@ export const words = {
       tableColumns: {
         date: "date",
         title: "title",
+        authors: "authors",
         price: "price",
         pages: "pages",
       },

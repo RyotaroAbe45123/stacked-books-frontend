@@ -101,7 +101,7 @@ export const BookTableList = ({ stacks, isLoading }: Props) => {
             <Tr>
               <Th>{words.dashboard.books.tableColumns.date}</Th>
               <Th>{words.dashboard.books.tableColumns.title}</Th>
-              <Th>authors</Th>
+              <Th>{words.dashboard.books.tableColumns.authors}</Th>
               <Th>{words.dashboard.books.tableColumns.price}</Th>
               <Th>{words.dashboard.books.tableColumns.pages}</Th>
             </Tr>
@@ -115,14 +115,22 @@ export const BookTableList = ({ stacks, isLoading }: Props) => {
                 <Td maxWidth="100px">{data.date}</Td>
                 <Td
                   width="450px"
-                  maxWidth={{ md: "200px", lg: "300px", xl: "400px" }}
+                  maxWidth={{
+                    base: "300px",
+                    lg: "300px",
+                    xl: "400px",
+                  }}
                   overflow="hidden"
                   textOverflow="ellipsis"
                 >
                   {data.title}
                 </Td>
                 <Td
-                  maxWidth={{ md: "100px", lg: "150px", xl: "200px" }}
+                  maxWidth={{
+                    base: "150px",
+                    lg: "150px",
+                    xl: "200px",
+                  }}
                   overflow="hidden"
                   textOverflow="ellipsis"
                 >
