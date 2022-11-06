@@ -16,6 +16,7 @@ type PieDataType = {
 export type TableListDataType = {
   date: string;
   title: string;
+  authors: string;
   price: number | null;
   pages: number | null;
 };

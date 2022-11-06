@@ -35,7 +35,7 @@ export const Dashboard = () => {
         <CategoryChart data={stacks} isLoading={isLoading} />
       </SimpleGrid>
       <SimpleGrid columns={1}>
-        <BookTableList data={stacks} isLoading={isLoading} />
+        <BookTableList stacks={stacks} isLoading={isLoading} />
       </SimpleGrid>
     </Box>
   );
