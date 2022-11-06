@@ -1,4 +1,5 @@
 export type Stack = {
+  isbn: number;
   timestamp: TimeStamp;
   title: string;
   price: number | null;
@@ -9,11 +10,11 @@ export type Stack = {
 export type Book = {
   isbn: number;
   title: string;
-  price: number | null;
   pages: number | null;
   c_code: string | null;
-  publisher: string;
   has_image: boolean;
+  publisher: string;
+  price: number | null;
   authors: str[];
 };
 
