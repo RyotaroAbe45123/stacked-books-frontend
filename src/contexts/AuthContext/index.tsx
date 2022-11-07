@@ -6,19 +6,21 @@ type AuthContextType = {
   isAuthenticated: boolean;
   isLoading: boolean;
   token: string | null;
+  id: string | null;
 };
 
 const AuthContext = createContext<AuthContextType>({
   isAuthenticated: false,
   isLoading: false,
   token: null,
+  id: null,
 });
 
 export const useAuthContext = (): AuthContextType =>
   useContext<AuthContextType>(AuthContext);
 
 export const AuthContextProvider = ({ children }: PropsWithChildren) => {
-  const { isAuthenticated, getAccessTokenSilently } = useAuth0();
+  const { isAuthenticated, getAccessTokenSilently, user } = useAuth0();
 
   const fetcher = async () => {
     const domain = process.env.REACT_APP_DOMAIN;
@@ -47,6 +49,7 @@ export const AuthContextProvider = ({ children }: PropsWithChildren) => {
         isAuthenticated: isAuthenticated,
         isLoading: isLoading,
         token: data ?? null,
+        id: user?.sub?.split("|").pop() ?? null,
       }}
     >
       {children}
