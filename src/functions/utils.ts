@@ -1,4 +1,4 @@
-import { Stack } from "types/api";
+import { Book, Stack } from "types/api";
 import { DailyBarChartDataType, MonthlyLineChartDataType, StatsType } from "types/data";
 
 
@@ -86,3 +86,12 @@ export const calcStats = (stacks: Stack[]): StatsType => {
   }
 }
 
+export const convertTimeStampToDate = (timeStamp: string) => {
+  const date = new Date(timeStamp);
+  return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
+};
+
+export const searchAuthors = (isbn: number, books: Book[]) => {
+  const authors = books.filter((book) => book.isbn === isbn);
+  return authors ? authors[0]["authors"].join() : "";
+};

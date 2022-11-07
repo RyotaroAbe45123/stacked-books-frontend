@@ -7,6 +7,7 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
+import { convertTimeStampToDate, searchAuthors } from "functions/utils";
 import { useCallback, useEffect, useState } from "react";
 import { MdTableRows } from "react-icons/md";
 import { useBook } from "services/book/useBook";
@@ -38,16 +39,6 @@ export const BookTableList = ({ stacks, isLoading }: Props) => {
 
   const [tableListData, setTableListData] =
     useState<TableListDataType[]>(emptyArray);
-
-  const convertTimeStampToDate = (timeStamp: string) => {
-    const date = new Date(timeStamp);
-    return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
-  };
-
-  const searchAuthors = (isbn: number, books: Book[]) => {
-    const authors = books.filter((book) => book.isbn === isbn);
-    return authors ? authors[0]["authors"].join() : "";
-  };
 
   // 最新の5件を選択
   const selectData = useCallback(
