@@ -9,7 +9,14 @@ import {
 } from "@chakra-ui/react";
 import { SpinnerComponent } from "components/SpinnerComponent";
 import { useMobileContext } from "contexts/MobileContext";
-import { ChangeEvent, Dispatch, SetStateAction, useCallback } from "react";
+import {
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import { useStack } from "services/stack/useStack";
 import { theme } from "theme/theme";
 import { words } from "utils/words";
@@ -26,6 +33,16 @@ export const InputField = ({ inputValue, setInputValue }: InputFieldProps) => {
     position: "top",
     isClosable: true,
   });
+
+  const [buttonActive, setButtonActive] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (String(inputValue).length === 13) {
+      setButtonActive(true);
+    } else {
+      setButtonActive(false);
+    }
+  }, [inputValue]);
 
   const { postStack, deleteStack, registerLoading } = useStack();
 
@@ -90,6 +107,7 @@ export const InputField = ({ inputValue, setInputValue }: InputFieldProps) => {
                     size="md"
                     marginRight="10px"
                     onClick={postStackFuntion}
+                    isDisabled={!buttonActive}
                   >
                     {words.register.stackButtonName}
                   </Button>
@@ -99,6 +117,7 @@ export const InputField = ({ inputValue, setInputValue }: InputFieldProps) => {
                     size="md"
                     marginRight="10px"
                     onClick={deleteStackFuntion}
+                    isDisabled={!buttonActive}
                   >
                     {words.register.unstackButtonName}
                   </Button>
@@ -136,6 +155,7 @@ export const InputField = ({ inputValue, setInputValue }: InputFieldProps) => {
                   bg={theme.subColor}
                   size="xs"
                   onClick={postStackFuntion}
+                  isDisabled={!buttonActive}
                 >
                   {words.register.stackButtonName}
                 </Button>
@@ -143,6 +163,7 @@ export const InputField = ({ inputValue, setInputValue }: InputFieldProps) => {
                   bg={theme.subColor}
                   size="xs"
                   onClick={deleteStackFuntion}
+                  isDisabled={!buttonActive}
                 >
                   {words.register.unstackButtonName}
                 </Button>
