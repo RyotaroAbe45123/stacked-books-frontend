@@ -93,5 +93,5 @@ export const convertTimeStampToDate = (timeStamp: string) => {
 
 export const searchAuthors = (isbn: number, books: Book[]) => {
   const authors = books.filter((book) => book.isbn === isbn);
-  return authors ? authors[0]["authors"].join() : "";
+  return authors.length > 0 ? authors[0]["authors"].join() : "";
 };
